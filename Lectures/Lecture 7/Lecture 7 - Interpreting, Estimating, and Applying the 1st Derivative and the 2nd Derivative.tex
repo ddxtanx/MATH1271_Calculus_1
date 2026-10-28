@@ -1,0 +1,320 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 7 - Interpreting, Estimating, and Applying the 1st Derivative and the 2nd Derivative}
+\author{Garrett Credi}
+\date{09/29/26}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Announcements}
+
+  \textcolor{red}{Next week, during class time we will have our first exam! It will cover material from sections 1.1-1.7 and 3.2.3 of Active Calculus. \pause
+  I.e. all the lectures up to and including this Thursday's lecture. \pause}
+
+  Practice exams and the review sheet are present in the Canvas. \pause
+
+  How to study? \pause
+  \begin{itemize}
+    \item Practice, practice, and more practice! The homework problems are your friends - use them to get practice solving the relevant problems. \pause
+    \item Lecture Slides for review. I'll upload a compiled version of all the slides with a searchable index at the bottom so you can quickly go to 
+      the slides defining relevant terms. \pause
+    \item Use the practice exams as a \textit{cumulative metric} not as an additional source of problems. Take them after you complete a round of review,
+      actually take them in an exam-like environment (no notes, 50 minutes, uncomfy chair, etc), and use your performance on them to guide your next round of review. \pause
+    \item Start early! The later you start, the less time you'll have to ask me questions in office hours/via email! \pause
+    \item Review session - I'll hold an Exam 1 review session next Monday (from 6-8?) where you can come and ask any and all questions you have and I'll answer em! 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+
+  Please get into neat rows, and spread out. Only then will I hand out the quiz. As per usual, no cheating (hopefully should go without saying).
+\end{frame}
+
+\section{Interpreting and Applying the First Derivative}
+
+\begin{frame}
+  \frametitle{Derivative ReCap}    
+
+  Last week we studied the \textit{derivative} of a function $f(x)$: \pause
+  \begin{itemize}
+    \item At a point $x = a$, we defined it as \pause
+      \begin{equation}
+        f'(a) = \lim\limits_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h} = \lim\limits_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a}
+      \end{equation} \pause
+    \item We saw that it was also equal to: \pause
+      \begin{enumerate}
+        \item The slope of the best linear approximation to $f(x)$ at $x = a$ \pause
+        \item The instantaneous velocity of a particle whose position was given by $f(x)$ at $t = a$ \pause
+        \item The slope of the line tangent to the graph of $y = f(x)$ at $(a, f(a))$. \pause
+      \end{enumerate}
+    \item We also saw that we could construct a \textit{derivative function}: \pause
+      \begin{equation}
+        f'(x) = \lim_{h \rightarrow 0} \dfrac{f(x+h) - f(x)}{h}
+      \end{equation} \pause
+      and determine some information about $f(x)$ from $f'(x)$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Increasing-ness, Decreasing-ness, and Stationary-ness I}
+
+  We can use the derivative to determine whether a function is increasing/decreasing/stationary: \pause
+
+  \begin{block}{Increasing Function}\index{function!increasing}\index{increasing function}
+    A function $f(x)$ is increasing around a point $x = a$
+    if it is increasing in \textit{some} small neighborhood around $x = a$. \pause
+  \end{block}
+
+  Decreasingness is similarly defined. \pause
+
+  \begin{alertblock}{Increasingness via the Derivative}\index{derivative!increasingness}\index{function!increasing!derivative test}
+    For a function $f(x)$ which is differentiable at $x = a$, \pause
+    increasingness at $a$ is equivalent to $f'(a) > 0$.
+
+    Similarly, decreasingness is equivalent to $f'(a) < 0$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Increasingness II}
+
+  Why is that true? \pause
+
+  Idea: Because $f(x)$ is differentiable at $x = a$, \pause
+  it's behavior is well approximated by the best linear approximation
+  $\mathscr{L}(x) = f(a) + f'(a)(x - a)$. \pause
+
+  When is a linear function increasing/decreasing? \pause When the slope (which is $f'(a)$) is positive/negative! \pause
+
+  In terms of instantaneous velocity: \pause positive velocity means increasing position, resp. negative velocity means decreasing position.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Graph Sketching I}
+
+  We can use this idea to sketch graphs of derivative functions $f'(x)$
+  given graphs of $f(x)$: \pause
+  \vfill \pause
+
+  And to sketch graphs of function $f(x)$ given graphs of their derivatives $f'(x)$:
+  \vfill 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Graph Sketching II}
+
+  Notice how the increasingness/decreasingness of the \textit{derivative} (e.g. the derivative of the derivative) informed us about the shape of the original function $f(x)$ \pause - we'll see later in lecture this is due to the properties of the \textit{second} derivative $f''(x)$.
+\end{frame}
+
+\section{Estimating The Derivative}
+
+\begin{frame}
+  \frametitle{Estimation I}
+  Oftentime, in the real world, we won't have a literal function
+  of which to take the derivative \pause we'll instead have some (possibly large) collection of sampled datapoints. \pause
+
+  How can we get information about the derivative of the function modeling the measured quantity from these sparse datapoints? \pause
+
+  The derivative is a limit so: \pause 
+  \begin{equation}
+    \text{Estimating the derivative} \quad \iff \quad \text{Estimating a limit!} 
+  \end{equation} \pause
+\end{frame}
+\begin{frame}
+  \frametitle{Estimation II}
+  If we're trying to estimate: \pause
+  \begin{equation}
+    f'(a) = \lim\limits_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a} = \lim\limits_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h}
+  \end{equation} \pause
+
+  We can compute the difference quotient quantities for values of $x \approx a$ or $h \approx 0$. \pause
+
+  However, practically, there is a better choice of points about which to approximate: \pause
+
+  \begin{block}{Central Difference Approximation}\index{central difference approximation}\index{derivative!central difference approximation}
+    For a collection of sampled input and output pairs $(x_i, y_i)$, \pause
+    estimating the derivative of $y$ with respect to $x$ about $x = a$, $\dfrac{dy}{dx} \mid_{x = a}$ \pause
+    is best achieved by taking a pair of points $(x_0, y_0)$ and $(x_1, y_1)$ so that: \pause
+    \begin{enumerate}
+      \item $x_0 \approx a$ and $x_1 \approx a$ (approximation requirement) \pause
+      \item $x_0$ and $x_1$ are ``symmetric" about $x = a$, \pause i.e. one of them is close and slightly less than $a$ while the other is close and slightly greater than $a$. \pause
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Central Difference Approximation Example} 
+
+  E.g. \pause
+  \vfill
+\end{frame}
+
+\section{Second and Higher Derivatives}
+
+\begin{frame}
+  \frametitle{Graph Sketching Redux}
+
+  Recall that when we sketched graphs of $f(x)$ given the graph of $f'(x)$ \vfill \pause
+
+  in addition to the positivity/negativity of $f'(x)$ giving us information about the increasingness/decreasingness of $f(x)$ \pause
+  the increasingness/decreasingness of $f'(x)$ itself also gave us information \pause about the curvature of $f(x)$! \pause
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Second Derivative}
+  The quantity that controls the increasingness/decreasingness of the \textit{first} derivative $g(x) := f'(x)$ \pause is \textit{it's} derivative: $g'(x) \pause = f''(x)$. \pause
+
+  \begin{block}{Second Derivative}\index{derivative!second derivative}\index{second derivative}
+    For a function $f(x)$ that is differentiable at $x = a$ \pause
+    and so that $f'(x)$ is \textit{continuous} at $x = a$ \pause (which we say $f(x)$ is continuously differentiable at $x = a$) \pause,
+    the second derivative of $f(x)$ at $x = a$ denoted: \pause
+    \begin{equation}
+      f''(x) \quad f^{(2)}(x) \quad \dfrac{d^2 f}{dx^2} \quad \dfrac{d^2}{dx^2} f(x)
+    \end{equation} \pause
+
+    is defined to be the derivative of the function $f'(x)$ at $x = a$. \pause
+
+    The second derivative function is defined similarly.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quadratic Approximation}
+  Just as the first derivative controls information about the best \textit{linear approximation}: \pause
+  \begin{equation}
+    f(x) \approx f(a) + f'(a)(x - a)
+  \end{equation}\pause
+
+  The second derivative controls information about the best \textit{quadratic approximation}: \pause
+  \begin{equation}
+    f(x) \approx f(a) + f'(a)(x - a) + \dfrac{f''(a)}{2} (x-a)^2
+  \end{equation} \pause
+
+  Similarly, just as the first derivative is equivalent to instantaneous \textit{velocity} \pause, the second derivative is equivalent to instantaneous \textit{acceleration}!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Concavity I}
+  
+  \begin{center}
+    \begin{tabular}{c|c}
+      $f(x) > 0$/$f(x) < 0$ & positivity/negativity \pause \\
+      \hline
+      $f'(x) > 0$/$f'(x) < 0$ & increasingness/decreasingness \pause \\
+      \hline
+      $f''(x) > 0$/$f''(x) < 0$ & ?
+    \end{tabular}
+  \end{center}
+    \begin{block}{Concavity}\index{concavity}\index{function!concavity}
+      A function $f(x)$ is \textit{concave up} at $x = a$ if,
+      around $x = a$ \pause the function is \textit{greater} than it's 
+      best linear approximation: \pause
+      \begin{equation}
+        f(x) > f(a) + f'(a)(x - a)
+      \end{equation} \pause
+      equivalently that it lies above it's tangent lines. \pause
+
+      Similarly, it is \textit{concave down} at $x = a$ if: \pause
+      \begin{equation}
+        f(x) < f(a) + f'(a)(x - a)
+      \end{equation} \pause
+      i.e. that is lies below it's tangent lines.
+    \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Concavity II}
+
+  \begin{alertblock}{Concavity in terms of the Second Derivative}\index{concavity!in terms of the second derivative}
+    A function $f(x)$ which is second differentiable at $x = a$ \pause
+    is concave up at $x = a$ if and only if $f''(a) > 0$. \pause
+
+    Similarly it is concave down if and only if $f''(a) < 0$. \pause
+  \end{alertblock}
+
+  E.g. 
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Shapes of Functions via the First and Second Derivatives}
+
+  We generically have four types of shapes a function can take
+  \pause 
+  given information about it's first and second derivatives: \pause
+
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      If $f'(x) > 0$ and $f''(x) > 0$: \pause
+      \vfill
+    \end{column} 
+
+    \begin{column}{0.49\textwidth}
+      If $f'(x) < 0$ and $f''(x) > 0$: \pause
+      \vfill
+    \end{column}
+  \end{columns}
+  \vfill
+
+  \begin{columns}
+    \begin{column}{0.49\textwidth}
+      If $f'(x) > 0$ and $f''(x) < 0$: \pause
+      \vfill
+    \end{column}
+
+    \begin{column}{0.49\textwidth}
+      If $f'(x) < 0$ and $f''(x) < 0$: \pause
+      \vfill
+    \end{column}
+  \end{columns}
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class}
+  That's all folks!
+\end{frame}
+\end{document}

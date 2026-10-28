@@ -1,0 +1,170 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{exam}
+\input{../worksheet-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 11 - The Chain Rule}
+\author{MATH 1271}
+\date{10/15/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newpage
+\maketitle
+
+\begin{enumerate}
+
+\item For each function below, identify how to express it as a composite of elementary functions and then find its derivative:
+
+\begin{enumerate}
+
+
+\item $m(v)=\sin(v^2)\cos(v^3)$
+
+\vfill
+
+\item $h(y)=\dfrac{\cos(10y)}{e^{4y}+1}$
+
+\vfill
+
+\item $g(w) = (6w^2 + 7w)^4$
+
+  \vfill
+
+\item $\alpha(x) = \left(\sqrt[3]{12e^{4x} + 3e^{4x} + 2} + \sin^2(e^{4x})\right)^{-1}$
+  \vfill
+\end{enumerate}
+
+\newpage
+
+
+\item Use known derivative rules, including the Chain Rule, as needed to answer each of the following questions:
+
+\begin{enumerate}
+
+\item Find an equation for the tangent line to the curve $y=\sqrt{e^x+3}$ at the point where $x=0$.
+
+\vfill
+
+\item If $s(t)=\frac{1}{(t^2+1)^3}$ represents the position function of a particle moving horizontally along an axis at time $t$, find the particle's instantaneous velocity at $t=1$. Is the particle moving to the left or to the right at that instance? (Hint: What is the sign of $v(1)$?)
+
+\vfill
+
+\item At sea level, the air pressure is $30$ inches of mercury. At an altitude of $h$ feet above sea level, the air pressure, $P$, is given by the function $P=30e^{-0.0000323h}$. Compute $\frac{dP}{dh}$ and explain what this derivative function tells you about air pressure, including a discussion of units of $\frac{dP}{dh}$.
+
+\vfill
+
+
+\newpage
+
+\item Referring to the previous question, determine how fast the air pressure is changing for a pilot of a small plane passing through an altitude of $1,000$ feet. (Round your answer to $6$ decimal places.)
+
+\vfill
+
+\item Suppose that $f(x)$ and $g(x)$ are differentiable functions and that the following information about them is known:
+
+\begin{center}
+\begin{tabular}{c | c | c | c | c}
+$x$ & $f(x)$ & $f'(x)$ & $g(x)$ & $g'(x)$\\
+\hline
+$-1$ & $2$ & $-5$ & $-3$ & $4$\\
+\hline
+$2$ & $-3$ & $4$ & $-1$ & $2$
+\end{tabular}
+\end{center}
+
+If $C(x)$ is a function given by the formula $C(x)=f(g(x))$, determine $C'(2)$.
+
+\vfill
+
+\item Using the same table as in the previous question, let $D(x)$ be the function $f(f(x))$. Find $D'(-1)$.
+
+\vfill
+
+
+
+
+\end{enumerate}
+\newpage
+
+\item Say you are working for a company who produces solar panels, and are trying to determine
+  the optimal density of photovoltaic cells with which to produce your panels.
+  Your economists have determined that clients are willing to pay more for panels as
+  the energy density (in watts per square meter) of your panels vary; 
+  your chemists have determined that the energy density changes depending on the density of your
+  photovoltaic cells, and that the cost per unit area product (dollars per square meter) 
+  also only depends on that photovoltaic density (measured in cells per square meter).
+
+  Suppose you know that:
+    \begin{itemize}
+      \item Your company currently produces panels with a PVD of 100 cells per square meter
+      \item At a PVD of 100 cells per square meter, the energy density produced 175 watts per meter squared
+      \item At that same PVD, panels cost about 60 dollars per square meter
+      \item At an energy density of 175 watts per meter squared, clients are willing to pay 90 dollars per square meter
+      \item At your current PVD, small changes to the PVD cause the energy density to change by about 0.02 watts per cell
+      \item At your current PVD, small changes to it will increase the cost by about 0.20 USD per cell
+      \item From market research, increasing energy density will make clients increase demand at a rate of about 2 dollars per watt.
+    \end{itemize}
+
+    \begin{enumerate}
+      \item If the energy density as a function of photovoltaic density is given by $E(p)$, the cost as a function of photovoltaic density is given by $C(p)$, and the price a client is willing to pay as a function of energy density is given by $W(e)$, determine an expression
+      for the profit per square meter after selling a solar panel.
+      \vfill
+
+      \item At our current values, how much profit are we making per square meter?
+      \vfill
+      \newpage
+
+    \item Using the previously defined functions, rewrite the measurements on the previous page in the form of values of function/their derivatives.
+      \vfill
+
+    \item What is an expression for the derivative of profit as a function of photovoltaic density?
+      \vfill
+
+    \item Should you increase or decrease photovoltaic density if you want to increase profit?
+      \vfill
+    \end{enumerate}
+\end{enumerate}
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

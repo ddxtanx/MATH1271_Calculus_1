@@ -1,0 +1,158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{exam}
+\input{../worksheet-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 5 - The Derivative}
+\author{MATH 2263}
+\date{09/22/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+\item Consider the function $y=f(x)$ graphed below: %#1, Activity 5
+
+\begin{center}
+\includegraphics[scale=0.75]{wkst6img}
+\end{center}
+
+Using this graph (and estimating your answer whenever necessary), give the $x$-coordinate of a point where...
+
+\begin{enumerate}
+
+\item the \textbf{derivative} of $f(x)$ is negative:
+
+\vfill
+
+\item the \textbf{value} of $f(x)$ is negative:
+
+\vfill
+
+\item the \textbf{derivative} of $f(x)$ is smallest (most negative):
+
+\vfill
+
+\item the \textbf{derivative} of $f(x)$ is zero:
+
+\vfill
+
+\item the \textbf{derivative} of $f(x)$ is approximately the same as the \textbf{derivative} of $f(x)$ at $x=2.25$:
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+\item Suppose that a ball is tossed straight up into the air. At time $t$ (the number of seconds after the ball was thrown), the height of the ball (in feet) is given by the function 
+$$s(t)=64-16(t-1)^2.$$
+
+\begin{enumerate}
+
+\item Sketch the graph of $s(t)$ on the interval $[0,3]$. Label the points on the graph that correspond to when the ball was released, when the ball reaches its highest point, and when the ball lands.
+
+\vspace{2in} 
+
+\item Compute the value of $\frac{s(2.5)-s(1.5)}{2.5-1.5}$.
+
+\vspace{1.65in}
+
+\item What are the units on your answer to part (b)? \quad \rule{1.5in}{0.4pt}
+
+\medskip
+\newpage
+\item Within the context of this problem (i.e., the motion of the ball), what is the meaning of the value that you found in (b)?
+
+\vspace{1.85in}
+
+\item The value that you found in (b) also represents the slope of a certain line. Draw this line on the graph you drew in part (a).
+
+\medskip
+
+\item Use a calculator to complete the following table:
+
+\begin{center}
+\begin{tabular}{c | c}
+\text{Time interval $[a,b]$} & \text{$\frac{s(b)-s(a)}{b-a}$}\\
+\hline\\[-15pt]
+$[1.9, 2]$ & \\[14pt]
+$[1.99, 2]$ & \\[14pt]
+$[2, 2.1]$ & \\[14pt]
+$[2, 2.01]$ & \\[14pt]
+\end{tabular}
+\end{center}
+
+\item Using your completed table, estimate the \emph{instantaneous} velocity of the ball at time $t=2$.
+ 
+ \vspace{0.75in}
+ 
+\item Compute the derivative of the function $s(t)$ at $t = 2$. Compare this to your estimate above; is what you notice surprising?
+\end{enumerate}
+
+\newpage
+
+  \item Compute the derivatives of the following functions at the indicated points:
+
+    \begin{enumerate}
+      \item $f(x) = x^2$ at $x = -1$.
+        \vfill
+      \item $f(x) = \dfrac{1}{x}$ at $x = 2$.
+        \vfill
+        \newpage
+      \item $f'(1)$ where $f(x) = \sqrt{x + 3}$.
+        \vfill
+      \item $f'(1)$ where $f(x) = \dfrac{1}{x^2 + 1}$.
+      \vfill
+      \newpage
+      \item $f'(1)$ where $f(x) = x^3 + x - 1$.
+        \vfill
+      \item $f'(0)$ where $f(x) = \sin(x)$.
+        \vfill
+    \end{enumerate}
+\end{enumerate}
+
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,246 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{exam}
+\input{../worksheet-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 10 - Product and Quotient Rule, Trig Derivatives}
+\author{MATH 1271}
+\date{10/13/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newpage
+\maketitle
+
+\begin{enumerate}
+
+\item Use relevant derivative rules to differentiate each function below.
+
+\begin{enumerate}
+
+\item $h(z)=\sqrt{z}+\dfrac{1}{z^4}+5^z$ (Please use Leibniz notation.)
+
+\vfill
+
+\item $r(x)=\dfrac{3^x}{x^4+1}$
+
+\vfill
+
+\item $p(t)=(t^3-t^2+t-1)(t^2+3t+1)$
+
+\vfill
+
+\item $g(y)=\dfrac{y^2e^y}{2y+1}$
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+
+
+\item Suppose that $f$ and $g$ are differentiable functions such that
+$$f(4)=2, \qquad f'(4)=6, \qquad g(4)=5, \qquad g'(4)=-3$$
+Using this information, compute the derivatives of each of the following functions:
+
+\begin{enumerate}
+
+\item $h(x)=f(x)g(x)$. What is $h'(4)$?
+
+\vfill
+
+\item $S(t)=\dfrac{f(t)}{g(t)}$. What is $S'(4)$?
+
+\vfill
+
+%\item $j(y)=\dfrac{g(y)}{f(y)}$. What is $j'(4)$?
+
+%\vfill
+
+\item $q(z)=z^2f(z)+z$. What is $q'(4)$?
+
+\vfill
+
+\item $k(x)=\dfrac{x}{f(x)}$. What is $k'(4)$?
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+
+
+\item Suppose that a bakery sells cakes. Each cake is priced at $p=20$ dollars. At this price, the company sells $500$ cakes per month and demand is falling at a rate of $30$ cakes (sold per month) per dollar. 
+
+The bakery is looking over its finances. In particular, it is looking at its \emph{monthly revenue}:
+
+$$\text{Monthly Revenue}=\Big(\text{Price per cake}\Big)\times\Big(\text{Number of cakes sold per month}\Big)$$
+
+The bakery would like to increase its monthly revenue. To do this, the bakery is considering one of the following options:
+
+\begin{itemize}
+	\item increase the price of a cake to $p=21$ dollars;
+	\item keep the price of a cake at $p=20$ dollars;
+	\item decrease the price of a cake to $p=19$ dollars.
+\end{itemize}
+
+In this problem, we'll use calculus to help us determine what the bakery should do. Let $f(p)$ be the number of cakes sold (per month) when the price of a cake is set to $p$ dollars. 
+
+\begin{enumerate}
+
+	\item How can the statement ``when each cake is priced at $p=20$ dollars, the bakery sells $500$ cakes per month" be rephrased in terms of the function $f(p)$ and/or its derivative, $f'(p)$? 
+	
+	\vfill
+	
+	\item How can the statement ``when each cake is priced at $p=20$ dollars, demand is falling at a rate of $30$ cakes per dollar" be rephrased in terms of the function $f(p)$ and/or its derivative, $f'(p)$?
+	
+	\vfill
+	
+	\item Let $R(p)$ be the monthly revenue (in dollars) that the bakery earns each month from the sale of cakes. What is a formula for $R(p)$ in terms of $p$ and $f(p)$?
+	
+	\vfill
+	
+	\newpage
+	
+	\item Use the Product Rule to find a formula for $R'(p)$ in terms of $p$, $f(p)$, and $f'(p)$.
+	
+	\vfill
+	
+	\item At what rate is the monthly revenue changing when the price of a cake is set to $p=20$?
+	
+	\vfill
+	
+	\item Based on your answer to the previous part, what should the company do? Should it raise the price of a cake? Keep it the same? Or decrease the price of a cake? What would lead to higher monthly revenue? Why?
+
+\vfill
+
+\end{enumerate}
+\newpage
+
+
+\item Calculate each of the following derivatives:
+
+\begin{enumerate}
+
+\item $f(x)=(5x^3+\sin(x))(4^x-2\cos(x))$
+
+\vfill
+
+\item $p(t)=\dfrac{\cos(t)}{t^6\cdot 6^t}$
+
+\vfill
+
+\item $g(r)=\dfrac{r\sec(r)}{5^r}$
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+
+\item Use the derivative rules that have been covered so far to answer each of the following questions about slope.
+
+\begin{enumerate}
+
+\item Find the (exact) slope of the tangent line to the graph of $y=2x+\dfrac{\sin(x)}{2}$ at the point where $x=\frac{\pi}{6}$. 
+
+\vfill
+
+\item Find the (exact) slope of the tangent line to the graph of $y=x^2\cos(x)$ at the point where $x=\frac{\pi}{2}$.
+
+\vfill
+
+\newpage
+
+\item Let $f(\theta)=\theta-2\sin(\theta)$. On the interval $[0,2\pi]$, at which value(s) of $\theta$ does the graph of $f(\theta)$ have a horizontal tangent line?
+
+\vfill
+
+\item Let 
+$$g(x)=\tan(x)+x, \qquad 0\leq x\leq 2\pi.$$
+At which values of $x$ (between $0$ and $2\pi$) do we have $g'(x)=3$?
+
+\vfill
+
+\end{enumerate}
+
+
+\newpage
+
+
+\item The function 
+$$P(t)=24+8\sin(t)$$
+represents a population of a particular kind of animal that lives on a small island. Here, $P$ is measured in hundreds and $t$ is measured in decades since January 1, 2010. 
+
+	\begin{enumerate}
+	
+	\item What is the instantaneous rate of change of $P$ on January 1, 2030? (Round to the nearest $0.01$ and include units on your answer.)
+	
+	\vfill
+
+	\item Write a sentence in everyday language that explains how the population is behaving at this point in time.
+	
+	\vfill
+	
+	\item Was the population increasing or decreasing in size on January 1, 2025? At what rate?
+	
+	\vfill
+	
+	\item (A warm up for future classes:) Between January 1, 2010 and January 1, 2050, on what date (month and year) do we expect the population to be at its peak (as large as possible)?
+	
+	\emph{Hint:} Graph $P(t)$ on the interval $[0,4]$. Notice that at the peak population, the tangent line is horizontal (slope 0). At what value of $t$ will this happen? How do you translate this value of $t$ to a month and year?
+	
+	\vfill
+	
+	\end{enumerate}
+
+
+
+\end{enumerate}
+
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,181 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{exam}
+\input{../worksheet-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 4 - Limits at Infinity and the Squeeze Theorem}
+\author{MATH 1271}
+\date{09/17/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newpage
+\maketitle
+
+\section{Limits Involving Infinity}
+\begin{enumerate}
+
+\item[1.] In this problem, we consider the function $f(x)=\dfrac{4-x^2}{x^2+x-6}$.
+
+\begin{enumerate}
+
+\item[(a)] Use algebra to find the value of each of the following limits. If a limit does not exist, write ``DNE" and then explain why it does not exist.
+
+	\begin{enumerate}
+	\item[(i)] $\displaystyle\lim_{x\to 2}f(x)=$
+	\vfill
+	\item[(ii)] $\displaystyle\lim_{x\to -3}f(x)=$
+	\vfill
+	\item[(iii)] $\displaystyle\lim_{x\to+\infty} f(x)=$
+	\vfill
+	\item[(iv)] $\displaystyle\lim_{x\to -\infty} f(x)=$
+	\vfill
+	\end{enumerate}
+	
+\item[(b)] How many vertical asymptotes does $f(x)$ have? Find the equations of all vertical asymptotes of $f(x)$. 
+
+\vspace{1in}
+
+\item[(c)] How many horizontal asymptotes does $f(x)$ have? Find the equations of all horizontal asymptotes of $f(x)$.
+
+\vspace{1in}
+
+\end{enumerate}
+
+\newpage
+
+\item[2.] Each of the following limits is some sort of infinity (either $+\infty$ or $-\infty$). Determine which type. Discuss your reasoning with your group.
+
+\begin{enumerate}
+
+\item[(a)] $\displaystyle\lim_{x\to 5^+}\frac{x^3}{x-5}$
+
+\vfill
+
+\item[(b)] $\displaystyle\lim_{x\to 5^-}\frac{x^3}{x-5}$
+
+\vfill
+
+\item[(c)] $\displaystyle \lim_{x \rightarrow -\infty} \frac{x^3}{x-5}$
+\vfill
+
+\item[(d)] $\displaystyle\lim_{x\to -2^-}\frac{x^2-9}{x^2+5x+6}$
+
+\vfill
+
+\item[(e)] $\displaystyle\lim_{x\to 1^+}\ln(x^2-1)$
+
+\vfill
+
+
+{\bf Checking understanding:} Discuss the following questions with your group:
+
+	\begin{itemize}	
+	\item What if part (d) had asked for $\displaystyle\lim_{x\to -3}\frac{x^2-9}{x^2+5x+6}$ instead? How does that change your method and/or final answer?
+
+  \item What if part (c) had asked for $x \to \infty$ instead? How does that change your method and/or final answer?
+	
+	\item Does it make sense to ask about the one-sided limit $\displaystyle\lim_{x\to 1^-}\ln(x^2-1)$? Why or why not? (Hint: What is the domain of the function $f(x)=\ln(x^2-1)$?)
+	
+	\end{itemize}
+
+\end{enumerate}
+\newpage
+\item[3.] You may assume that the function $y=\dfrac{1-\cos(x)}{x^2}$ satisfies the inequalities
+$$\frac{1}{2}-\frac{x^2}{24}<\frac{1-\cos(x)}{x^2}<\frac{1}{2}$$
+for all values of $x$ close to $0$. (You can learn where this comes from in Calculus II!) Use this information as needed to find the exact values of each limit below (if a limit does not exist, write ``DNE"). If the Squeeze Theorem is used, show all work; if not, then explain why the theorem does not apply.
+
+\begin{enumerate}
+
+\item[(a)] $\displaystyle\lim_{x\to 0}\frac{1-\cos(x)}{x^2}$
+
+\vfill
+
+\item[(b)] $\displaystyle\lim_{x\to \pi}\frac{1-\cos(x)}{x^2}$
+
+\vfill
+
+\item[(c)] $\displaystyle \lim_{x \to \infty} \frac{1 - \cos(x)}{x^2}$
+
+\vfill
+
+\end{enumerate}
+
+\newpage
+\item[4.]
+
+  Suppose we know that the function $f(x) = \dfrac{\sin(x)}{x}$
+  satisfies the following inequality when $-\dfrac{\pi}{2} \leq x \leq \dfrac{\pi}{2}$:
+
+  \begin{equation*}
+    \cos(x) \leq \dfrac{\sin(x)}{x} \leq 1
+  \end{equation*}
+
+  (See Apex Calculus Example 1.3.9 for why this holds). Compute the values of the following limits:
+
+  \begin{enumerate}
+    \item[(a)] $\displaystyle \lim_{x\rightarrow 0} \dfrac{\sin(x)}{x}$
+      \vfill
+
+    \item[(b)] $\displaystyle \lim_{x \rightarrow 2\pi} \dfrac{\sin(x)}{x}$ (note, the value of this limit is \textit{NOT} $1$).
+      \vfill
+  \end{enumerate}
+
+\item[5.] Suppose that a particle is oscillating with position described as a function of time by:
+  \begin{equation*}
+    s(t) = \sin(t)
+  \end{equation*}
+
+  Use the previous problem to determine the instantaneous velocity of the particle when $t = 0$.
+  \vfill
+\end{enumerate}
+
+
+
+
+
+
+
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

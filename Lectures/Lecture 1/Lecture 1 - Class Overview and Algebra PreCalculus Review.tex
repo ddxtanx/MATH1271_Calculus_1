@@ -1,0 +1,417 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 1: Class Overview and Background Review}
+\author{Garrett Credi}
+\date{09/08/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Welcome to MATH 1271!}
+
+  \begin{figure}[htpb]
+    \centering
+    \includegraphics[height=0.7\textheight]{1271Banner.jpg}
+    \caption{Our Mascot, Maxwell, Deep in Thought}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Today's Goals}
+  \begin{enumerate}
+    \item Overview of the Course \pause
+    \item Lecture on Algebra/Precalc Background \pause
+    \item Worksheet Time!
+  \end{enumerate}
+\end{frame}
+
+\section{Course Overview}
+
+\begin{frame}
+  \frametitle{Course Policies I}
+
+  I've structured this course in the following manner: \pause
+  \begin{enumerate}
+    \item We will start class with a \textit{5 minute} quiz on the topic(s) covered in the previous lecture \pause
+    \item We will then begin an ~75 minute lecture, with a ~5-ish minute break about halfway through \pause
+    \item After another short break I'll hand out worksheets where we'll get a chance to apply the concepts we learned during lecture
+   \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Course Policies II}
+
+  After each lecture you will have some \textit{homework} due at 11:59 PM the following day. \pause
+  It will:
+  \begin{enumerate}
+    \item Be graded on an \textit{honest completion} basis \pause
+    \item Be split up into certain ``levels" \pause
+    \item And will conclude with one ``challenge problem" designed to help you all develop more confidence for quiz/exam environments
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Course Policies III}
+
+  We will also have \textit{weekly engagement portfolios} \pause
+  which are short ~100 word pieces of writing to get you to engage in some metacognition about
+  how you are learning in this course. \pause 
+
+  These will be consistently due at 11:59 PM on Mondays.
+\end{frame}
+\begin{frame}
+  \frametitle{Course Policies IV}
+
+  As mentioned before, we will have quizzes at the start of class \pause
+  relating to the content included in the previously-due homework, graded
+  for accuracy.
+
+  We will also have \textit{three} in class exams: \pause
+  \begin{enumerate}
+    \item Exam 1: 10/6 \pause
+    \item Exam 2: 11/3 \pause
+    \item Exam 3: 12/8 \pause
+  \end{enumerate}
+  Which will all take place during our regular class meeting here (Tate Hall 120). \pause
+
+  Finally we will have a \textit{cumulative} final exam on 12/17 from 12PM-3PM Location TBD.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Course Policies V}
+
+  Some things that might make you happy! \pause
+  \includegraphics[height=0.3\textheight]{yippee.jpg} \pause
+
+  \begin{itemize}
+    \item (At this point) your two lowest quizzes and two lowest engagement portfolios will be dropped. \pause
+    \item If you do poorly on an exam, you can have your performance on the final exam replace the grade if it is better. \pause
+    \item All this information is easily accessible and searchable on our syllabus on Canvas! \pause
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Office Hours?}
+
+  I'm planning on holding two hours of office hours a week: \pause
+  in order that I hold them at the most opportune times please indicate 
+  your desires/availability on the \href{https://www.when2meet.com/?38405370-tAcFp}{When2Meet here}.
+
+  There are also Office Hours that are held by some other TAs that you can find
+  \href{https://cse.umn.edu/math/tutoring-and-math-lab-office-hours}{here.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Who Am I?}
+
+  Hi! I'm Garrett! I am: \pause
+  \begin{enumerate}
+    \item A 3rd Year PhD student in the math department \pause
+      \begin{enumerate}
+        \item My research is in a field of math called \textit{algebraic topology} \pause
+      \end{enumerate}
+    \item Someone who has TA'd for math courses three times (1x1271, 2x3283W) and taught once (1x2263) \pause
+    \item The proud cat dad of the lovely, gracious, cute, and venerable Maxwell (who is our course banner on canvas!) \pause
+    \item Super excited to teach you all some calculus this semester!!! \pause
+  \end{enumerate}
+
+  You can contact me at \href{mailto:credi008@umn.edu?subject=[MATH 1271]}{\nolinkurl{credi008@umn.edu}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Who are you?}
+
+  What is your:
+  \begin{enumerate}
+    \item Name \pause
+    \item Major and standing (freshman, sophomore, etc)
+    \item Favorite \textit{thing}?
+  \end{enumerate}
+\end{frame}
+
+\section{Algebra and Precalculus Review}
+
+\begin{frame}
+  \frametitle{Let's Do Some Math!}
+
+  I want to spend today making sure we're all clear
+  on the mathematical background
+  necessary for success in this class: \pause
+  \begin{enumerate}
+    \item Functions, their equations, graphs, and properties (e.g. domain and range)\pause
+    \item Techniques with fractions \pause
+    \item Trigonometric functions \pause
+    \item Solving Equations
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Functions I}
+
+  What is a function? \pause
+
+  \begin{block}{Function}
+    A \index{function}function is an association from ``things" of type $A$ to
+    other ``things" of type $B$, typically denoted as $f : A \rightarrow B$. \pause
+
+    For the purposes of our class, we will study \textbf{real-valued}\index{function!real-valued} functions
+    of a \textbf{real variable} \pause e.g. functions
+    that take in a real number $x \in \RR$ (read as $x$ is in the real numbers)
+    and output a real number $y \in \RR$. \pause
+  \end{block}
+
+  \begin{block}{Equation of a Function}
+    Real valued functions of a single real variable (we'll just call these functions from now on)
+    can be \textbf{defined} by an equation \index{function!equation} \pause
+    which is just an algebraic specification of what the function does to an input number. \pause
+  \end{block}
+
+  E.g. we can define the \textit{squaring} function as $f(x) = x^2$. \pause
+  This means the value of the function $f$ at some real number $x$ is the square of $x$,
+  so, for instance, $f(2) = 2^2 = 4, f(3) = 3^2 = 9,$ etc.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Functions II}
+
+  \begin{block}{Graph of a function}
+    The \textbf{graph}\index{function!graph} of a function $f : \RR \rightarrow \RR$ \pause
+    is a graphical/geometric way of interpreting what a function does. \pause
+
+    To draw the graph, we first draw a \textit{2D-Coordinate Grid}, \pause
+    and then draw all the points $(x, f(x))$ connected via a smooth line.
+  \end{block}
+
+  E.g. \vspace{\stretch{1}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Functions III}
+
+  Sometimes functions behave differently depending on what kind of real number we input into them \pause
+  for instance the \textit{absolute value function}\index{absolute value} \pause
+  leaves positive real numbers unchanged ($|2| = 2$)
+  but turns negative numbers into their opposites ($|-2| = 2$). \pause
+  How can we define these functions?
+
+  \begin{block}{Piecewise Function}
+    A function is \textbf{defined piecewise}\index{function!piecewise} by
+    the following method: \pause
+    \begin{equation}
+      f(x) = \begin{cases} f_1(x), & \text{some condition on x} \\
+        f_2(x), & \text{some other condition on x} \\
+        f_3(x), & \text{maybe some other condition on x} \\
+        \vdots \\
+        g(x), & \text{otherwise if none of the above conditions are met}
+      \end{cases}
+    \end{equation} \pause
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Functions IV}
+  For example, we define the absolute value function as: \pause
+  \begin{equation}
+    |x| = \begin{cases} x, & x \geq 0 \\ -x, & x \leq 0 \end{cases}
+  \end{equation} \pause
+
+  and we can define some wacky function as: \pause
+  \begin{equation}
+    wacky(x) = \begin{cases} x^2, & x > -5 \\ -x^3 + 2x + 1, & -5 \leq x < 2 \\ 1, & 2 \leq x < 3 \\ \dfrac{x}{2} + 3, & \text{otherwise} \end{cases} 
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Functions V}
+  There are two important properties of a function that we need to talk about: domain and range. \pause
+
+  \begin{block}{Domain and Range of a Function}
+    The domain of a function \index{function!domain} is the set of all values
+    the function accepts as input. \pause
+    It is kind of arbitrary! \pause
+    However, we'll follow the convention that the 
+    domain should be the \textbf{largest} set of values
+    it could accept as input. \pause
+
+    Similarly, the range of a function \index{function!range}
+    is the set of all values the function could possibly output
+    over all possible inputs. Given a specified domain, 
+    there is \textbf{exactly one} set of ranges \pause
+    so we don't have to deal with any arbitrariness.
+  \end{block}
+
+  For example, the \textit{square-root} function $f(x) = \sqrt{x}$
+  would have:
+  \begin{itemize}
+    \item Domain: \pause the \textit{non-negative real numbers} $[0, \infty)$ \pause
+    \item Range: \pause again the \textit{non-negative real numbers} $[0, \infty)$ \pause
+  \end{itemize}
+
+  What about a function like $f(x) = x^2 + 1$?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fractions I}
+
+  It's also worth going over some fraction foundations which will be
+  very useful very soon in the course:
+
+  \begin{block}{Addition of Fractions}
+    \vspace{0.5in}
+  \end{block} \pause
+
+  \begin{block}{Multiplication of Fractions}
+    \vspace{0.5in}
+  \end{block}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fractions II}
+  I also want to make clear what people mean by: \pause
+  \begin{itemize}
+    \item Clearing out common factors/
+    \item Factoring [blah] out/
+    \item Multiplying by $1$
+  \end{itemize}
+
+  \begin{alertblock}{The Multiplying by $1$ Trick}
+    \vspace{1in}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Special Functions}
+
+  We have a class of ``special" functions: \pause
+  \begin{itemize}
+    \item The exponential function $\exp(x) = e^x$ \pause
+    \item It's inverse, the natural logarithm $\ln(x)$ \pause
+    \item The power functions $x^n$ \pause
+    \item Their inverses $\sqrt[n]{x}$ \pause
+    \item The trigonometric functions 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Trigonometric Functions}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Solving Equations I}
+  Oftentimes we're interested in finding points where
+  functions attain certain values or exhibit important behavior, \pause
+  how do we find them? \pause
+
+  For instance, let's say we want to buy some ramen
+  and the cost of ramen in dollars varies by weight in pounds according to the
+  following function: \pause
+  $$P(w) = x^2 + 7x.$$ \pause
+
+  If we only have 30 dollars, how much ramen can we buy?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Solving Equations II}
+  How do we set that up mathematically? \pause
+
+  We want to find the weight $w$ so that:
+  \begin{equation}
+    P(w) = \$30  
+  \end{equation} \pause
+
+  So we can use our definition of $P$ to get: \pause
+
+  \begin{gather*}
+    w^2 + 7w = 30 \pause \\
+    w^2 + 7w - 30 = 0 \pause \\
+    (w + 10)(w - 3) = 0 \pause \\
+    w = -10 \text{ or } w = 3
+  \end{gather*}
+
+  And since $-10$ lbs of ramen doesn't make physical sense,
+  we get that we can by $3$ lbs of ramen with that much money.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Solving Equations III}
+  Why did we choose to solve
+  $$(w+10)(w-3) = 0$$
+  for $w = -10, w = 3$
+
+  instead of solving
+  $$w(w+7)=30$$
+  for $w = 30$ or $w + 7 = 30$? \pause
+
+  \begin{alertblock}{No Zero Divisors}
+    If there are two real numbers $a,b$ so that $ab = 0$, \pause
+    it \textbf{MUST} be the case that $a = 0$ or $b = 0$. \pause
+  \end{alertblock}
+
+  Question: If there are two real numbers $a,b$ so that $ab = 30$,
+  must it be the case that $a = 30$ or $b = 30$?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Solving Equations IV}
+
+  How might we approach solving for $x$ in an equation like: \pause
+
+  \begin{equation}
+    (e^x)^2 - 5e^x + 6 = 0?
+  \end{equation} \pause
+
+  Or maybe like: \pause
+
+  \begin{equation}
+    2\sin(x)^2 + \cos(x)^2 = 2?
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End Of Class}
+
+  That's all folks!
+\end{frame}
+\end{document}

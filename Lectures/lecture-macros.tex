@@ -1,0 +1,257 @@
+% lecture-macros.tex -- shared package setup for lecture-template.tex
+% (ltx-talk slides / handouts).
+%
+% NOTE ON PATHS: every template in this repository is stored one level up
+% from where it is compiled (see README.md). All relative \input paths
+% below are resolved against the folder the document is compiled in,
+% which sits one directory above this file.
+
+% --- Tables, bookmarks, strikethrough ------------------------------------
+% booktabs: professional table rules (\toprule, \midrule, \bottomrule)
+% bookmark: PDF outline entries (PDF bookmarks)
+% ulem[normalem]: \sout strikethrough that survives math mode
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage[normalem]{ulem}
+\usepackage{multicol}
+
+% --- Math ------------------------------------------------------------
+% amsmath: equation environments and numbering
+% mathrsfs: \mathfrak  |  stmaryrd: extra symbols
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{stmaryrd}
+
+% --- Layout -------------------------------------------------------------
+% float: [H] float placement
+% fontspec: Unicode/OpenType fonts (compile with XeLaTeX or LuaLaTeX)
+\usepackage{float}
+\usepackage{fontspec}
+
+% --- Colors ---------------------------------------------------------------
+% dvipsnames: extended named color palette (the Accessible* colors below
+% are built on it);
+% table: \rowcolors / \cellcolor for shading tables.
+% NOTE: xcolor may only be loaded ONCE per document -- a second
+% \usepackage{xcolor} with different options is a fatal "Option clash"
+% error, so ALL of its options are listed here.
+\usepackage[dvipsnames,table]{xcolor}
+
+% --- Multimedia -----------------------------------------------------------
+% animate: embeds audio/video (and legacy Flash) media in a frame.
+\usepackage{animate}
+
+% --- Bibliography ----------------------------------------------------------
+% biblatex (biber backend): citations for lecture notes.
+\usepackage[
+  backend=biber,
+  style=alphabetic,
+  url=true,
+  doi=true,
+  isbn=true,
+  backref=true
+]{biblatex}
+
+% --- Colored boxes ----------------------------------------------------------
+% talkthemetcolorbox: the colored-box theme for ltx-talk slides
+% (shadow/rounded/shaded blocks, showtitle, titlepage styles).
+\usepackage[
+  shadow,
+  rounded,
+  shaded,
+  blocks,
+  showtitle,
+  titlepage
+]{talkthemetcolorbox}
+
+% --- "theindex" helper environment ------------------------------------------
+% Provides a lightweight theindex environment (an itemize) and the
+% \@idxitem/\subitem/\subsubitem/\indexspace macros that LaTeX's standard
+% theindex machinery expects, so hand-written index pages indent correctly.
+\makeatletter
+\newenvironment{theindex}
+  {\begin{itemize}}
+  {\end{itemize}}
+\providecommand\@idxitem{\par\hangindent 40\p@}
+\providecommand\subitem{\@idxitem \hspace*{20\p@}}
+\providecommand\subsubitem{\@idxitem \hspace*{30\p@}}
+\providecommand\indexspace{\par \vskip 10\p@ \@plus5\p@ \@minus3\p@\relax}
+\makeatother
+
+% --- Index -----------------------------------------------------------------
+% imakeidx: builds the printed index.
+% The redefinition below appends "|hyperpage" to every index entry so that,
+% in the PDF, each index entry is a link to its page.
+\usepackage{imakeidx}
+\makeatletter
+\let\imki@orig@wrindexentrysplit\imki@wrindexentrysplit
+\renewcommand\imki@wrindexentrysplit[3]{%
+  \imki@orig@wrindexentrysplit{#1}{#2|hyperpage}{#3}%
+}
+
+\makeatletter
+% --- Section titles: capture + one bookmark per logical section -------------
+% \section is redefined so that:
+%   1. the section title is captured into the plain-TeX register
+%      \mytalksectitletoks (reprinted verbatim on the auto divider frame,
+%      see the cmd/section/after hook below -- plain-TeX storage is
+%      catcode-safe, unlike expanding the title in a hook), and
+%   2. exactly ONE depth-1 PDF bookmark is created per \section call
+%      (hyperref's own bookmark is suppressed via \Hy@writebookmark).
+\DeclareCommandCopy{\OriginalSectionForBookmarks}{\section}
+\newtoks\mytalksectitletoks
+
+\RenewDocumentCommand{\section}{s o m}{%
+  \begingroup
+    \def\Hy@writebookmark##1##2##3##4##5{}%
+    \global\mytalksectitletoks={#3}%
+    \IfBooleanTF{#1}
+      {\phantomsection\IfNoValueTF{#2}{\OriginalSectionForBookmarks*{#3}}{\OriginalSectionForBookmarks*[#2]{#3}}}%
+      {\IfNoValueTF{#2}{\OriginalSectionForBookmarks{#3}}{\OriginalSectionForBookmarks[#2]{#3}}}%
+  \endgroup
+  \IfBooleanTF{#1}
+    {\IfNoValueTF{#2}{\pdfbookmark[1]{#3}{section-star.\thepage.\number\inputlineno}}{\pdfbookmark[1]{#2}{section-star.\thepage.\number\inputlineno}}}%
+    {\IfNoValueTF{#2}{\pdfbookmark[1]{Section \thesection: #3}{section.\thesection}}{\pdfbookmark[1]{Section \thesection: #2}{section.\thesection}}}%
+}
+\makeatother
+
+% --- One PDF bookmark per logical frame (NOT per overlay) ---------------------
+% ltx-talk writes one PDF page per overlay, so a naive frametitle hook would
+% register a new bookmark for every overlay of the same frame. The
+% \g_slideutils_frame_bookmark_int register remembers the last frame that
+% got a bookmark, so subsequent overlays of the same frame are skipped.
+% This is also what keeps BeamerPresenter's cumulative annotations working:
+% one logical frame must stay one logical unit in the PDF outline.
+\ExplSyntaxOn
+\int_new:N \g_slideutils_frame_bookmark_int
+
+\AddToHook{cmd/frametitle/after}{%
+  \tl_if_empty:NF \g__talk_frame_title_tl
+    {
+      \ifnum\value{frame}=\g_slideutils_frame_bookmark_int\relax
+      \else
+        \int_gset:Nn \g_slideutils_frame_bookmark_int { \value{frame} }%
+        \pdfbookmark[2]{\tl_use:N \g__talk_frame_title_tl}
+          {frame.\int_use:N \g_slideutils_frame_bookmark_int}
+      \fi
+    }
+}
+\ExplSyntaxOff
+\makeatother
+
+% --- Printed index + theme for the colored boxes -------------------------------
+% \makeindex[...]: two-column index titled "Index", listed in the TOC.
+% The two EditInstance calls style the standard header/footer instances
+% of talkthemetcolorbox (cyan background; footer order title/author/
+% date/framenumber).
+\makeindex[columns=2, title=Index, intoc]\EditInstance{header}{std}{
+  background-color = cyan,
+  color            = black,
+  height           = 0.75cm
+}
+\EditInstance{footer}{std}{
+  background-color = cyan,
+  element-order = {title, author, date, framenumber},
+}
+
+% --- Auto section divider frame ---------------------------------------------------
+% After each \section, insert a centered, large, structure-colored frame
+% that prints the section title (from \mytalksectitletoks).
+\AddToHook{cmd/section/after}{%
+  \begin{frame}
+    \centering
+    \color{structure}
+    \LARGE
+    \the\mytalksectitletoks
+  \end{frame}%
+}
+
+% --- Tagging sockets (tagged PDF structure) ---------------------------------------
+% ltx-talk exposes tagging "sockets" where the PDF structure can attach
+% section titles; register one and leave it unassigned (none) so the
+% class's own tagging keeps control.
+\ExplSyntaxOn
+\AtBeginDocument{
+  \NewTaggingSocketPlug { talk / sec / title } { none } { }
+  \AssignTaggingSocketPlug { talk / sec / title } { none }
+}
+\ExplSyntaxOff
+
+% --- Accessibility roles ----------------------------------------------------------------
+% Map \frametitle to the H1 heading role in the tagged PDF, so screen
+% readers treat slide titles as headings.
+\tagpdfsetup{role / new-tag = frametitle / H1}
+
+\makeatletter
+% --- Page label = frame number -------------------------------------------------------
+% Redefine what feeds the PDF page label to track the frame counter,
+% not the physical page counter. Replace \theframenumber below with
+% whatever internal macro/property ltx-talk actually uses to produce
+% the "framenumber" footer element — confirm via ltx-talk-frame.dtx.
+\renewcommand\thepage{\arabic{frame}}
+\makeatother
+
+\addbibresource{refs.bib}
+
+% --- "Problem Time!" slides ------------------------------------------------------------------
+% \ProblemSlide{problem}{solution} emits two frames: the problem, then
+% its solution after a \pause, each numbered by the problem counter.
+\newcounter{problemcounter}
+\setcounter{problemcounter}{0}
+\newcommand{\ProblemSlide}[2]{
+  \stepcounter{problemcounter}
+  \begin{frame}
+    \frametitle{Problem Time!}
+    Problem \theproblemcounter: #1
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Problem Time!}
+    Solution to Problem \theproblemcounter: \pause
+
+    #2
+  \end{frame}
+}
+% \highlight[<colour>]{<stuff>}
+% from https://tex.stackexchange.com/questions/33401/a-version-of-colorbox-that-works-inside-math-environments
+\newcommand{\highlight}[2][yellow]{\mathchoice%
+  {\colorbox{#1}{$\displaystyle#2$}}%
+  {\colorbox{#1}{$\textstyle#2$}}%
+  {\colorbox{#1}{$\scriptstyle#2$}}%
+  {\colorbox{#1}{$\scriptscriptstyle#2$}}}%
+
+% --- Fonts ------------------------------------------------------------------------------
+% Lato (text) + LeteSansMath (math): open, accessible typefaces.
+\setmainfont{Lato}[
+  Ligatures=TeX,
+  Numbers={Lining,Monospaced}
+]
+\setsansfont{Lato}[
+  Ligatures=TeX,
+  Numbers={Lining,Monospaced}
+]
+\setmathfont{LeteSansMath.otf}\usepackage{emoji}
+
+% --- Accessible colors ---------------------------------------------------------------------
+% WCAG-contrast-safe variants of red/green for text on white:
+% red!80!black and green!40!black both clear the 4.5:1 requirement.
+% AltYellow: soft background for highlight boxes.
+\colorlet{AccessibleRed}{red!80!black}
+\colorlet{AccessibleGreen}{green!40!black}
+\definecolor{AltYellow}{RGB}{255,245,170}
+
+% --- Links ---------------------------------------------------------------------------------
+% hyperref + link colors: every link uses AccessibleGreen (7.2:1 on
+% white), so internal, citation, and URL links all pass WCAG 1.4.3.
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=AccessibleGreen,
+  urlcolor=AccessibleGreen,
+  citecolor=AccessibleGreen,
+}
+
+% --- Shared course macros ---------------------------------------------------------------------
+% Root macros.tex: math shorthands used across all course documents
+% (\RR, \NN, \ZZ, \QQ, \grad, \curl, \tr, \der, \pder, ...).
+\input{../../macros.tex}

@@ -1,0 +1,192 @@
+% quiz-macros.tex -- shared package setup for quiz-template.tex (exam class).
+%
+% NOTE ON PATHS: every template in this repository is stored one level up
+% from where it is compiled (see README.md). All relative \input paths
+% below are resolved against the folder the document is compiled in,
+% which sits one directory above this file.
+
+\newcommand{\coursename}{[Course, set with CourseName]}
+\newcommand{\CourseName}[1]{\renewcommand{\coursename}{#1}}
+
+\newcommand{\timelimit}{[Time Limit, set with TimeLimit]}
+\newcommand{\TimeLimit}[1]{\renewcommand{\timelimit}{#1}}
+
+\newcommand{\semester}{[Semester, set with Semester]}
+\newcommand{\Semester}[1]{\renewcommand{\semester}{#1}}
+
+\newcommand{\examtype}{[Quiz or Exam, set with IsQuiz or IsExam]}
+\newcommand{\IsQuiz}{\renewcommand{\examtype}{quiz}}
+\newcommand{\IsExam}{\renewcommand{\examtype{exam}}}
+
+% bm: bold vectors (\bm{v}) for physics-style notation in quiz math.
+\usepackage{bm}
+
+% --- exam-class patch: point labels next to each \item ---------------------------
+% Redefines exam.cls's internal \item@points@pageinfo so the "N pts" label
+% is typeset in a group and inserted into the \@labels box -- the box
+% exam.cls uses (since v2.218) to attach page-info to the right \item even
+% when a question starts with a list/verbatim environment (those
+% environments clobber \everypar, which is why the old approach broke).
+% \makeatletter is required so the @-names below resolve; the matching
+% \makeatother below restores normal catcodes for the rest of the document.
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{amsmath, amsfonts}
+\usepackage[none]{hyphenat} %prevent hyphenation
+\makeatletter
+\ExplSyntaxOn
+\def\item@points@pageinfo{%
+  \item 
+  \if@placepoints
+    \if@bonus
+      \def\padded@point@block{%
+        \begingroup
+          \@placepointstrue
+          \bonuspoint@block
+        \endgroup
+      }%
+    \else
+      \def\padded@point@block{%
+        \begingroup
+          \@placepointstrue
+          \point@block
+        \endgroup
+      }%
+    \fi
+    \if@pointsdropped
+      % Do nothing!
+    \else
+      \if@bonus
+        \if@bonusqformat
+          \ifx\ques@ref\@queslevel
+            % Do nothing
+          \else
+            \setup@point@toks
+          \fi
+        \else
+          \setup@point@toks
+        \fi
+      \else
+        \if@qformat
+          \ifx\ques@ref\@queslevel
+            % Do nothing
+          \else
+            \setup@point@toks
+          \fi
+        \else
+          \setup@point@toks
+        \fi
+      \fi
+    \fi
+    \global \@placepointsfalse
+  \fi
+  % Version 2.218$\beta$, 2007-10-31 changes:
+  % Instead of appending
+  %   \the \pageinfo@commands \the \point@toks
+  % to \everypar, we insert them into the box \@labels.  This corrects
+  % the problem that arose when a question (or part, etc.) begins with
+  % a list environment (including verbatim, flushleft, center,
+  % flushright, and possibly others that are implemented as trivlist
+  % environments).  The \item command in those environments throws
+  % away the previous contents of \everypar, and so the tokens \the
+  % \pageinfo@commands \the \point@toks didn't get inserted where we
+  % expected.  List environments *do* preserve the contents of the box
+  % \@labels, though.
+  \global\setbox\g__block_labels_box\hbox{\unhbox\g__block_labels_box %<----------use new name ...
+    \the \pageinfo@commands
+    \the \point@toks}%
+}
+\ExplSyntaxOff
+\makeatother
+
+% --- Tagged PDF: table headers -----------------------------------------------------
+% Tell tagpdf to mark row 1 of every table as a header row, so screen
+% readers announce it as a table header.
+\tagpdfsetup{table/header-rows={1}}
+
+% --- Name / Student ID box --------------------------------------------------------------
+% Prints the answer instructions plus fill-in lines for Name and Student
+% ID at the top of the quiz sheet.
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{lastpage}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  {%
+    \setlength{\parindent}{0pt}%
+
+    \begin{tabularx}{\textwidth}{l X}
+      \textbf{\coursename} & \textbf{Name:} \hrulefill \\
+
+      \textbf{\semester} & \\
+
+      \textbf{\@title} & \\
+
+      \textbf{\@date} & \\
+
+      \textbf{Time Limit: \timelimit}  & \textbf{Student ID:} \hrulefill
+    \end{tabularx}
+  }
+
+  \hrule
+  \vfill
+  \begin{singlespace}
+{
+  \setlength{\parindent}{0in}
+
+  This \examtype\ consists of \numquestions\ questions across \pageref{LastPage} pages worth \numpoints\ points.
+
+  \textbf{Rules:}
+}
+\begin{itemize}[nosep]
+  \item You have the indicated amount of time above to complete the \examtype\, and you must not begin working on the \examtype\ until instructed to do so.
+
+  \item You must show all of your work to receive full credit, unless stated otherwise. \textbf{On problems that require work to be shown, answers that are mysterious or unsupported will not receive full credit.}
+
+  \item You may not use a calculator, textbook, notes or any other external resources.
+
+  \item Please write your initials at the top of every page in the event the pages become separated.
+
+  \item If you run out of space on a page, feel free to use the back of the page to continue your work.
+
+  \item You understand that if you violate any of these or the University's rules, you will receive a score of zero on this \examtype\, and you may be subject to further disciplinary action.
+\end{itemize}
+
+{
+  \setlength{\parindent}{0in}
+  \vfill
+  Following the University of Minnesota’s policy on academic honesty, I pledge that the work shown on this \examtype\ is entirely my own and that I have followed the rules stated above. 
+
+  \vfill
+  Signature: \hrulefill
+}
+\end{singlespace}
+
+\begin{center}
+  \pointtable[v][questions]
+\end{center}
+}
+\makeatother
+% 4. Reduce space below the Date (before main text)
+% --- Points summary ----------------------------------------------------------------------
+% "This quiz is worth \numpoints points ... 15 minutes" plus the exam-
+% class \pointtable listing the points per question.
+\newcommand{\PointsSection}{
+  This quiz is worth \numpoints\ points and consists of \numquestions\ questions. You have 5 minutes to complete the quiz.
+
+  \begin{center}
+    \pointtable[v][questions]
+  \end{center}
+}
+
+% --- Math -------------------------------------------------------------------------------
+\usepackage{amsmath,amssymb}
+
+% --- Shared course macros ---------------------------------------------------------------
+% Root macros.tex: math shorthands used across all course documents
+% (\RR, \NN, \ZZ, \QQ, \grad, \curl, \tr, \der, \pder, ...).
+\input{../../macros.tex}

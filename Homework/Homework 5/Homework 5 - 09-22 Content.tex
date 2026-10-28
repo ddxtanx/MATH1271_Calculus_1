@@ -1,0 +1,149 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{article}
+\input{../homework-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Homework 5 - 09/22 Content}
+\author{MATH 1271, Garrett Credi}
+\date{09/22/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+Problems listed as AC are found in the \href{https://activecalculus.org/single1e/frontmatter.html}{Active Calculus} 
+textbook at the end of the section listed.
+
+Problems listed as APEX are found in the \href{https://opentext.uleth.ca/apex-calculus/apex-calculus.html}{APEX Calculus Textbook}
+again at the end of the listed section.
+
+Problems listed as PAULS-PRACT are found in \href{https://tutorial.math.lamar.edu/Problems/CalcI/CalcI.aspx}{Paul's Online Math Notes - Review Problems}
+while problems listed as PAULS-ASSIGN are found in \href{https://tutorial.math.lamar.edu/ProblemsNS/CalcI/CalcI.aspx}{Paul's Online Math Notes - Assignment Problems}
+and are indexed via [Topic]-[Section]-[Problem Number]
+
+\section{Type 1 - Algebraically Computing the Derivative}
+Choose 4 of the following problems to solve.
+\begin{enumerate}
+  \item AC 1.3.3
+  \item AC 1.3.8
+  \item AC 1.3.9
+  \item APEX 2.1.7-14 (each of these counts as one problem)
+  \item PAULS-ASSIGN Derivatives.The Definition of the Derivative.1-24 (each of these counts as one problem)
+\end{enumerate}
+
+\section{Type 2 - Graphically Interpreting the Derivative}
+Choose 4 of the following problems to solve.
+
+\begin{enumerate}
+  \item AC 1.3.2
+  \item AC 1.3.4
+  \item AC 1.3.5
+  \item APEX 2.1.29-32 (each of these counts as one problem)
+  \item APEX 2.1.33-34 (each of these counts as one problem)
+\end{enumerate}
+
+\section{Type 3 - Sketching Graphs}
+Choose 2 of the following problems to solve.
+
+\begin{enumerate}
+  \item PAULS-ASSIGN.Derivatives.Interpretations of the Derivative.4-6 (each of these counts as one problem)
+  \item PAULS-ASSIGN.Derivatives.Interpretations of the Derivative.7-9 (each of these counts as one problem) 
+\end{enumerate}
+
+\section{Type 4 - Algebraically Interpreting the Derivative}
+Choose 3 of the following problems to solve.
+
+\begin{enumerate}
+  \item PAULS-ASSIGN.Derivatives.Interpretations of the Derivative.10,12,13,14,16,17,18,21 (each of these counts as one problem)
+\end{enumerate}
+
+\section{Type 5 - Tangent Lines}
+Choose 2 of the following problems to solve.
+
+\begin{enumerate}
+  \item AC 1.3.6
+  \item AC 1.3.7
+  \item APEX 2.1.15-22 (each of these counts as one problem, ignore the bit about the ``normal line")
+  \item PAULS-ASSIGN.Derivatives.Interpretations of the Derivative.11,15,19 (each of these counts as one problem)
+\end{enumerate}
+
+\section{Challenge Problem}
+
+From our discussion on the squeeze theorem we know that, for $f(x) = \sin(x)$:
+\begin{equation}
+  f'(0) = \lim_{x \rightarrow 0} \dfrac{\sin(x)}{x} = 1
+\end{equation}
+
+because, when $x \approx 0$ we had that $\cos(x) \leq \dfrac{\sin(x)}{x} \leq 1$.
+Since this relies of $x \approx 0$, a similar strategy of using that inequality 
+and the squeeze theorem will \textit{not} let us compute $f'(a)$ for $a \neq 0$.
+
+However, you \textit{do} have the tools necessary to compute $f'(a)$ for \textit{every} $a \neq 0$ - 
+this is your goal for this challenge problem: to compute the derivative of $\sin(x)$ at every $x = a \neq 0$.
+
+If you get stuck, I have placed increasingly revealing hints on the subsequent pages. 
+I highly recommend avoiding the hints as much as possible, since I believe
+this is one of the most attainable results for you all to feel the feeling of ``discovery."
+
+\newpage
+Hint 1: You might find the 
+\begin{equation}
+  f'(a) = \lim_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h}
+\end{equation}
+form of the derivative more useful here.
+\newpage
+Hint 2: Since we know $\lim_{h \rightarrow 0} \dfrac{\sin(h)}{h}$, it might be a good idea to try and reduce our hard limit
+to the easier case of the aforementioned limit plus maybe some other terms we have to deal with.
+\newpage
+Hint 3: $\sin(\alpha + \beta) = \sin(\alpha) \cos(\beta) + \cos(\alpha) \sin(\beta)$.
+\newpage
+Hint 4: Your computation of limits on worksheet 4 might be useful here.
+\newpage
+Hint 5: 
+\begin{equation}
+  \dfrac{\cos(h) - 1}{h} = -\dfrac{1 - \cos(h)}{h^2} \cdot h
+\end{equation}
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

@@ -1,0 +1,39 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../../Quizzes/quiz-macros.tex}
+\usepackage{amsmath, amssymb, amsthm, graphicx, float}
+
+\title{Quiz 9: 10/13 Content}
+\author{Garrett Credi}
+\CourseName{MATH 1271}
+\TimeLimit{5 minutes}
+\Semester{Fall 2026}
+\date{10/15/2026}
+\IsQuiz
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\begin{questions}
+  \question[5] Compute the derivative of
+  \begin{equation}
+    p(q) = \dfrac{q^3}{\sin(q)+6q^8}.
+  \end{equation}
+  You need not expand the denominator of the resulting function.
+  \begin{solution}
+    \begin{align}
+      \dfrac{d}{dq} p(q) &= \dfrac{d}{dq} \dfrac{q^3}{\sin(q)+6q^8} \\
+                         &= \dfrac{\dfrac{d}{dq} (q^3) \cdot (\sin(q) + 6q^8) - q^3 \cdot \dfrac{d}{dq}(\sin(q) + 6q^8)}{(\sin(q) + 6q^8)^2} \\
+                         &= \dfrac{3q^2 \cdot (\sin(q) + 6q^8) - q^3 \cdot (\cos(q) + 48q^7)}{(\sin(q) + 6q^8)^2} \\
+                         &= \dfrac{3q^2 \sin(q) + 18q^{10} - q^3 \cos(q) + 48q^{10}}{(\sin(q)+6q^8)^2}
+                         &= \dfrac{3q^2 \sin(q) - q^3 \cos(q) + 64 q^{10}}{(\sin(q) + 6q^8)^2}
+    \end{align}
+  \end{solution}
+
+\end{questions}
+
+
+\end{document}

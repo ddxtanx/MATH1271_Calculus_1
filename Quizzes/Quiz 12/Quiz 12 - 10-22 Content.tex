@@ -1,0 +1,51 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../../Quizzes/quiz-macros.tex}
+\usepackage{amsmath, amssymb, amsthm, graphicx, float}
+
+\title{Quiz 12: 10/22 Content}
+\author{Garrett Credi}
+\CourseName{MATH 1271}
+\TimeLimit{5 minutes}
+\Semester{Fall 2026}
+\date{10/27/2026}
+\IsQuiz
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\begin{questions}
+  \question[5] Oil spilled from a ruptured tanker spreads in a circle whose area increases at a constant rate of $6 \text{mi}^2/\text{hr}$. How rapidly is the radius of the spill increasing when the area is $5 \text{mi}^2$?
+
+  \begin{solution}
+    The area of a circle in terms of its radius is given by
+    \begin{equation}
+      A = \pi r^2.
+    \end{equation}
+
+    We differentiate this formula with respect to time:
+    \begin{gather}
+      \dfrac{d}{dt} A = \dfrac{d}{dt} \pi r^2 \\
+      \dfrac{dA}{dt} \dfrac{d}{dA} A = \pi \dfrac{dr}{dt} \dfrac{d}{dr} r^2 \\
+      \dfrac{dA}{dt} = 2\pi r \dfrac{dr}{dt}.
+    \end{gather}
+
+    So when $\dfrac{dA}{dt} = 6 \text{mi}^2/\text{hr}$ and $A = 5 \text{mi}^2$,
+    we see that $5 = \pi r^2$, so $r = \sqrt{\frac{5}{\pi}}$. Therefore
+    at that time:
+    \begin{gather}
+      \dfrac{dA}{dt} = 2 \pi r \dfrac{dr}{dt} \\
+      6 = 2 \pi \sqrt{\frac{5}{\pi}} \dfrac{dr}{dt} \\
+      3 = \sqrt{5\pi} \dfrac{dr}{dt} \\
+      \dfrac{dr}{dt} = \dfrac{3}{\sqrt{5\pi}} \text{mi}/\text{hr}
+    \end{gather}
+
+    So the radius of the spill is increasing at a rate of $\dfrac{3}{\sqrt{5\pi}}$ miles per hour.
+  \end{solution}
+\end{questions}
+
+
+\end{document}

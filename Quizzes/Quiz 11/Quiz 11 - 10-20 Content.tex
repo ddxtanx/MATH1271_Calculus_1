@@ -1,0 +1,47 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../../Quizzes/quiz-macros.tex}
+\usepackage{amsmath, amssymb, amsthm, graphicx, float}
+
+\title{Quiz 11: 10/20 Content}
+\author{Garrett Credi}
+\CourseName{MATH 1271}
+\TimeLimit{5 minutes}
+\Semester{Fall 2026}
+\date{10/22/2026}
+\IsQuiz
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\begin{questions}
+  \question[5] Find the equation of the line tangent to the curve
+  \begin{equation}
+    2 \sin(x) \cos(y) = 1
+  \end{equation}
+  at $(\dfrac{\pi}{4}, \dfrac{\pi}{4})$.
+
+  \begin{solution}
+    We implicitly differentiate first:
+    \begin{gather}
+      2 \sin(x) \cos(y) = 1 \\
+      \dfrac{d}{dx} (2 \sin(x) \cos(y)) = \dfrac{d}{dx} 1 \\
+      \dfrac{d}{dx} (2 \sin(x)) \cdot \cos(y) + (2 \sin(x)) \cdot \dfrac{d}{dx} \cos(y) = 0 \\
+      2 \cos(x) \cos(y) + 2 \sin(x) \dfrac{dy}{dx} \dfrac{d}{dy} \cos(y) = 0 \\
+      2 \cos(x)\cos(y) + 2 \sin(x) \dfrac{dy}{dx} \cdot - \sin(y) = 0 \\
+      \dfrac{dy}{dx} = \dfrac{\cos(x) \cos(y)}{\sin(x)\sin(y)} = \cot(x) \cot(y)
+    \end{gather}
+    which at $(\dfrac{\pi}{4}, \dfrac{\pi}{4})$ is $1 \cdot 1 = 1$.
+    We then have the tangent line as
+
+    \begin{equation}
+      y - \dfrac{\pi}{4} = 1 \cdot (x - \dfrac{\pi}{4})
+    \end{equation}
+  \end{solution}
+\end{questions}
+
+
+\end{document}

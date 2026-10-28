@@ -1,0 +1,271 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 4: Limits III}
+\author{Garrett Credi}
+\date{09/17/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+  Let's get into formation for quiz time.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Last Time}
+
+  We spent much of last lecture developing our ability to compute limits via: \pause
+
+  \begin{enumerate}
+    \item Recognizing when functions were \textit{continuous} so that we could reduce the computation of limits to simpler evaluations \pause
+    \item Developing limit properties which allowed us to build up the computation of complicated limits via reduction to simpler ones 
+  \end{enumerate}
+
+  We also developed the notion of the \textit{one sided limits} - restricted kinds of limits where we need only approach from a singular side.
+\end{frame}
+
+\begin{frame}
+  \frame{Today's Goals}
+
+  We'll apply both our new limit computation skills as well as our knowledge of one-sided limits to work with \textit{limits at or involving infinity}.
+
+  We will also uncover our last tool to help us compute limits: \textit{the Squeeze Theorem.}
+\end{frame}
+
+\section{Limits at/involving Infinity}
+
+\begin{frame}
+  \frametitle{Prelude I}
+
+  Let's first examine one of the problems from the previous worksheet: \pause
+
+  We had two functions whose graphs looked like: \pause
+  \vspace{2in}
+
+  And we wanted to compute $\lim_{x \rightarrow 1} g(f(x)) \pause = \lim_{x \rightarrow 1} g((x-1)^2) \pause = \lim_{u \rightarrow 0^+} g(u) = 3$
+\end{frame}
+
+\begin{frame}
+  \frametitle{Prelude II} 
+
+  Key to that problem was noticing that: \pause
+  \begin{equation}
+    x \rightarrow 1 \pause \quad \iff \quad (x-1) \rightarrow 0^+ \pause
+  \end{equation}
+
+  Which allowed us to do a ``substitution" that made the limit easier to compute. \pause
+
+  This will be our strategy for computing limits at $\pm \infty$! \pause
+  Since $\pm \infty$ is not an actual number we can compute with in a consistent/coherent way, \pause
+  we'll try and replace $x \rightarrow \pm \infty$ with a limit as \textit{some other quantity} approaches \textit{some actual number}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limits at Infinity I}
+
+  Before that, let's actually look at the literal definition to see why we want to avoid it: \pause
+  \begin{block}{Limits at Infinity}\index{limits!at infinity}
+    For a function $f(x)$, we say that $\lim_{x \rightarrow \infty} f(x) = L$ \pause
+    if we can make $f(x) \approx L$ (up to some error $\epsilon > 0$) just by forcing $x > N$ for some real number $N$. \pause
+
+    Similarly, we say that $\lim_{x \rightarrow -\infty} f(x) = L$ \pause
+    if we can make $f(x) \approx L$ (up to some error $\epsilon > 0$) just by forcing $x < M$ for some real number $M$. \pause
+  \end{block}
+
+  Do we want to prove things in this class like we would need to if we actually used this definition? \pause
+  \textcolor{red}{NO!}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limits at Infinity II}
+  Instead, let's see if we can relate it to something we could instead \textit{compute}
+  using our tools from last lecture. \pause
+
+  \begin{align}
+    x > N &\iff 0 > x > N \pause \\
+          &\iff 0 < \dfrac{1}{x} < \dfrac{1}{N} \pause \\
+          &\iff 0 < \dfrac{1}{x} - 0 < \dfrac{1}{N} \pause
+  \end{align}
+
+  In other words: \pause
+  \begin{alertblock}{Limits at Infinity in terms of Finite Limits}\index{limits!at infinity!in terms of finite limits}
+    Taking the limit as $x \rightarrow + \infty$ is \textit{exactly equivalent} to taking the limit as $\dfrac{1}{x} \rightarrow 0^+$ \pause
+
+    Similarly $x \rightarrow - \infty$ is \textit{exactly equivalent} to $\dfrac{1}{x} \rightarrow 0^{-}$!
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limits at Infinity III: Example}
+
+  For example: \pause
+  \begin{align}
+    \lim_{x \rightarrow \infty} \dfrac{3x^2 + 2x + 1}{2x^2 + 6x + 131} &= \pause \lim_{\frac{1}{x} \rightarrow 0^+} \dfrac{3x^2 + 2x + 1}{2x^2 + 6x + 131} \pause \\
+                                                                       &= \lim_{u \rightarrow 0^+} \pause \dfrac{3(\frac{1}{u})^2 + 2(\frac{1}{u}) + 1}{2(\frac{1}{u})^2 + 6(\frac{1}{u}) + 131} \pause \\
+                                                                       &= \lim_{u \rightarrow 0^+} \dfrac{u^2}{u^2} \dfrac{3 \frac{1}{u^2} + 2\frac{1}{u} + 1}{2 \frac{1}{u^2} + 6\frac{1}{u} + 131} \pause \\
+                                                                       &= \lim_{u \rightarrow 0^+} \dfrac{3 + 2u + u^2}{2 + 6u + 131u^2} \pause \\
+                                                                       &= \lim_{u \rightarrow 0} \dfrac{3 + 2u + u^2}{2 + 6u + 131u^2} \pause = \dfrac{3 + 2\cdot 0 + 0^2}{2 + 6\cdot 0 + 131 \cdot 0^2} = \pause \dfrac{3}{2} \pause
+  \end{align}
+\end{frame}
+\begin{frame}
+  \frametitle{Limits at Infinity IV: Example 1+2}
+  So we took a scary looking limit \pause $\lim_{x \rightarrow \infty} \dfrac{3x^2 + 2x + 1}{2x^2 + 6x + 131}$ \pause
+  and reduced it to simply evaluating some rational function \pause $f(u) = \dfrac{3 + 2u + u^2}{2 + 6u + 131u^2}$ at $u = 0$! \pause
+
+  What about for just a polynomial? \pause
+  \begin{align}
+    \lim_{x \rightarrow - \infty} (x^3 + 2x + 1) &= \pause \lim_{u \rightarrow 0^{-}} ((\dfrac{1}{u})^3 + 2 \dfrac{1}{u} + 1) \pause \\
+                                                 &= \lim_{u \rightarrow 0^{-}} \dfrac{1}{u^3} (1 + 2u^2 + u^3) \pause  \\
+    ``&=" (\lim_{u \rightarrow 0^{-}} \dfrac{1}{u^3}) \cdot (\lim_{u \rightarrow 0^{-}} (1 + 2u^2 + u^3)) \pause \\
+                                                 &= \lim_{u \rightarrow 0^{-}} \dfrac{1}{u^3} \pause
+  \end{align}
+
+  Where we unfortunately encounter a problem \pause since $\dfrac{1}{u^3}$ has an \textit{asymptote}
+  at $u = 0$ \pause and so cannot be replaced by a function continuous at $0$. \pause What do we do?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limits at Infinity V: Example 2 and Divergence to Infinity}
+  Let's look at the graph! \pause
+
+  \begin{block}{Limits Diverging to Infinity}\index{limits!diverging to infinity}
+    For a function $f(x)$ and a point $a$, we say that $\lim_{x \rightarrow a} f(x) = +\infty$ (read as the limit of $f(x)$ as $x$ approaches $a$ diverges to positive infinity) \pause
+    if, for any lower bound $L$ \pause we can force $f(x) > L$ \pause just by forcing $x \approx a$ (up to some error $\delta > 0$). \pause
+
+    Similarly, we say that $\lim_{x \rightarrow a} f(x) = - \infty$ (... diverges to minus infinity) \pause
+    if, for any upper bound $U$ \pause we can force $f(x) < U$ \pause just by forcing $x \approx a$ (up to some error $\delta > 0$). \pause
+  \end{block}
+
+  So, from the graph of $\dfrac{1}{u^3}$ as $u \rightarrow 0^{-}$ we see that \pause
+  $\lim_{u \rightarrow 0^{-}} \dfrac{1}{u^3}$ \textit{diverges} \pause to minus infinity.
+\end{frame}
+
+\section{Squeeze Theorem}
+
+\begin{frame}
+  \frametitle{Squeeze Theorem I}
+
+  Let's consider one final limit: \pause
+  \begin{align}
+    \lim_{x \rightarrow \infty} \dfrac{\sin(x)}{x} &= \pause \lim_{u \rightarrow 0^{+}} \dfrac{\sin(\frac{1}{u})}{\frac{1}{u}} \pause \\
+                                                   &= \lim_{u \rightarrow 0^{+}} u \sin(\frac{1}{u}) \pause
+  \end{align}
+
+  And now we \textit{REALLY} get stuck: \pause as $u \rightarrow 0$, $\sin(\frac{1}{u})$
+  oscillates infinitely rapidly and escapes all ability to be pinned down to a value we could use to simplify the limit. \pause
+  Noooooo! \pause
+  
+  ... \pause ... \pause but are we really stuck?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Squeeze Theorem II}
+
+  How much does $\sin(\frac{1}{u})$ really affect the value of the limit? \pause
+  Since we know that $\sin$ as a function never gets large at all, \pause
+  intuitively it shouldn't be able to outpace $u$ shrinking towards $0$. \pause
+
+  Formally, since $-1 \leq \sin(x) \leq 1$ (the range of $\sin(x)$ is $[-1,1]$) \pause
+  we have both that: \pause
+  \begin{align}
+    \lim_{u \rightarrow 0^{+}} u \sin(\frac{1}{u}) &\leq \lim_{u \rightarrow 0^{+}} u \cdot \pause 1 \pause \\
+                                                   &= \lim_{u \rightarrow 0^{+}} u \pause = \lim_{u \rightarrow 0} u \pause \\
+                                                   &= 0 \pause
+  \end{align}
+  and that: \pause
+  \begin{align}
+    \lim_{u \rightarrow 0^{+}} u \sin(\frac{1}{u}) & \geq \lim_{u \rightarrow 0^{+}} u \cdot \pause -1 \pause \\
+                                                   &= - \lim_{u \rightarrow 0^{+}} u \pause = - \lim_{u \rightarrow 0} u \pause \\
+                                                   &= - 0 = 0 \pause
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Squeeze Theorem III}
+  So if \pause
+  \begin{equation}
+  0 \leq \lim_{u \rightarrow 0^{+}} u \sin(\frac{1}{u}) \leq 0 \pause
+  \end{equation}
+
+  we must have that $\lim_{u \rightarrow 0^{+}} u \sin(\frac{1}{u}) = 0$! \pause
+  
+  This style of argument comes from the following result: \pause
+  \begin{alertblock}{The Squeeze Theorem}\index{Squeeze Theorem}\index{limits!Squeeze Theorem}
+    Suppose we have a function $f(x)$ and a point $a$ so that: \pause
+    \begin{enumerate}
+      \item we can find other functions $g(x), h(x)$ so that \pause (around $x = a$) $g(x) \leq f(x) \leq h(x)$ \pause
+      \item and that $\lim_{x \rightarrow a} g(x) = \lim_{x \rightarrow a} h(x)$ \pause
+    \end{enumerate}
+
+    Then we must have that $\lim_{x \rightarrow a} f(x)$ exists \pause and is equal to the
+    common value of $\lim_{x \rightarrow a} g(x) = \lim_{x \rightarrow a} h(x)$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tools for Algebraically Computing Limits}
+
+  Let's recap our tools: \pause
+  \begin{enumerate}
+    \item Evaluation for continuous functions: \pause if $f(x)$ is continuous at $x = a$ then \pause
+      \begin{equation}
+        f(a) \quad \pause = \quad \lim_{x \rightarrow a^{+}} f(x) = \lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a^{-}} f(x)
+      \end{equation} \pause
+    \item Reduction to continuous functions: \pause maybe the point at which you are taking the limit towards isn't in the domain \pause
+      but you can replace it with one and use tool \#1
+    \item Limit Properties: \pause You can rewrite your limit as a sum, product, quotient, or composite of other limits 
+      and reduce it to computing those \pause
+    \item Inversion for Limits at infinity: \pause $x \rightarrow \infty \iff \frac{1}{x} \rightarrow 0^{+}$, $x \rightarrow -\infty \iff \frac{1}{x} \rightarrow 0^{-}$ \pause
+    \item Squeeze Theorem: \pause maybe you have a limit which involves a term that ``shouldn't matter" intuitively \pause
+      and you can use the range of that term to put bounds that squeeze the value of the limit.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class}
+
+  That's all folks!
+\end{frame}
+\end{document}

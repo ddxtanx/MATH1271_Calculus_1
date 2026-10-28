@@ -1,0 +1,356 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 3 - Limits II}
+\author{Garrett Credi}
+\date{09/14/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Announcements}
+
+  Homework Policy: \pause
+
+  \begin{itemize}
+    \item For homework assigned on Tueday, the due date will be Thursday @ 6PM  \pause
+    \item For homework assigned on Thursday, the due date will be Saturday @ 6PM
+  \end{itemize} \pause
+
+  Office Hours: \pause
+  \begin{itemize}
+    \item Wednesday 12:15 - 1:15 PM
+    \item Thursday 4:30 - 5:30 PM \pause
+  \end{itemize}
+
+  Both are in Vincent Hall 105.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Last Time:}
+
+  Last lecture we: \pause
+  \begin{enumerate}
+    \item Defined the notion of a \textit{limit} of a function: \pause $\lim_{x \rightarrow a} f(x) = L \in \RR$
+      if we can make $f(x) \approx L$ up to some error ($\epsilon > 0$) just by forcing $x \approx a$ up to some error ($\delta > 0$) \pause
+    \item Said that if no such value $L$ existed we said that $\lim_{x \rightarrow a} f(x)$ \textit{did not exist} D.N.E. \pause
+    \item Computed limits graphically: \pause 
+      \begin{itemize}
+        \item points where the graph of a function ``broke" were points where the limit did not exist  \pause
+        \item points where the graph of a function had a ``hole" had the limit exist but it \textit{\textbf{was not equal to the function's value}} \pause
+        \item points where the graph was just an unbroken curve had the limit exist and \textit{equal} to the value at that point \pause
+      \end{itemize}
+    \item \textit{Approximated} limits using a table of values \pause
+    \item Computed limits by algebraic manipulation
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Today's Goals:}
+
+  Today we will develop our ability to algebraically compute limits by: \pause
+  \begin{enumerate}
+    \item Studying the ``simplest" functions to take limits of, \textit{continuous functions}
+    \item Discovering \textit{limit properties} that help us reduce complicated limits to easier limits \pause
+    \item Combining the above to get the process of algebraically computing limits
+  \end{enumerate}
+
+  And we will also study cases where the limit is infinite.
+\end{frame}
+
+\section{Continuity}
+
+\begin{frame}
+  \frametitle{Continuous Functions I}
+
+  To start off: let's consider the function: 
+  \begin{equation}
+    f(x) = \dfrac{x^3 - x^2 - x + 1}{x^2 + x - 2}
+  \end{equation} \pause
+
+  \begin{enumerate}
+    \item What is the domain of $f$? \pause
+    \item Using the graph of $f(x)$, what are:
+      \begin{enumerate}
+        \item $\lim_{x \rightarrow 3}f(x)$?
+        \item $\lim_{x \rightarrow 5}f(x)$?
+        \item $\lim_{x \rightarrow 1} f(x)$? \pause
+      \end{enumerate}
+
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Functions II}
+
+  Those first two points, where we have
+  \begin{equation*}
+    f(3) = \lim_{x \rightarrow 3} f(x) \quad f(5) = \lim_{x \rightarrow 5} f(x)
+  \end{equation*}
+
+  are a special kind of point: \pause
+
+  \begin{block}{Continuity at a point}\index{continuity!at a point}
+    Given a function $f(x)$ and a real number $a$ , \pause
+    we say that \textit{$f(x)$ is continuous at $a$} if: \pause
+    \begin{enumerate}
+      \item The limit $\lim_{x \rightarrow a} f(x)$ exists \pause
+      \item $a$ is in the domain of $f$ \pause
+      \item $\lim_{x \rightarrow a} f(x) = f(a)$
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Functions III}
+
+  We can define classes of functions that are specified to be continuous at important collections of points: \pause
+
+  \begin{block}{Continuous on $[a,b]$}\index{continuity!on an interval}
+    A function $f(x)$ is said to be continuous on the interval $[a,b]$
+    if, \pause for every real number $a \leq x_0 \leq b$ \pause
+    we have that $f(x)$ is continuous at $x_0$. \pause
+  \end{block}
+
+  \begin{block}{Continuous Function}\index{continuity!continuous function}\index{continuous function}
+    A function $f(x)$ is said to be continuous if, \pause for every real number $x_0$ in the domain of $f$, \pause
+    we have that $f(x)$ is continuous at $x_0$.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Functions IV}
+
+  Continuous functions are the ``atoms" we want to consider when computing limits \pause
+  since we can replace the difficult task of \textit{proving} what number a functions value approaches \pause
+  by the easier task of \textit{evaluating} the function. \pause
+
+  What are some continuous function? \pause
+
+  \begin{alertblock}{Important Continuous Functions}\index{continuous function!examples of}
+    The following are examples of continuous functions: \pause
+    \begin{enumerate}
+      \item The constant function $f_c(x) = c$ for some constant number $c$. \pause
+      \item The identity function $f_{id}(x) = x$ \pause
+      \item The exponential and logarithm functions $\mathrm{exp}(x) = e^x, \ln(x)$ \pause
+      \item All trigonometric functions, $\sin(x), \cos(x), \tan(x)...$ \pause
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Functions V}
+  What about other familiar functions like: \pause
+  \begin{enumerate}
+    \item Power functions $x^n$, \pause
+    \item Polynomials $c_0x^n + c_1x^{n-1} + \ldots + c_n x + c_{n+1}$, \pause
+    \item Rational functions $\dfrac{p(x)}{q(x)}$ \pause
+    \item Weird functions like $e^{\sin(x)} + \cos(x^n)\sqrt{x}$?
+  \end{enumerate}
+
+  We can determine the points at which these functions are continuous \pause (and thus the points at which it is easy to calculate limits) \pause
+  by discovering \textit{limit properties}!
+\end{frame}
+
+\section{Limit Properties}
+
+\begin{frame}
+  \frametitle{Limit Properties: Additivity I}
+
+  Say we have two functions $f(x)$ and $g(x)$, and we know that:
+  \begin{enumerate}
+    \item As $x \rightarrow 0$, $f(x) \rightarrow 1$ and \pause
+    \item As $x \rightarrow 0$, $g(x) \rightarrow 0$ \pause
+  \end{enumerate}
+
+  When $x \rightarrow 0$, towards which value does the function $h(x) = f(x) + g(x)$ approach?
+
+  \begin{enumerate}
+    \item Property 1 says that as long as $x \approx 0$ then $f(x) \approx 1$ \pause
+    \item Property 2 says that as long as $x \approx 0$ then $g(x) \approx 0$ \pause
+  \end{enumerate}
+
+  So if $x \approx 0$ then $h(x) = f(x) + g(x) \approx 1 + 0 = 1$!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limit Properties: Additivity II}
+
+  Let's codify this into a property: \pause
+
+  \begin{alertblock}{Additivity of Limits}\index{limits!additivity}
+    Suppose that $f(x)$ and $g(x)$ are two functions and $a$ is a real number so that \pause
+    \begin{enumerate}
+      \item $\lim_{x \rightarrow a} f(x)$ exists \pause and is equal to $b$ \pause
+      \item $\lim_{x \rightarrow a} g(x)$ exists \pause and is equal to $c$ \pause
+    \end{enumerate}
+
+    Then we have that $\lim_{x \rightarrow a} (f(x) + g(x))$ exists \pause and is equal to $b + c$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limit Properties: Multiplicativity}
+
+  \begin{alertblock}{Multiplicativity of Limits}\index{limits!multiplicativity}
+    Suppose that $f(x)$ and $g(x)$ are two functions and $a$ is a real number so that \pause
+    \begin{enumerate}
+      \item $\lim_{x \rightarrow a} f(x)$ exists \pause and is equal to $b$ \pause
+      \item $\lim_{x \rightarrow a} g(x)$ exists \pause and is equal to $c$ \pause
+    \end{enumerate}
+
+    Then we have that $\lim_{x \rightarrow a} (f(x)g(x))$ exists \pause and is equal to $bc$.
+  \end{alertblock}
+
+  Similarly: \pause
+
+  \begin{alertblock}{Limits of Multiplicative Inverses} 
+    Suppose that $f(x)$ is a function and $a$ is a real number so that \pause
+    $\lim_{x \rightarrow a} f(x)$ exists, \pause is equal to some real number $b$, \pause
+    and that $b \neq 0$.
+
+    Then we have that $\lim_{x \rightarrow a} \dfrac{1}{f(x)}$ exists \pause and is equal to $\dfrac{1}{b}$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limit Properties: Composites}
+
+  \begin{alertblock}{Limits of Composites}\index{limits!of a composite}
+    Suppose that $f(x)$ and $g(x)$ are two functions, that $a$ is a real number, and that:
+    \begin{enumerate}
+      \item $\lim_{x \rightarrow a} f(x)$ exists \pause and is equal to $b$ \pause
+      \item $f(x)$ is \textit{not} constantly equal to $b$ around $x = a$, \pause
+      \item $\lim_{x \rightarrow b} g(x)$ exists \pause and is equal to $c$ \pause
+    \end{enumerate}
+
+    Then we have that $\lim_{x \rightarrow a} g(f(x)) = c$.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Combining Continuous Functions}
+
+  We can use the above limit laws to enlarge the class of functions we know to be continuous! \pause
+
+  \begin{alertblock}{Combining Continuous Functions}\index{continuous function!combinations}
+    Suppose that $f(x)$ and $g(x)$ are two functions that are continuous at some real number $a$. \pause
+    Then we have that: \pause
+    \begin{enumerate}
+      \item $f(x) + g(x)$ is continuous at $x = a$ \pause
+      \item $f(x)g(x)$ is continuous at $x = a$ \pause
+      \item If $g(a)$ and $\lim_{x \rightarrow a} g(x)$ are both nonzero then $\dfrac{f(x)}{g(x)}$ is continuous at $x = a$. \pause
+      \item If $g(x)$ is instead continuous at $f(a)$ then $g(f(x))$ is continuous at $x = a$.
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Moral of the Story}
+
+  The big upshot of this is the following:
+
+  \begin{alertblock}{Strategy for Computing Limits}
+    If you are tasked with computing a limit $\lim_{x \rightarrow a} F(x)$ algebraically \pause
+    your goal should be to reduce the expression of the functions down \pause
+    to end up with an equivalent limit $\lim_{x \rightarrow a} F(x) = \lim_{x \rightarrow a} f(x)$
+    where: \pause
+    \begin{enumerate}
+      \item $f(x)$ is a continuous function \pause
+      \item and $a$ is in the domain of $f(x)$.
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Moral of the Story: Example}
+
+  For instance:
+  \begin{align}
+    \lim_{x \rightarrow 1} \dfrac{x^3 - x^2 - x + 1}{x^2 + x - 2} &= \pause \lim_{x \rightarrow 1} \dfrac{x^3 - x^2 - x - 1}{(x - 1)(x + 2)} \pause \\
+                                                                  &= \lim_{x \rightarrow 1} \dfrac{(x - 1)(x^2 - 1)}{(x - 1)(x+2)} \pause \\
+                                                                  &= \lim_{x \rightarrow 1} \dfrac{(x-1)}{(x-1)} \dfrac{x^2 - 1}{x + 2} \pause \\
+                                                                  &= \lim_{x \rightarrow 1} \dfrac{x^2 - 1}{x + 2} \pause \\
+                                                                  &= \dfrac{(1)^2 - 1}{1 + 2} \pause = \dfrac{1 - 1}{3} \pause = \dfrac{0}{3} = 0
+  \end{align}
+\end{frame}
+
+\section{One Sided Limits}
+
+\begin{frame}
+  \frametitle{One Sided Limits}
+
+  We can also analyze a similar kind of quantitiy to the limit that will end up being useful when we study limits at infinity on Thursday: \pause
+
+  \begin{block}{One-Sided Limits}\index{limits!one sided}
+    Given a function $f(x)$ and a number $a$: \pause
+    \begin{itemize}
+      \item We say that $\lim_{x \rightarrow a^{-}} f(x) = L$ (verbally, ``the limit of $f(x)$ as $x$ approaches $a$ \textit{from the left}") \pause
+        if we can make $f(x) \approx L$ (up to some error $\epsilon > 0$) \pause just by forcing $x \approx a$ (up to some error $\delta > 0$) \pause and $x < a$. \pause
+      \item Similarly, we say that $\lim_{x \rightarrow a^{+}} f(x) = L$ (verbally, ``the limit of $f(x)$ as $x$ approaches $a$ \textit{from the right}") \pause
+        if we can make $f(x) \approx L$ (up to some error $\epsilon > 0$) \pause just by forcing $x \approx a$ (up to some error $\delta > 0$) \pause and $x > a$.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relationship between Limits and One-Sided Limits}
+  
+  Questions: \pause
+  \begin{enumerate}
+    \item Can we have that $\lim_{x \rightarrow a^{-}} f(x) \neq \lim_{x \rightarrow a^{+}} f(x)$? \pause
+    \item If $\lim_{x \rightarrow a^{-}} f(x) \neq \lim_{x \rightarrow a^{+}} f(x)$ what can we say about $\lim_{x \rightarrow a} f(x)$? \pause
+    \item If $\lim_{x \rightarrow a^{-}} f(x) = \lim_{x \rightarrow a^{+}} f(x)$, what can we say about $\lim_{x \rightarrow a} f(x)$? \pause
+    \item If $\lim_{x \rightarrow a^{-}} f(x) = f(a) = \lim_{x \rightarrow a^{+}} f(x)$, what previously discussed definition does the function $f(x)$ and the point $a$ satisfy? \pause
+  \end{enumerate}
+
+  \vspace{\stretch{1}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class!}
+
+  That's all folks!
+\end{frame}
+\end{document}

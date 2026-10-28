@@ -1,0 +1,44 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../quiz-macros.tex}
+
+\title{\vspace{-0.5in} Quiz 5 - 09/22 Content}
+\date{09/24/2026}
+\author{MATH 1271}
+
+\begin{document}
+  \NameSection
+  {\let\newpage\relax\maketitle}
+
+  \PointsSection
+
+  \newpage
+  \begin{questions}
+    \question[5] If $f(x) = \dfrac{2}{x^2}$, find $f'(3)$ using the definition of the derivative.
+    \begin{solution}
+      \begin{align}
+        f'(3) &= \lim\limits_{x \rightarrow 3} \dfrac{f(x) - f(3)}{ x-3} \\
+              &= \lim\limits_{x \rightarrow 3} \dfrac{\frac{2}{x^2} - \frac{2}{3^2}}{x - 3} \\
+              &= \lim\limits_{x \rightarrow 3} \dfrac{x^2}{x^2} \cdot \dfrac{\frac{2}{x^2} - \frac{2}{9}}{x - 3} \\
+              &= \lim\limits_{x \rightarrow 3} \dfrac{2}{x^2} \cdot \dfrac{1 - \frac{x^2}{9}}{x - 3} \\
+              &= \lim\limits_{x \rightarrow 3} \dfrac{2}{3x^2} \cdot \dfrac{(1 - \frac{x}{3})(1 + \frac{x}{3})}{\frac{x}{3} - 1} \\
+              &= \lim\limits_{x \rightarrow 3} -\dfrac{2}{3x^2} \dfrac{(1 - \frac{x}{3})(1 + \frac{x}{3})}{1 - \frac{x}{3}} \\
+              &= \lim\limits_{x \rightarrow 3} - \dfrac{2}{3x^2} (1 + \frac{x}{3}) = -\dfrac{2}{3\cdot 3^2} (1 + \dfrac{3}{3}) = - \dfrac{4}{27}
+      \end{align}
+
+      Or, alternatively:
+
+      \begin{align}
+        f'(3) &= \lim\limits_{h \rightarrow 0} \dfrac{f(3 + h) - f(3)}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{\frac{2}{(3+h)^2} - \frac{2}{9}}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{(3 + h)^2}{(3 + h)^2} \cdot \dfrac{\frac{2}{(3+h)^2} - \frac{2}{9}}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{2}{(3 + h)^2} \cdot \dfrac{1 - \frac{(3+h)^2}{9}}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{2}{(3 + h)^2} \cdot \dfrac{1 - \frac{9 + 6h + h^2}{9}}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{2}{(3+h)^2} \cdot \dfrac{1 - \frac{9}{9} - \frac{6h + h^2}{9}}{h} \\
+              &= \lim\limits_{h \rightarrow 0} -\dfrac{2}{(3 + h)^2} \cdot \dfrac{6h + h^2}{9h} \\
+              &= \lim\limits_{h \rightarrow 0} -\dfrac{2}{(3 + h)^2} \cdot \dfrac{6 + h}{9} \\
+              &= -\dfrac{2}{(3 + 0)^2} \cdot \dfrac{6 + 0}{9} = -\dfrac{2}{9} \cdot \dfrac{6}{9} = -\dfrac{4}{27}
+      \end{align}
+    \end{solution}
+  \end{questions}
+\end{document}

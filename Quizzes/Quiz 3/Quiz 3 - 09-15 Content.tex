@@ -1,0 +1,45 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../quiz-macros.tex}
+
+\title{\vspace{-0.5in}Quiz 3: 09/15 Content}
+\date{09/17/2026}
+\author{MATH 1271}
+
+\begin{document}
+  \NameSection
+  {\let\newpage\relax\maketitle}
+
+  \PointsSection
+
+  \newpage
+  \begin{questions}
+    \question Evaluate the given limits of the piecewise defined function.
+
+    \begin{equation}
+      f(x) = \begin{cases} x + 3, & x \leq 0 \\ x^2 + 2, & x > 0 \end{cases} 
+    \end{equation}
+
+    \begin{parts}
+      \part[3] $\lim_{x \rightarrow 0^{-}} f(x)$
+      \vspace{1.5in}
+
+      \part[3] $\lim_{x \rightarrow 0^{+}} f(x)$
+      \vspace{1.5in}
+
+      \part[3] $\lim_{x \rightarrow 0} f(x)$
+      \vspace{1.5in}
+
+      \part[1] $f(0)$
+    \end{parts}
+    \begin{solution}
+      \begin{enumerate}
+        \item $\lim\limits_{x \rightarrow 0^{-}} f(x) = 3$ since when $x < 0$,
+          $f(x) = x + 3$ which is continuous. Thus $\lim\limits_{x \rightarrow 0^{-}} f(x) = \lim\limits_{x \rightarrow 0^{-}} x + 3 = 0 + 3 = 0$
+        \item $\lim\limits_{x \rightarrow 0^{+}} f(x) = 2$ by the same reasoning since when $x > 0$, $f(x) = x^2 + 2$.
+        \item $\lim\limits_{x \rightarrow 0} f(x)$ DNE since the one sided limits are not equal to eachother.
+        \item By the piecewise definition, when $x = 0$, $f(x) = x+3$. So $f(0) = 0 + 3 = 3$.
+      \end{enumerate}
+    \end{solution}
+  \end{questions}
+\end{document}

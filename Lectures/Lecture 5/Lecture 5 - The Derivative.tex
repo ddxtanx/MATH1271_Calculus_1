@@ -1,0 +1,433 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 5 - The Derivative}
+\author{Garrett Credi}
+\date{09/22/26}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Homework Updates/Info/Yappery?}
+
+  After reading the engagement portfolios, I just had a few things I thought might be useful to say: \pause
+
+  \begin{enumerate}
+    \item For choosing problems - I'd recommend looking over each of the problem types and choosing \textit{a few problems from many problem types}. \pause
+    \item Come review time (for quizzes and exams) the other problems you did not solve will be very useful practice problems \pause (homework's will be uploaded on Canvas since evil gradescope doesn't let you see them after the due date) \pause
+    \item If you're choosing homework problems in a way that's making you feel lost or making you feel unprepared for the quizzes please talk to me so we can discuss different strategies :)
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+
+  Let's get into nice orderly rows, spread out as much as possible, and slay this quiz :)
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Road So Far}
+
+  So far we've developed this notion of a limit: \pause
+  \begin{enumerate}
+    \item Limits $\lim\limits_{x \rightarrow a} f(x)$ \pause are \textit{the values that $f(x)$ approximates as $x$ approximates $a$ to closer and closer degrees} \pause
+    \item Functions whose \textit{actual} values 
+      match their approximated values at $x = a$ \pause 
+      (e.g. where $f(a) = \lim\limits_{x \rightarrow a} f(x)$) 
+      are called \pause \textit{continuous at $x = a$}. 
+      \pause c.f. continuous on $[a,b]$, and continuous \pause
+    \item We developed \textit{maaaany} different tools to compute limits. 
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Constant Value Approximation}
+
+  For a function $f(x)$ that is \textit{continuous at $x = a$}, \pause 
+  how good is the approximation $f(x) \approx f(a)$ when $a \approx x$? \pause
+
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{x_squared_graph.png}
+        \caption{The graph of $f(x) = x^2$ near $x = 0$}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{cos_x_graph.png}
+        \caption{The graph of $f(x) = \cos(x)$ near $x = 0$}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  % ---- bottom row ----
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{x_graph.png}
+        \caption{The graph of $f(x) = x$ near $x = 0$}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{logistic_graph.png}
+        \caption{The graph of a logistic function near $x = 0$}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What to do?}
+
+  So if constant functions $y = f(a) \approx f(x)$ don't approximate well enough \pause what's the next most complicated type of function we could approximate $f(x)$ by? \pause
+
+  \textit{A linear function!}
+\end{frame}
+
+\section{The Derivative}
+
+\begin{frame}
+  \frametitle{Linear Approximation}
+
+  We will introduce the (extremely \textit{extremely} important) concept of 
+  the derivative via \textit{linear approximations}. \pause
+
+  \begin{alertblock}{Goal}
+    Find the linear function $\mathscr{L}(x) = mx + b$ that 
+    ``\textit{best}" approximates the function $f(x)$ \pause 
+    when $x \approx a$ for some fixed value $a$. \pause
+  \end{alertblock}
+
+  Why? \pause Oftentimes for scientific/engineering purposes,
+  the actual functions that model complex phenomena \pause
+  (like pendulum forces, population growth rates, reaction rates, etc) \pause
+  are so wildly complicated that we cannot effectively study their true form. \pause
+
+  However, taking their linear approximation \pause (since linear functions are exactly specified by a finite amount of data [the slope and the intercept, e.g.]) \pause
+  often both simplify calculations vastly \textit{AND} approximate real world measurements well enough.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Best Linear Approximation I}
+
+  (Aside: \pause Because we want to look at behavior when $x \approx a$,
+  I'll switch to \textit{point-slope form} $\mathscr{L}(x) = m(x - a) + b$) \pause
+
+  Idea 1: \pause We'll say that $\mathscr{L}(x) = m(x - a) + b$ is the 
+  best linear approximation of $f(x)$ near $x = a$ \pause
+  if $\lim\limits_{x \rightarrow a} \mathscr{L}(x) = \lim\limits_{x \rightarrow a} f(x)$. 
+  \pause Pros/Cons? 
+  \pause This at least forces \pause $b = \lim\limits_{x \rightarrow a} f(x)$.
+
+  Idea 2: \pause ... if the error term $|f(x) - \mathscr{L}(x)| \rightarrow 0$ as $x \rightarrow a$. \pause But this is just the last idea dressed in a different hat... \pause
+
+  We can't \textit{just} make conditions on limits of errors since 
+  \pause the information about the linear term $m(x - a)$ ``\textit{dies}" as $x \rightarrow 0$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Best Linear Approximation II}
+
+  Solution: The error $|f(x) - \mathscr{L}(x)|$ should ``die" to $0$ faster than $|x - a|$ ``dies" to 0. \pause
+
+  \begin{block}{Best Linear Approximation}\index{best linear approximation}
+    A linear function $\mathscr{L}(x) = m(x - a) + b$ is the \textit{best linear approximation} to a function $f(x)$ at $x = a$ if: \pause
+    \begin{equation}
+      \lim\limits_{x \rightarrow a} \dfrac{|f(x) - \mathscr{L}(x)|}{|x - a|} = 0
+    \end{equation} \pause
+  \end{block}
+
+  That's great and all - but how do we \textit{find} the best linear approximation?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Best Linear Approximation III}
+  \begin{alertblock}{Determining the Best Linear Approximation}\index{best linear approximation!determining coefficients}
+    Given a function $f(x)$, if a best linear approximation 
+    $\mathscr{L}(x) = m(x - a) + b$ exists
+    to $f(x)$ at $x = a$ then the following must be true: \pause
+    \begin{enumerate}
+      \item $b = \lim\limits_{x \rightarrow a} f(x)$ \pause
+      \item $f(x)$ is continuous at $x = a$, so \pause
+        \begin{equation}
+          b = \lim\limits_{x \rightarrow a} f(x) = f(a)
+        \end{equation} \pause
+      \item We have the following expression for the slope $m$:
+        \begin{equation}
+          m = \lim\limits_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a}
+        \pause = \lim\limits_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h}
+          \pause = IV_{x = a}(f(x))
+        \end{equation}
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative}
+  Because this quantity has shown up sooooo many times, we give it a special name: \pause
+
+  \begin{block}{Derivative of a function at a point}\index{derivative}\index{derivative!limit definition}
+    The derivative of a function $f(x)$ at a point $x = a$, denoted $f'(a)$ \pause
+    is the common value of the following four (equal) quantities: \pause
+    \begin{enumerate}
+      \item \begin{equation} \label{eq:derivative} f'(a) = \lim_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a} = \lim_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h} \end{equation} \pause
+      \item The slope of the best linear approximation to $f(x)$ at $x = a$. \pause
+      \item The slope of the \textit{tangent} line to the graph of $y = f(x)$ at $x = a$. \pause
+      \item The instantaneous velocity of a particle with position described by $f(x)$ at time $x = a$.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computing The Derivative}
+  We often use \autoref{eq:derivative} to compute the derivative, \pause
+  which is why we spent the first two weeks going over limits in such depth! \pause
+
+  E.g. let's compute the derivative of the function $f(x) = x^2$ at $x = 2$! \pause
+
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \begin{align}
+        f'(2) &= \pause \lim\limits_{x \rightarrow 2} \dfrac{f(x) - f(2)}{x - 2} \pause \\
+              &= \lim\limits_{x \rightarrow 2} \dfrac{x^2 - 2^2}{x - 2} \pause \\
+              &= \lim\limits_{x \rightarrow 2} \dfrac{(x - 2)(x + 2)}{x - 2} \pause \\
+              &= \lim\limits_{x \rightarrow 2} x + 2 \pause = 2 + 2 = 4 \pause
+      \end{align}
+    \end{column} 
+    \begin{column}{0.48\textwidth}
+      \begin{align}
+        f'(2) &= \pause \lim\limits_{h \rightarrow 0} \dfrac{f(2 + h) - f(2)}{h} \pause \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{(2 + h)^2 - 2^2}{h} \pause \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{4 + 4h + h^2 - 4}{h} \pause \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{4h + h^2}{h} \pause \\
+              &= \lim\limits_{h \rightarrow 0} 4 + h \pause = 4 + 0 = 4
+      \end{align}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Interpreting the Derivative}
+  Does this actually give the slope of the best linear approximation/tangent line? \pause 
+
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{lin_approx_1_7.png}
+        \caption{Linear approximations of $f(x) = x^2$ around $x = 2$ with slopes $m = 1,7$}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{lin_approx_2_6.png}
+        \caption{Linear approximations of $f(x) = x^2$ around $x = 2$ with slopes $m = 2,6$}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  % ---- bottom row ----
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{lin_approx_3_5.png}
+        \caption{Linear approximations of $f(x) = x^2$ around $x = 2$ with slopes $m = 3,5$}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \pause
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textheight]{best_lin_approx.png}
+        \caption{The best linear approximation of $f(x) = x^2$ around $x = 2$ with slope $m = f'(2) = 4$.}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computing the Derivative II}
+  Let's try another one! \pause Let's compute $f'(4)$ when $f(x) = \sqrt{x}$. \pause
+
+  \begin{columns}
+    \begin{column}{0.48\textwidth}
+      \begin{align}
+        f'(4) &= \pause \lim \limits_{x\rightarrow 4} \dfrac{f(x) - f(4)}{x - 4} \pause \\
+              &= \lim\limits_{x \rightarrow 4} \dfrac{\sqrt{x} - \sqrt{4}}{x - 4} \pause \\
+              &= \lim\limits_{x \rightarrow 4} \dfrac{\sqrt{x} + \sqrt{4}}{\sqrt{x} + \sqrt{4}} \dfrac{\sqrt{x} - \sqrt{4}}{x - 4} \pause \\
+              &= \lim\limits_{x \rightarrow 4} \dfrac{(\sqrt{x})^2 - (\sqrt{4})^2}{(x - 4)(\sqrt{x} + \sqrt{4})} \pause \\
+              &= \lim\limits_{x \rightarrow 4} \dfrac{x - 4}{(x - 4)(\sqrt{x} + \sqrt{4})} \pause \\
+              &= \lim\limits_{x \rightarrow 4} \dfrac{1}{\sqrt{x} + \sqrt{4}}
+              \pause = \dfrac{1}{\sqrt{4} + \sqrt{4}} \pause = \dfrac{1}{4} \pause
+      \end{align}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{align}
+        f'(4) &= \pause \lim \limits_{h \rightarrow 0} \dfrac{f(4 + h) - f(4)}{h} \pause \\
+              &= \lim \limits_{h \rightarrow 0} \dfrac{\sqrt{4 + h} - \sqrt{4}}{h} \pause \\
+              &= \lim \limits_{h \rightarrow 0} \dfrac{(4 + h) - 4}{(\sqrt{4 + h} + \sqrt{4})h} \pause \\
+              &= \lim \limits_{h \rightarrow 0} \dfrac{h}{(\sqrt{4 + h} + \sqrt{4}) h} \pause \\
+              &= \lim \limits_{h \rightarrow 0} \dfrac{1}{\sqrt{4 + h} + \sqrt{4}} \pause = \dfrac{1}{4}
+      \end{align}
+    \end{column}
+  \end{columns}
+\end{frame}
+\begin{frame}
+  \frametitle{Computing the Derivative III}
+  For one last one, let's compute $f'(0)$ when $f(x) = | x|$. \pause
+  \begin{align}
+    f'(0) &= \pause \lim \limits_{x \rightarrow 0} \dfrac{f(x) - f(0)}{x - 0} \pause \\
+          &= \lim \limits_{x \rightarrow 0} \dfrac{|x|}{x} \pause \\
+          &\text{since $|x|$ is defined piecewise, let's look at one-sided limits:} \pause \\
+    \lim_{x \rightarrow 0^{+}} \dfrac{|x|}{x} &= \lim_{x \rightarrow 0^{+}} \dfrac{x}{x} \pause \\
+                                              &= \lim_{x \rightarrow 0^{+}} 1 \pause = 1 \pause \\
+    \lim_{x \rightarrow 0^{-}} \dfrac{|x|}{x} &= \lim_{x \rightarrow 0^{-}} \dfrac{-x}{x} \pause \\
+                                              &= \lim_{x \rightarrow 0^{-}} -1 \pause = -1 \pause
+  \end{align}
+  Since $\lim\limits_{x \rightarrow 0^{+}} \dfrac{f(x) - f(0)}{x - 0} \neq \lim\limits_{x \rightarrow 0^{-}} \dfrac{f(x) - f(0)}{x - 0}$ \pause
+  this means that $f'(0)$ \textit{does not exist} \pause
+  and there is \textit{\textbf{NO}} best linear approximation to $|x|$ around $x = 0$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Differentiable Functions I}
+
+  \begin{block}{Differentiable Function}\index{differentiable function}
+    A function $f(x)$ is \textit{differentiable} at $x = a$ if any of the following equivalent conditions hold: \pause
+    \begin{enumerate}
+      \item The limit 
+        \begin{equation}
+          f'(a) = \lim\limits_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a} = \lim\limits_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h}
+        \end{equation} exists. \pause
+      \item There exists a best linear approximation $\mathscr{L}(x) = f(a) + f'(a)(x - a)$ to $f(x)$ around $x = a$. \pause
+      \item There is a unique tangent line to the graph of $y = f(x)$ at $x = a$.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Differentiable Functions II}
+  The two classes of functions we've defined so far 
+  \pause (continuous \& differentiable) \pause
+  are related in the following manner: \pause
+
+  \begin{alertblock}{Continuity and Differentiability}\index{differentiable function!is continuous}\index{continuous function!from differentiable functions}
+    For a function $f(x)$ and a point $x = a$ we have the following (equivalent) relationships: \pause
+    \begin{enumerate}
+      \item If $f(x)$ is differentiable at $x = a$ \pause
+        then it \textit{must} be the case \pause 
+        that $f(x)$ is also continuous at $x = a$. \pause
+      \item If $f(x)$ is \textit{not} continuous at $x = a$ \pause
+        then it \textit{can never} also be the case \pause
+        that $f(x)$ is also differentiable at $x = a$.
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Intuition for Continuity/Differentiability}
+  The following intuition may be useful:
+
+  \begin{alertblock}{Intuition for Continuity and Differentiability}
+    \index{continuous function!intuition}\index{differentiable function!intuition}\index{intuition!for continuous functions}\index{intuition!for differentiable functions}
+    We can intuitively recognize continuity/differentiability of a function $f(x)$ at a point $x = a$ from its graph as: \pause
+    \begin{enumerate}
+      \item continuity: if you can draw the graph of $f(x)$ near $x = a$ \textit{without} lifting up your pencil \pause (no jump discontinuities) \pause or without rapidly oscillating it \pause (no $\sin(\dfrac{1}{x})$) \pause
+      \item differentiability: if the graph of $f(x)$ ``locally looks like" the graph of a linear function near $x = a$ \pause i.e. the function is both continuous and does not make any sharp changes near $x = a$.
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Terminological Potpourri I}
+
+  There's a lot of terminology so here's some scattered parts that didn't fit nicely. \pause
+
+  \begin{block}
+    {Tangent Line}\index{tangent line}\index{tangent line!equation of}
+    Given a function $f(x)$ and a point $x = a$, \pause 
+    the \textit{tangent line} to $f(x)$ at $x = a$ is the line that: \pause
+    \begin{enumerate}
+      \item intersects the graph of $y = f(x)$ at $(a, f(a))$ \pause
+      \item but does not \textit{cross} the graph at that point \pause (e.g. it just ``glances" off). \pause
+    \end{enumerate}
+
+    The tangent line \textit{is} the graph of the best linear approximation to $f(x)$ at $x = a$, \pause
+    as such the equation of the tangent line, for $f(x)$ differentiable at $x = a$, is: \pause
+    \begin{equation}
+      y = f(a) + f'(a)(x - a).
+    \end{equation} \pause
+  \end{block}
+\end{frame}
+\begin{frame}
+  \frametitle{Terminological Potpourri II}
+  \begin{block}{Units of the Derivative}
+    If our function represents the relationship between \pause
+    an input quantity $x$ measured in units of $U_{in}$ \pause
+    and an output quantity $f(x)$ measured in units of $U_{out}$ \pause
+    the derivative $f'(a)$ (if it exists) \pause
+    is measured in units of $\frac{U_{out}}{U_{in}}$. \pause
+  \end{block}
+
+  E.g. if $s(t)$ is the distance in miles that a car travels, where $t$ is the time since starting measured in hours, \pause
+  $s'(t) = v(t)$ is the velocity and is measured in units of miles per hour.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class!}
+  That's all folks!
+\end{frame}
+\end{document}

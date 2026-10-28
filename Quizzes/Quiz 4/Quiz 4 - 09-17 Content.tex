@@ -1,0 +1,43 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../quiz-macros.tex}
+
+\title{\vspace{-0.5in}Quiz 4 - 09/17 Content}
+\date{09/22/2026}
+\author{MATH 2263}
+
+\begin{document}
+  \NameSection
+  {\let\newpage\relax\maketitle}
+
+  \PointsSection
+
+  \newpage
+  \begin{questions}
+    \question[5] Use the Squeeze Theorem to determine the value of
+    \begin{equation*}
+      \lim\limits_{x \rightarrow 0} x \cos \left( \dfrac{1}{x} \right) .
+    \end{equation*}
+    \begin{solution}
+      We want to apply the squeeze theorem, which says that
+      for function $f(x), g(x), h(x)$ so that:
+      \begin{enumerate}
+        \item $g(x) \leq f(x) \leq h(x)$ around $x = a$
+        \item $\lim_{x \rightarrow a}g(x) = \lim_{x \rightarrow a} h(x)$
+      \end{enumerate}
+      we have $\lim_{x \rightarrow a}f(x) = \lim_{x\rightarrow a}g(x) = \lim_{x \rightarrow a}h(x)$.
+
+      We then want to bound $f(x) = x \cos \left( \dfrac{1}{x} \right)$
+      by functions whose limits at $x = 0$ are equal. Since the range of $\cos$ is $[-1,1]$, we know that
+      \begin{equation}
+        x \cdot (-1) \leq x \cdot \cos \left( \dfrac{1}{x}\right) \leq x \cdot 1
+      \end{equation}
+
+      and since $\lim_{x \rightarrow 0} x = \lim_{x \rightarrow 0} -x = 0$
+      we get that
+      \begin{equation}
+        \lim_{x \rightarrow 0} x \cos \left ( \dfrac{1}{x}\right) = 0
+      \end{equation}
+    \end{solution}
+  \end{questions}
+\end{document}

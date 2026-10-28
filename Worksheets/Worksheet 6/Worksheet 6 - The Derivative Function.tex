@@ -1,0 +1,127 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{exam}
+\input{../worksheet-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 6 - The Derivative Function}
+\author{MATH 1271}
+\date{09/24/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newpage
+\maketitle
+
+\section{Computing the Derivative Function}
+Last worksheet we computed the derivative of many functions \textit{at a point},
+we can now compute their derivative functions!
+
+\begin{enumerate}
+  \item For $f(x) = x^2$, compute $f'(x)$ and verify that $f'(-1)$ matches the value you calculated in the previous worksheet.
+    \vfill
+  \item For $f(x) = \dfrac{1}{x}$, compute $f'(x)$ and verify that $f'(2)$ matches the value you calculated in the previous worksheet.
+    \vfill
+  \item For $f(x) = \sqrt{x + 3}$, compute $f'(x)$ and verify that $f'(1)$ matches the value you calculated in the previous worksheet.
+    \vfill
+    \newpage
+  \item For $f(x) = \dfrac{1}{x^2 + 1}$, compute $f'(x)$ and verify that $f'(1)$ matches the value you calculated in the previous worksheet.
+    \vfill
+  \item For $f(x) = x^3 + x - 1$, compute $f'(x)$ and verify that $f'(1)$ matches the value you calculated in the previous worksheet.
+    \vfill
+  \item For $f(x) = \sin(x)$, use the challenge problem of Homework 5 to compute $f'(x)$ and verify that $f'(0)$ matches the value you calculated in the previous worksheet.
+    \vfill
+\end{enumerate}
+\newpage
+
+\section{Extracting Information Using the Derivative Function}
+
+\begin{enumerate}
+  \item Suppose that you throw a ball straight up in the air,
+    and know that it's height as a function of time is described by:
+    \begin{equation}
+      s(t) = 64 - 16(t - 1)^2.
+    \end{equation}
+    \begin{enumerate}
+      \item What is the derivative function $s'(t)$?
+        \vfill
+
+      \item What is the instantaneous velocity of the ball at time $t = \dfrac{3}{2}$?
+        \vfill
+
+      \item What is the best linear approximation of the position of the ball at time $t = 2$?
+        \vfill
+
+      \newpage
+      \item At which times is the velocity of the ball positive? At which times is it negative? At which times is it zero?
+        \vfill
+
+      \item Using what you know about quadratic functions/parabolas, at which time is the ball at it's highest height? Has this time shown up in previous answers?
+        \vfill
+        \newpage
+    \end{enumerate}
+
+  \item Suppose that the value of a stock for company over a period of ten days is modeled by the function: 
+    \begin{equation}
+      V(t) = \dfrac{x^3}{3} - 4x^2 + 15 x + 20
+    \end{equation}
+    where $t$ is the time in days since some initial point
+    and $V(t)$ is the price per share in dollars per share,
+    for $0 \leq t \leq 10$
+  \begin{enumerate}
+  \item Suppose that the CEO of the company announced unfavorable news that
+    cause the price of the stock to stop increase and start decreasing. Determine the time $t$ when this announcement occurred.
+    \vfill
+
+  \item Suppose that after this news, the board of the company swiftly took action and helped institute changes that caused the price of the stock to stop decreasing and start increasing again. Determine the number of days since the CEO announced the unfavorable news that it took the board to institute these changes.
+    \vfill
+
+  \item Graph the function $V(t)$ using a tool such as Desmos etc. 
+    At the times you found for the two previous problems,
+    what do you notice about the behavior of the graph near those points?
+    How does the value of the stock at those points compare to the value of the stock at nearby points in time?
+    \vfill
+  \end{enumerate}
+\end{enumerate}
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

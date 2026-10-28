@@ -1,0 +1,386 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 14 - L'Hôpital's Rule}
+\author{Garrett Credi}
+\date{10/27/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Updates}
+
+  We have Exam 2 next week!
+
+  Practice exams and the review sheets are both out on Canvas,
+  compiled lecture will be uploaded after class.
+
+  Solutions to the practice exam and review sheet will be uploaded Thursday night 
+  to give you all time to try out the problems before looking at the solutions.
+
+  If you're feeling worried about the exam, please feel free to come to my office hours or email me to set up a time to meet :)
+
+  Re: quizzes. I'll grind out quiz grading tonight and tomorrow. Let me know if you want me to give feedback on a specific quiz of yours earlier though :)
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time}
+
+  Let's get into neat rows, spread out, and slay this quiz :)
+\end{frame}
+
+\section{L'Hôpital's Rule}
+
+\begin{frame}
+  \frametitle{Limit Review I}
+
+  Recall from the first two weeks of class:
+
+  we use \textit{limits} to determine the values
+  that functions approximate as their inputs approximate a given value. \pause
+
+  They were very useful in examining \textit{indeterminate forms}:
+  expressions like $\dfrac{f(x)}{g(x)}$ around values $x = x_0$
+  where $f(x_0) = g(x_0) = 0$ or $\infty$. \pause
+
+  Our tools included:
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Factoring out $(x - x_0)$
+      \item Replacing the limit with the limit of a continuous function
+      \item Addition/subtraction/product/quotient computations
+      \item Squeeze theorem
+      \item Etc.
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Limit Review II}
+
+  We also defined derivatives in terms of limits: \pause
+  \begin{equation}
+    f'(x) = \lim_{h \rightarrow 0} \dfrac{f(x + h) - f(x)}{h}
+  \end{equation}\pause
+
+  But then quickly pivoted to constructing and working with the \textit{synthetic} derivative rules, e.g.: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Power Rule: $\dfrac{d}{dx} x^n = nx^{n-1}$
+      \item Exponential/Logarithm rule: $\dfrac{d}{dx} e^x = e^x$, $\dfrac{d}{dx} \ln(x) = \dfrac{1}{x}$
+      \item Trig Rules: $\dfrac{d}{dx} \sin(x) = \cos(x)$
+      \item Sum/Difference rule: $\dfrac{d}{dx}(f(x) \pm g(x)) = \dfrac{d}{dx}f(x) \pm \dfrac{d}{dx}g(x)$
+      \item Product Rule: $\dfrac{d}{dx} f(x)g(x) = \left(\dfrac{d}{dx} f(x)\right) \cdot g(x) + f(x) \cdot \left(\dfrac{d}{dx}g(x)\right)$
+      \item Chain Rule: $\dfrac{d}{dx} g(f(x)) = \dfrac{dg}{du} \mid_{u = f(x)} \cdot \dfrac{df}{dx}$.
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative Review I}
+
+  The importance of the derivative came from it's interpretation as
+  \textit{the best linear approximation}: \pause
+  \begin{equation}
+    \lim\limits_{h \rightarrow 0} \dfrac{|f(x) - (f(x_0) + f'(x_0)(x - x_0))|}{h} = 0
+  \end{equation} \pause
+
+  or, in practical terms:
+  \begin{equation}
+    f(x) = f(x_0) + f'(x_0)(x - x_0) \pause + O((x - x_0)^2)
+  \end{equation} \pause
+
+  We also saw the \textit{quadratic approximation}:
+  \begin{equation}
+    f(x) = f(x_0) + f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2} (x - x_0)^2 \pause + O((x - x_0)^3)
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule I}
+
+  Because of our ability to approximate functions via their linear/quadratic approximations, we gain another tool to put in our limit computing toolkit
+  when we encounter indeterminate forms. \pause
+
+  If $f(x)$ and $g(x)$ are two functions that are: \pause
+  \begin{enumerate}
+    \item $0$ when $x = x_0$ \pause
+    \item Differentiable at $x = x_0$ \pause
+  \end{enumerate}
+
+  then, assuming $g'(x_0) \neq 0$, an application of squeeze theorem
+  gives us:
+  \begin{equation}
+    \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \lim\limits_{x \rightarrow x_0} \dfrac{f(x_0) + f'(x_0)(x - x_0)}{g(x_0) + g'(x_0)(x - x_0)} \pause = \lim\limits_{x \rightarrow x_0} \dfrac{f'(x_0)(x - x_0)}{g'(x_0)(x - x_0)} = \lim\limits_{x \rightarrow x_0} \dfrac{f'(x_0)}{g'(x_0)} 
+  \end{equation} \pause
+
+  We can also work around $g'(x_0)$ being zero by instead reducing
+  \begin{equation}
+    \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)}
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule II}
+
+  \begin{alertblock}{(Mini) L'Hôpital's Rule}\index{L'Hôpital's Rule!Mini}
+    If $f(x)$, $g(x)$ are two functions that are:
+    \begin{enumerate}
+      \item Zero at $x = x_0$ (i.e. $f(x_0) = g(x_0) = 0$)
+      \item Differentiable at $x = x_0$
+    \end{enumerate}
+    then:
+    \begin{equation}
+      \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)}
+    \end{equation}
+  \end{alertblock} \pause
+
+  In other words, we can compute limits of indeterminate forms by \textit{differentiating the two functions} to kill off any obstructions to continuity.
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule III}
+
+  This comes from a generalization of both linear and quadratic approximation,
+  arguably the most important concept taught in Calculus II:
+
+  \begin{alertblock}{Taylor's Theorem}\index{Taylor's Theorem}\index{Taylor Polynomial}
+    For $f(x)$ a function whose higher derivatives $\dfrac{d^n f}{dx^n} \mid_{x = x_0}$ all exist one can form the \textit{Taylor Polynomial} of $f(x)$ at $x = x_0$ defined as:
+    \begin{equation}
+      T_f(x) := \sum\limits_{n = 0}^{\infty} \dfrac{f^{(n)}(x_0)}{n!} (x - x_0)^n
+    \end{equation}
+  and as $x \rightarrow x_0$ the error term $E(x) = |f(x) - T_f(x)|$
+  approaches zero \textit{extremely rapidly}. (And in most nice cases it turns out that $f(x) = T_f(x)$ \textit{literally} on a small interval containing $x_0$).
+  \end{alertblock}
+
+  (this is not material you are expected to remember for this class)
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule IV}
+
+  L'Hôpital's Rule is then just what happens when you compute $\lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)}$
+  by replacing it with $\lim\limits_{x \rightarrow x_0} \dfrac{T_f(x)}{T_g(x)}$ using the Squeeze Theorem.
+  E.g.:
+  \begin{align}
+    \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} &= \lim\limits_{x \rightarrow x_0} \dfrac{f(x_0) + f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2}(x - x_0)^2 + \dfrac{f'''(x_0)}{6}(x - x_0)^3 + \ldots}{g(x_0) + g'(x_0)(x - x_0) + \dfrac{g''(x_0)}{2} (x - x_0)^2 + \dfrac{g'''(x_0)}{6}(x - x_0)^3 + \ldots} \\ \pause
+                                                       &= \lim\limits_{x \rightarrow x_0} \dfrac{f'(x_0)(x - x_0) + \dfrac{f''(x_0)}{2}(x - x_0)^2 + \dfrac{f'''(x_0)}{6}(x - x_0)^3 + \ldots}{g'(x_0)(x - x_0) + \dfrac{g''(x_0)}{2}(x - x_0)^2 + \dfrac{g'''(x_0)}{6}(x - x_0)^3 + \ldots} \\ \pause
+                                                       &= \lim\limits_{x \rightarrow x_0} \dfrac{f'(x_0) + \dfrac{f''(x_0)}{2} (x - x_0) + \dfrac{f'''(x_0)}{6} (x - x_0)^2 + \ldots}{g'(x_0) + \dfrac{g''(x_0)}{2} (x - x_0) + \dfrac{g'''(x_0)}{6} (x - x_0)^2 + \ldots}
+  \end{align}
+\end{frame}
+\begin{frame}
+  \frametitle{L'Hôpital's Rule V}
+  What if $\lim\limits_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)}$ is another $\dfrac{0}{0}$ indeterminate form? \pause e.g. $f'(x_0) = g'(x_0) = 0$? \pause
+
+  \begin{align}
+    \lim\limits_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} &= \lim\limits_{x \rightarrow x_0} \dfrac{f'(x_0) + \dfrac{f''(x_0)}{2}(x - x_0) + \dfrac{f'''(x_0)}{6}(x - x_0)^2 + \ldots}{g'(x_0) + \dfrac{g''(x_0)}{2}(x - x_0) + \dfrac{g'''(x_0)}{6}(x - x_0)^2 + \ldots} \\ \pause
+                                                       &= \lim\limits_{x \rightarrow x_0} \dfrac{\dfrac{f''(x_0)}{2}(x - x_0) + \dfrac{f'''(x_0)}{6}(x - x_0)^2 + \ldots}{\dfrac{g''(x_0)}{2}(x - x_0) + \dfrac{g'''(x_0)}{6}(x - x_0)^2 + \ldots} \\ \pause
+                                                       &= \lim\limits_{x \rightarrow x_0}{f''(x_0) + \dfrac{f'''(x_0)}{3}(x - x_0) + \ldots}{g''(x_0) + \dfrac{g'''(x_0)}{3}(x - x_0) + \ldots} \pause
+  \end{align}
+
+  In other words, we just L'Hôpital it again!
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule VI}
+
+  This gives us a general procedure to compute limits of the form $\lim_{x \rightarrow x_0}\dfrac{f(x)}{g(x)}$: \pause
+
+  \begin{alertblock}
+    {L'Hôpital's Process for Computing Limits of the Indeterminate Form $\dfrac{0}{0}$}\index{L'Hôpital's Rule!Process for 0/0 forms}
+    To compute $\lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)}$:
+    \begin{enumerate}
+      \item Compute $f(x_0)$ and $g(x_0)$. \pause
+      \item If $f(x_0) \neq 0$ and $g(x_0) \neq 0$, \pause then $\lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \dfrac{f(x_0)}{g(x_0)}$. \pause
+      \item If $f(x_0) \neq 0$ but $g(x_0) = 0$ then we're ending up with something like $\dfrac{N}{0}$ so: \pause $\lim_{x \rightarrow x_0}\dfrac{f(x)}{g(x)}$ DNE \pause
+      \item If $f(x_0) = g(x_0) = 0$ and $f(x)$, $g(x)$ are differentiable at $x = x_0$ \pause, replace $f(x)$ with $f'(x)$ and $g(x)$ with $g'(x)$
+        and restart step 1.
+    \end{enumerate} \pause
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule VII}
+
+  What about other indeterminate forms like: \pause
+  \begin{equation*}
+    \dfrac{\infty}{\infty}, \quad 0 \cdot \infty, \quad 0^0, \quad \infty^0, \quad 1^\infty, \quad \infty - \infty?
+  \end{equation*} \pause
+
+  If L'Hôpital's rule helps us compute limits of indeterminate forms like $\dfrac{0}{0}$ \pause why not just try and force those above forms into something related enough and that looks like $\dfrac{0}{0}$! \pause
+
+  E.g. if we had $\lim\limits_{x \rightarrow 0} \dfrac{\cot(x)}{\ln(x^2)}$ \pause
+  we see this is of the form $\dfrac{\infty}{\infty}$ \pause but we can change it to:
+  \begin{equation*}
+    \lim\limits_{x \rightarrow 0} \dfrac{\cot(x)}{\ln(x^2)} = \left(\lim\limits_{x \rightarrow 0} \dfrac{\frac{1}{\ln(x^2)}}{\frac{1}{\cot(x)}}\right)
+  \end{equation*} \pause
+  which is of the form $\dfrac{0}{0}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule Examples I}
+  We can then compute:
+  \begin{align}
+    \lim\limits_{x \rightarrow 0} \dfrac{\cot(x)}{\ln(x^2)} &= \lim\limits_{x \rightarrow 0} \dfrac{\frac{1}{\ln(x^2)}}{\tan(x)} \\ \pause
+                                                            &= \lim\limits_{x \rightarrow 0} \dfrac{\dfrac{d}{dx}(\ln(x^2))^{-1}}{\dfrac{d}{dx} \tan(x)} \\ \pause
+                                                            &= \lim\limits_{x \rightarrow 0} \dfrac{2x \cdot \dfrac{1}{(x^2)} \cdot -1 \cdot (\ln(x^2))^{-2}}{\sec(x)^2} \\ \pause
+                                                            &= \lim\limits_{x \rightarrow 0}\dfrac{ \dfrac{-2 \ln(x^2)}{x}}{\sec(x)^2}
+  \end{align}
+  since $\sec(0)^2 = 1$, and since the numerator is an indeterminate form of type $\dfrac{\infty}{0}$, we can conclude this limit DNE.
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule Examples II}
+  If you're a fan of Mean Girls, you might be interested in computing:
+  \begin{equation}
+    \lim\limits_{x \rightarrow 0} \dfrac{\ln(1 - x) - \sin(x)}{1 - \cos(x)^2}
+  \end{equation} \pause
+
+  We check @ $x = 0$, we'd get:
+    $\dfrac{\ln(1 - 0) - \sin(0)}{1 - \cos(0)^2} = \pause \dfrac{\ln(1) - 0}{1 - 1^2} = \pause \dfrac{0}{0}$
+  so this is already in a form amenable to L'Hôpital's Rule! \pause
+  \begin{align}
+    \lim\limits_{x \rightarrow 0} \dfrac{\ln(1 - x) - \sin(x)}{1 - \cos(x)^2} &= \lim\limits_{x \rightarrow 0} \dfrac{\dfrac{d}{dx} (\ln(1 - x) - \sin(x))}{\dfrac{d}{dx} (1 - \cos(x)^2)} \\ \pause
+                                                                                            &= \lim\limits_{x \rightarrow 0} \dfrac{\frac{-1}{1 - x} - \cos(x)}{-2 \cos(x) \cdot - \sin(x)}
+  \end{align} \pause
+  Which at $0$ is $\dfrac{\dfrac{-1}{1 - 0} - \cos(0)}{2 \cos(0) \sin(0)} = \dfrac{-2}{0}$ so \pause the limit does not exist!
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule Examples III}
+  Another one:
+  \begin{equation}
+    \lim\limits_{x \rightarrow 0} x^x
+  \end{equation} \pause
+
+  Indeterminate form of type \pause $0^0$. \pause What can we use to turn exponentiation into a product/quotient of things? \pause Logarithms! \pause
+
+  \begin{align}
+    \ln(\lim_{x \rightarrow 0} x^x) &= \lim_{x \rightarrow 0} \ln(x^x) \pause = \lim_{x \rightarrow 0} x \ln(x) \\ \pause
+                                    &= \lim_{x \rightarrow 0} \dfrac{\ln(x)}{\frac{1}{x}} \pause = \lim_{x \rightarrow 0} \dfrac{\frac{d}{dx} \ln(x)}{\frac{d}{dx} \frac{1}{x}} \pause \\
+                                    &= \lim_{x \rightarrow 0} \dfrac{\frac{1}{x}}{-\frac{1}{x^2}} \pause = \lim_{x \rightarrow 0}-\frac{x^2}{x} = 0
+  \end{align} \pause
+
+  So $\ln(\lim_{x \rightarrow 0} x^x) = 0$, which means \pause $\lim_{x \rightarrow 0} x^x = e^0 = 1$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule Cheat Method!}
+  In the previous example we did literal L'Hôpital's rule
+  on an indeterminate form of type $\dfrac{\infty}{\infty}$. Why is this valid? \pause
+
+  \begin{align}
+    \lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} &= \lim_{x \rightarrow x_0} \dfrac{\frac{1}{g(x)}}{\frac{1}{f(x)}} \\ \pause
+                                                &= \lim_{x \rightarrow x_0}
+                                                \dfrac{\frac{d}{dx} \frac{1}{g(x)}}{\frac{d}{dx}\frac{1}{f(x)}} \\ \pause
+                                                &= \lim_{x \rightarrow x_0} \dfrac{\frac{-g'(x)}{g(x)^2}}{\frac{-f'(x)}{f(x)^2}} = \left(\lim_{x \rightarrow x_0} \dfrac{g'(x)}{f'(x)}\right) \cdot \left(\lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)}\right)^2
+  \end{align}
+  from which you can solve that, for $\lim_{x \rightarrow x_0} f(x) = \lim_{x \rightarrow x_0} g(x) = \infty$
+  \begin{equation}
+    \lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \lim_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)}
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Superpowered L'Hôpital's Rule}
+
+  \begin{alertblock}{L'Hôpital's Rule}\index{L'Hôpital's Rule}
+    For $f(x)$, $g(x)$ two functions where \textit{either}:
+    \begin{enumerate}
+      \item $\lim_{x \rightarrow x_0} f(x) = \lim_{x \rightarrow x_0} g(x) = 0$ and $f(x), g(x)$ are differentiable at $x = x_0$
+      \item $\lim_{x \rightarrow x_0} |f(x)| = \lim_{x \rightarrow x_0} |g(x)| = \infty$ and $\frac{1}{f(x)}, \frac{1}{g(x)}$ are differentiable at $x = x_0$.
+    \end{enumerate}
+    Then we have that:
+    \begin{equation}
+      \lim_{x \rightarrow x_0} \dfrac{f(x)}{g(x)} = \lim_{x \rightarrow x_0} \dfrac{f'(x)}{g'(x)}
+    \end{equation}
+  \end{alertblock} \pause
+
+  Then to compute the limit of \textit{any} indeterminate form, we need only
+  equate it to some indeterminate form of type $\dfrac{0}{0}$ or $\dfrac{\infty}{\infty}$ and use L'Hôpital's Rule to compute it.
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule Examples IV}
+  Let's consider $\lim_{x \rightarrow 0} \dfrac{\sin(x)}{\cos(x)}$
+  as well as the following "computation": \pause
+
+  \begin{align}
+    \lim\limits_{x \rightarrow x_0} \dfrac{\sin(x)}{\cos(x)} &= \lim\limits_{x \rightarrow x_0} \dfrac{\frac{d}{dx} \sin(x)}{\frac{d}{dx} \cos(x)} \\ \pause
+                                                             &= \lim\limits_{x \rightarrow 0} \dfrac{\cos(x)}{-\sin(x)}
+  \end{align}
+  DNE since $\cos(0) = 1$ while $-\sin(0) = 0$ so we end up with $\frac{1}{0}$ so DNE. Thus $\tan(0)$ does not exist. \pause
+
+  \textcolor{red}{WE DIDN'T ACTUALLY CHECK IF $\dfrac{\sin(x)}{\cos(x)}$ WAS AN INDETERMINATE FORM AT $x = 0$!} \pause
+
+  $\sin(0) = 0$ and $\cos(0) = 1$ so $\dfrac{\sin(x)}{\cos(x)}$ is \textit{continuous} at $x = 0$ so $\lim_{x \rightarrow 0} \dfrac{\sin(x)}{\cos(x)} = \dfrac{\sin(0)}{\cos(0)} = \dfrac{0}{1} = 0 = \tan(0)$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{L'Hôpital's Rule Examples V}
+  Finally, let's consider
+  \begin{equation}
+    \lim_{x \rightarrow \infty} \left(1 + \dfrac{1}{x}\right)^x
+  \end{equation}
+  (which actually matters since its the ``rate of continuously compounding interest") \pause
+  
+  What type of indeterminate form? \pause $\lim_{x \rightarrow \infty} 1 + \frac{1}{x} = 1$, so \pause $1^\infty$.
+
+  How do we turn exponentiation into a product/quotient? \pause Log!
+
+  \begin{align}
+    \ln(\lim_{x \rightarrow \infty} \left(1 + \dfrac{1}{x}\right)^x) &= \lim_{x \rightarrow \infty} \ln(\left(1 + \dfrac{1}{x}\right)^x) \\ \pause
+                                                                     &= \lim_{x \rightarrow \infty} x \ln(1 + \frac{1}{x}) \pause = \lim_{x \rightarrow \infty} \dfrac{\ln(1 + \frac{1}{x})}{\frac{1}{x}} \\ \pause
+                                                                     &= \lim\limits_{x \rightarrow \infty} \dfrac{-\frac{1}{x^2} \cdot \frac{1}{1 + \frac{1}{x}}}{-\frac{1}{x^2}} \pause = \lim_{x \rightarrow \infty} \dfrac{x}{x + 1} = \pause 1
+  \end{align} \pause
+
+  So $\ln\left(\lim_{x \rightarrow \infty} \left( 1 + \dfrac{1}{x}\right)^x \right) = 1$ and therefore \pause $\lim_{x \rightarrow \infty} \left(1 + \dfrac{1}{x}\right)^x = e$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+
+  Let's get into groups and work on the worksheet :)
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class}
+
+  That's all folks :)
+\end{frame}
+\end{document}

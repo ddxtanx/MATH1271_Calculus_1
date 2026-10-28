@@ -1,0 +1,51 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../../Quizzes/quiz-macros.tex}
+\usepackage{amsmath, amssymb, amsthm, graphicx, float}
+
+\title{Quiz 8 - 10/08 Content}
+\author{Garrett Credi}
+\CourseName{MATH 1271}
+\TimeLimit{5 minutes}
+\Semester{Fall 2026}
+\date{10/13/2026}
+\IsQuiz
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\begin{questions}
+\question A certain function $y = p(x)$ has its local linearization at $a = 3$ given by $L(x) = -2x + 5$.
+\begin{parts}
+  \part[1] What are the values of $p(3)$ and $p'(3)$? Why?
+  \begin{solution}
+    $p(3) = L(3) = -2 \cdot 3 + 5 = -6 + 5 = -1$
+    and $p'(3) = L'(3) = -2$ since the linearization of a function at a point
+    agrees with the function (they meet) and has the same derivative (is tangent).
+  \end{solution}
+  \vfill
+
+  \part[2] Estimate the value of $p(2.79)$.
+  \begin{solution}
+    \begin{align}
+      p(2.79) &\approx L(2.79) = -2 \cdot 2.79 + 5 \\
+              &= -5.58 + 5 \\
+              &= -0.58
+    \end{align}
+  \end{solution}
+  \vfill
+
+  \part[2] Suppose that $p''(3) = 0$ and you know that $p''(x) < 0$ for $x < 3$. Is your estimate in (b) too large or too small?
+  \begin{solution}
+    Since the second derivative is negative for points less that $3$,
+    we know that the graph of the function falls below the tangent lines near and to the left of $x = 3$, so our estimate is too large.
+  \end{solution}
+  \vfill
+\end{parts}
+\end{questions}
+
+
+\end{document}

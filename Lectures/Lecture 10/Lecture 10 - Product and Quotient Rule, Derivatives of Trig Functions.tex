@@ -1,0 +1,404 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 10 - Product/Quotient Rule, Trig Derivatives}
+\author{Garrett Credi}
+\date{10/13/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exam 1 Recap}
+
+  \begin{enumerate}
+    \item All grades for Exam 1 released, regrade requests open until next Monday.
+    \item After Monday, curve will be determined
+    \item Recap: Essential Discontinuity, Vertical Tangent Singularity, Vertical Asymptotes
+  \end{enumerate}
+
+  Also, \href{https://forms.gle/GeHKGnT2nfTgQTGw8}{Anonymous Feedback Form}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+
+  Let's get into neat rows, spread out, and slay this quiz :)
+\end{frame}
+
+\section{Product and Quotient Rule}
+
+\begin{frame}
+  \frametitle{Long Term Goals}
+
+  Recall we're trying to build a \textit{synthetic} approach to studying derivatives: \pause
+
+    Atomic Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Power Rule: $\dfrac{d}{dx} x^n$ 
+      \item Trigonometric Rules: $\dfrac{d}{dx} \sin(x)$ etc.
+      \item Exponential/Logarithm Rules: $\dfrac{d}{dx} e^x$, $\dfrac{d}{dx} \ln(x)$
+    \end{itemize}
+  \end{multicols}
+
+  Combination Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Sum/Difference Rule: $\dfrac{d}{dx} (f(x) \pm g(x))$ 
+      \item Product Rule: $\dfrac{d}{dx} f(x)g(x)$ 
+      \item Chain Rule: $\dfrac{d}{dx} g(f(x))$ 
+      \item Constant Multiple Rule: $\dfrac{d}{dx} c \cdot f(x)$
+      \item Quotient Rule: $\dfrac{d}{dx} \dfrac{f(x)}{g(x)}$ 
+      \item Inverse Function Rule: $\dfrac{d}{dx} f^{-1}(x)$
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Product Rule I}
+
+  We want to determine what $\dfrac{d}{dx} (f(x) \cdot g(x))$
+  is, hopefully in terms of simpler derivatives involving $f(x), g(x)$. \pause
+
+  Is it just $f'(x)g'(x)$? \pause \textcolor{red}{NO NO NO NO NO!}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=0.6\textheight]{inde-no.png}
+    \caption{My one wish willow is for you to not compute derivates of products like this!}
+    \label{fig:inde-no-gif}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Product Rule II}
+
+  Well, then what is it? \pause
+
+  Approach 1: Linearization! \pause
+  We motivated the other rules by examining what the operation did to linear functions first - let's try that here! \pause
+
+  Linearization of $f(x)$ at $x = x_0$: $f(x_0) + f'(x_0)(x - x_0)$,
+
+  Linearization of $g(x)$ at $x = x_0$: $g(x_0) + g'(x_0)(x - x_0)$, \pause
+
+  Linearization of $f(x)g(x)$ at $x = x_0$:
+  \begin{align}
+    f(x)g(x) &\approx (f(x_0) + f'(x_0)(x - x_0)) \cdot (g(x_0) + g'(x_0)(x - x_0)) \\ \pause
+             &= f(x_0)g(x_0) + f'(x_0)g(x_0)(x - x_0) + f(x_0)g'(x_0)(x - x_0) + f'(x_0)g'(x_0)(x - x_0)^2 \\ \pause
+             &= f(x_0)g(x_0) + (f'(x_0)g(x_0) + f(x_0)g'(x_0))(x - x_0) + f'(x_0)g'(x_0)\color{red}{(x-x_0)^2}
+  \end{align} \pause
+
+  So why is it \textcolor{red}{NOT} $f'(x)g'(x)$? \pause Because that's the coefficient of something involving a \textit{quadratic} term, not linear! \pause
+
+  The derivative would be the slope on the \textit{linear} term.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Product Rule III}
+
+  \vspace{\stretch{0.2}}
+  \begin{alertblock}{The Product Rule}\index{derivative!product rule}
+    \begin{equation}
+      \dfrac{d}{dx}(f(x) \cdot g(x)) = f'(x)g(x) + f(x)g'(x)
+    \end{equation}
+  \end{alertblock}
+
+  \vspace{\stretch{1}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Product Rule Examples I}
+
+  Example 1: What is the derivative of:
+  \begin{equation}
+    x^2 e^x + \dfrac{2^x}{x}?
+  \end{equation} \pause
+
+  We compute: \pause
+  \begin{align}
+    \dfrac{d}{dx}(x^2 e^x + \dfrac{2^x}{x}) &= \pause \dfrac{d}{dx}(x^2 e^x) + \dfrac{d}{dx}(\dfrac{2^x}{x}) \\ \pause
+                                            &= (\dfrac{d}{dx} x^2) \cdot (e^x) + (x^2) \cdot (\dfrac{d}{dx} e^x) + \dfrac{d}{dx}(2^x \cdot \dfrac{1}{x}) \\ \pause
+                                            &= (2x) \cdot e^x + x^2 \cdot e^x + (\dfrac{d}{dx} 2^x) \cdot (\dfrac{1}{x}) + (2^x) \cdot (\dfrac{d}{dx} \dfrac{1}{x}) \\ \pause
+                                            &= 2xe^x + x^2 e^x + \ln(2) 2^x \cdot \dfrac{1}{x} + 2^x \cdot \dfrac{-1}{x^2}
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Product Rule Examples II}
+  For a more applied example: \pause
+  Let's suppose you drive $m(t)$ miles per day,
+  in a car whose fuel efficiency is given by $e(t)$ gallons/mile
+  where the price of fuel is given by $p(t)$ dollars/gallon,
+  $t$ is measured in days. \pause
+
+  Suppose we've measured the relevant quantities at:
+  \begin{gather}
+    m(1) = 50 mi, \quad e(1) = \dfrac{1}{25} \dfrac{gal}{mi}, \quad p(1) = 4.15 \dfrac{\$}{gal} \\
+    m'(1) = 0 \dfrac{mi}{day}, \quad e'(1) = \dfrac{1}{1000} \dfrac{\frac{gal}{mi}}{day}, \quad p'(1) = 0.01 \dfrac{\frac{\$}{gal}}{day}
+  \end{gather} \pause
+
+  What is the rate of change of the cost to drive your car on day 1? \pause
+\end{frame}
+\begin{frame}
+  \frametitle{Product Rule Examples III}
+  Step 1: Cost Function. \pause $C(t) = m(t) \cdot e(t) \cdot p(t)$. \pause
+
+  Step 2: Derivative. \pause
+  \begin{align}
+    C'(t) &= \dfrac{d}{dt}(m(t) \cdot e(t) \cdot p(t)) = \dfrac{d}{dt} ((m(t)e(t)) \cdot p(t)) \\ \pause
+          &= \dfrac{d}{dt}(m(t) \cdot e(t)) \cdot p(t) + (m(t) \cdot e(t)) \cdot p'(t) \\ \pause
+          &= m'(t) e(t) p(t) + m(t) e'(t) p(t) + m(t) e(t) p'(t)
+  \end{align} \pause
+\end{frame}
+\begin{frame}
+  \frametitle{Product Rule Examples IV}
+  Step 3: Compute. \pause
+  \begin{align}
+    C'(1) &= m'(1) e(1) p(1) + m(1) e'(1) p(1) + m(1) e(1) p'(1) \\ \pause
+          &= 0 \cdot \dfrac{1}{25} \dfrac{gal}{mi} \cdot 4.15 \dfrac{\$}{gal} \\
+          &\quad+ 50 mi \cdot \dfrac{1}{1000} \dfrac{\frac{gal}{mi}}{day} \cdot 4.15 \dfrac{\$}{gal} \\
+          &\quad+ 50 mi \cdot \dfrac{1}{25} \dfrac{gal}{mi} \cdot 0.01 \dfrac{\frac{\$}{gal}}{day} \\ \pause
+          &= 0 \dfrac{\$}{day} + 0.2075 \dfrac{\$}{day} + 0.02 \dfrac{\$}{day} \\ \pause
+          &= 0.2275 \dfrac{\$}{day}
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule I}
+
+  Similarly, we'd want to determine $\dfrac{d}{dx} \dfrac{f(x)}{g(x)}$,
+  again in terms of simpler derivatives involving $f(x)$, $g(x)$. \pause
+
+  Is it just $\dfrac{f'(x)}{g'(x)}$? \pause \textcolor{red}{SUPER NO! NO! NO!} 
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[height=0.4\textheight]{inde-no.png}
+    \caption{I'm amending my one wish willow to also include you not computing derivatives of quotients like this.}
+    \label{fig:inde-no-png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule II}
+
+  We can determine what it actually is by realizing that:
+  \begin{equation}
+    \dfrac{f(x)}{g(x)} = f(x) \cdot \dfrac{1}{g(x)}
+  \end{equation} \pause
+  and since we know how to linearize $f(x)$ and how to linearize a product,
+  \pause
+  we need only understand how to linearize something like $\dfrac{1}{g(x)}$. \pause
+
+  First, we note that for the derivative of $\dfrac{f(x)}{g(x)}$ at $x = x_0$ to exist, \pause the function $\dfrac{f(x)}{g(x)}$ must be continuous at $x = x_0$, \pause so $g(x_0) \neq 0$.
+
+  This allows us to approximate $\dfrac{1}{g(x)} \approx \dfrac{1}{g(x_0) + g'(x_0)(x - x_0)}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule III}
+  Since
+  \begin{equation}
+    \dfrac{1}{g(x)} \approx \dfrac{1}{g(x_0) + g'(x_0)(x - x_0)} \pause = \dfrac{1}{(g(x_0) - g'(x_0)x_0) + g'(x_0)x}
+  \end{equation} \pause
+
+  we can focus on understanding how to linearize functions like
+  \begin{equation}
+    \dfrac{1}{a + bx}.
+  \end{equation}
+
+  We compute: \pause
+  \begin{align}
+    \dfrac{d}{dx} \dfrac{1}{a + bx} &= \dfrac{d}{dx} \dfrac{1}{b} \dfrac{1}{x + \dfrac{a}{b}}  \pause
+                                    = \dfrac{1}{b} \dfrac{d}{dx} \dfrac{1}{x + \dfrac{a}{b}} \pause \\
+                                    &= \dfrac{1}{b} \dfrac{-1}{(x + \dfrac{a}{b})^2}  \pause
+                                    = \dfrac{1}{b} \dfrac{-1}{x^2 + \frac{2a}{b}x + \frac{a^2}{b^2}} \pause \\
+                                    &= \dfrac{-1}{bx^2 + 2a x + \frac{a^2}{b}}  \pause
+                                    = \dfrac{-b}{b^2x^2 + 2abx + a^2}  \pause
+                                    = \dfrac{-b}{(a + bx)^2}
+  \end{align} \pause
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule IV}
+  And so,
+
+  \begin{equation}
+    \dfrac{1}{g(x)} \approx \dfrac{1}{g(x_0)} + \dfrac{-g'(x_0)}{g(x_0)^2} (x - x_0)
+  \end{equation} \pause
+
+  meaning that: \pause
+
+  \begin{align}
+    \dfrac{f(x)}{g(x)} &= f(x) \cdot \dfrac{1}{g(x)} \\ \pause
+                       &= (f(x_0) + f'(x_0)(x - x_0)) \cdot (\dfrac{1}{g(x_0)} + \dfrac{-g'(x_0)}{g(x_0)^2} (x - x_0)) \\ \pause
+                       &= \dfrac{f(x_0)}{g(x_0)} + \dfrac{f'(x_0)}{g(x_0)}(x-x_0) + \dfrac{-f(x_0)g'(x_0)}{g(x_0)^2}(x - x_0) + O((x - x_0)^2) \\ \pause
+                       &= \dfrac{f(x_0)}{g(x_0)} + \dfrac{f'(x_0) g(x_0) - f(x_0) g'(x_0)}{g(x_0)^2}(x - x_0)
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule V}
+
+  Moral of the story: it's HARD to actually get the derivative of a quotient \pause so in no universe would the formula be as easy as $\dfrac{f'(x)}{g'(x)}$. \pause It is actually: \pause
+
+  \begin{alertblock}{Quotient Rule}\index{derivative!quotient rule}
+    \begin{equation}
+      \dfrac{d}{dx} \left(\dfrac{f(x)}{g(x)}\right) = \dfrac{f'(x) g(x) - f(x)g'(x)}{g(x)^2}
+    \end{equation}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quotient Rule Example I}
+  E.g. computing:
+  \begin{equation}
+    \dfrac{d}{dx} \dfrac{2xe^x + 3x^2}{x^3 + 2x + 1}
+  \end{equation} \pause
+
+  \begin{align}
+    \dfrac{d}{dx} \dfrac{2xe^x + 3x^2}{x^3 + 2x + 1} &= \dfrac{(\dfrac{d}{dx} (2xe^x + 3x^2)) \cdot (x^3 + 2x + 1) - (2xe^x + 3x^2) \cdot (\dfrac{d}{dx}(x^3 + 2x + 1))}{(x^3 + 2x + 1)^2} \\ \pause
+                                                     &= \dfrac{(\dfrac{d}{dx}(2xe^x) + \dfrac{d}{dx}(3x^2))\cdot (x^3 + 2x + 1) - (2xe^x + 3x^2) \cdot (3x^2 + 2)}{(x^3 + 2x + 1)^2} \\ \pause
+                                                     &= \dfrac{(2e^x + 2xe^x + 6x)\cdot(x^3 + 2x + 1) - (2xe^x + 3x^2)\cdot (3x^2 + 2)}{(x^3 + 2x + 1)^2}
+  \end{align}
+\end{frame}
+
+\section{Trigonometric Derivatives}
+
+\begin{frame}
+  \frametitle{Derivative of $\sin(x)$ I}
+
+  Recall from our discussion on the Squeeze Theorem:
+  \begin{gather}
+    \lim\limits_{x \rightarrow 0} \dfrac{\sin(x)}{x} = 1 \\
+    \lim\limits_{x \rightarrow 0} \dfrac{\cos(x) - 1}{x} = 0
+  \end{gather} \pause
+
+  What is this limit in terms of derivatives? \pause
+
+  \begin{gather}
+    \dfrac{d}{dx} \mid_{x = 0} \sin(x) = 1,
+    \dfrac{d}{dx} \mid_{x = 0} \cos(x) = 0
+  \end{gather}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative of $\sin(x)$ II}
+
+  What about the derivative function? \pause
+
+  \begin{align}
+    \dfrac{d}{dx} \sin(x) &= \lim\limits_{h \rightarrow 0} \dfrac{\sin(x + h) - sin(x)}{h} \\ \pause
+                          &= \lim\limits_{h \rightarrow 0} \dfrac{\sin(x)\cos(h) + \sin(h)\cos(x) - \sin(x)}{h} \\ \pause
+                          &= \lim\limits_{h \rightarrow 0} \dfrac{\sin(x)(\cos(h) - 1) + \cos(x) \sin(h)}{h} \\ \pause
+                          &= \lim\limits_{h \rightarrow 0} \left(\sin(x) \dfrac{\cos(h) - 1}{h} + \cos(x) \dfrac{\sin(h)}{h}\right) \\ \pause
+                          &= \sin(x) \lim\limits_{h \rightarrow 0} \left( \dfrac{\cos(h) - 1}{h} \right) + \cos(x) \lim\limits_{h \rightarrow 0} \left(\dfrac{\sin(h)}{h}\right) \\ \pause
+                          &= \sin(x) \cdot 0 + \cos(x) \cdot 1 \pause = \cos(x)
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative of $\sin(x)$ III}
+  \begin{alertblock}{Derivative of $\sin(x)$}\index{derivative! of sin}
+    \begin{equation}
+      \dfrac{d}{dx} \sin(x) = \cos(x)
+    \end{equation}
+  \end{alertblock} \pause
+
+  What about for $\cos(x)$?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative of $\cos(x)$ I}
+
+  \begin{align}
+    \dfrac{d}{dx} \cos(x) &= \lim\limits_{h \rightarrow 0} \dfrac{\cos(x + h) - \cos(x)}{h} \\ \pause
+                          &= \lim\limits_{h \rightarrow 0} \dfrac{\cos(x)\cos(h) - \sin(x)\sin(h) - \cos(x)}{h} \\ \pause
+                          &= \cos(x) \lim\limits_{h \rightarrow 0} \left( \dfrac{\cos(h) - 1}{h} \right) - \sin(x) \lim\limits_{h \rightarrow 0} \left(\dfrac{\sin(h)}{h} \right) \pause = - \sin(x)
+  \end{align} \pause
+
+  \begin{alertblock}{Derivative of $\cos(x)$}\index{derivative! of cos}
+    \begin{equation}
+      \dfrac{d}{dx} \cos(x) = -\sin(x)
+    \end{equation}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative of $\tan(x)$}
+  What about for $\tan(x)$? Do we need to do even more limit yuckiness? \pause
+
+  No! Since $\tan(x) = \dfrac{\sin(x)}{\cos(x)}$ we can just use quotient rule! \pause
+
+  \begin{align}
+    \dfrac{d}{dx} \tan(x) &= \dfrac{d}{dx} \dfrac{\sin(x)}{\cos(x)} \\ \pause
+                          &= \dfrac{\left(\dfrac{d}{dx}\sin(x)\right)\cdot \cos(x) - \sin(x) \cdot \left(\dfrac{d}{dx} \cos(x)\right)}{\cos(x)^2} \\ \pause
+                          &= \dfrac{\cos(x) \cdot \cos(x) - \sin(x) \cdot (- \sin(x))}{\cos(x)^2} \\ \pause
+                          &= \dfrac{\cos(x)^2 + \sin(x)^2}{\cos(x)^2} \\ \pause
+                          &= \dfrac{1}{\cos(x)^2} \pause = \sec(x)^2
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative of $\sin(2x)$}
+
+  While we'll get an easier method to do this next lecture, we can also use trig rules to compute $\dfrac{d}{dx} \sin(2x)$: \pause
+
+  \begin{align}
+    \dfrac{d}{dx} \sin(2x) &= \dfrac{d}{dx}(2 \sin(x) \cos(x)) \\ \pause
+                           &= 2 \dfrac{d}{dx} (\sin(x) \cos(x)) \\ \pause
+                           &= 2 \cdot \left( \left(\dfrac{d}{dx} \sin(x)\right) \cdot \cos(x) + \sin(x) \cdot \left( \dfrac{d}{dx} \cos(x)\right) \right) \\ \pause
+                           &= 2 \cdot (\cos(x) \cdot \cos(x) + \sin(x) \cdot (- \sin(x))) \\ \pause
+                           &= 2 \cdot (\cos(x)^2 - \sin(x)^2) \\ \pause
+                           &= 2 \cdot \cos(2x)
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+
+  Let's get into groups (or if you really like working alone, please stay so I can be here to help :) ) and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class!}
+
+  That's all folks!
+\end{frame}
+\end{document}

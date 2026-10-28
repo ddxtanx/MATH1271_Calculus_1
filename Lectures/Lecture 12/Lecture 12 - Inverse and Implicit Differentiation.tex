@@ -1,0 +1,303 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 12 - Inverse and Implicit Differentiation}
+\author{Garrett Credi}
+\date{10/20/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Updates}
+
+  Curve information forthcoming - in contact with course coordinator about adjusting final grade distribution.
+
+  Regrade requests for Exam 1 closed.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+
+  Let's get into neat rows, spread out, and slay this quiz!
+\end{frame}
+
+\section{Inverse and Implicit Differentiation}
+
+\begin{frame}
+  \frametitle{The Road So Far}
+      Recall we're trying to build a \textit{synthetic} approach to studying derivatives: \pause
+
+    Atomic Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Power Rule: $\dfrac{d}{dx} x^n$ 
+      \item Trigonometric Rules: $\dfrac{d}{dx} \sin(x)$ etc.
+      \item Exponential/Logarithm Rules: $\dfrac{d}{dx} e^x$, $\dfrac{d}{dx} \ln(x)$
+    \end{itemize}
+  \end{multicols}
+
+  Combination Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Sum/Difference Rule: $\dfrac{d}{dx} (f(x) \pm g(x))$ 
+      \item Product Rule: $\dfrac{d}{dx} f(x)g(x)$ 
+      \item Chain Rule: $\dfrac{d}{dx} g(f(x))$ 
+      \item Constant Multiple Rule: $\dfrac{d}{dx} c \cdot f(x)$
+      \item Quotient Rule: $\dfrac{d}{dx} \dfrac{f(x)}{g(x)}$ 
+      \item Inverse Function Rule: $\dfrac{d}{dx} f^{-1}(x)$
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Explicit vs. Implicit Definitions I} 
+
+  Up until now we've been dealing with \textit{explicit} definitions
+  of various functions and have been using those \textit{explicit}
+  definitions to compute their derivatives. \pause
+
+  An \textit{explicit} definition of a function is one where
+  we defined $f(x)$ by \textit{explicitly} saying where a given input $x$
+  maps to. E.g.: \pause
+
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item $f(x) = x^2$ 
+      \item $g(x) = \sin(x)$
+      \item $h(x) = \sqrt{x^2 + 2x}$
+      \item $j(x) = e^{\sin(x)}$
+      \item $k(x) = (x + \sin(x))^{\frac{1}{2}}$
+      \item etc
+    \end{itemize}
+  \end{multicols} \pause
+
+  \textcolor{red}{This is not the only way in which we can define functions!}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Explicit vs Implicit Definitions II}
+
+  We could instead define relations \textit{implicitly} - 
+  i.e. by writing out some equation that we want the function
+  to satisfy, e.g.: \pause
+
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item $x^2 + y^2 = 1$
+      \item $y^2 = x^3 + 2x + 1$
+      \item $\arctan(\frac{y}{x}) = \dfrac{\pi}{4}$
+      \item $\sin(x) + \cos(y) = 1$
+      \item $x^2 - y^2 = 2$
+      \item $x^3 + y^3 = 1$
+    \end{itemize}
+  \end{multicols} \pause
+
+  Just as we can \textit{graph} a function:
+  i.e. we plot all the points $(x, f(x))$, \pause
+  we can plot some implicit equation $F(x, y) = 0$
+  by plotting all the points $(x, y)$ so that $F(x, y) = 0$. \pause
+
+  When is this useful?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Applications of Implicit Relations}
+
+  Oftentimes, real world process don't have simple ways of relating one quantity to another quantity. \pause
+
+  Consider: conservation of momentum/energy in physics:
+  \begin{gather}
+    \sum\limits_{i = 1}^n m_i v^{init}_i = \sum\limits_{i = 1}^n m_i v^{final}_i \\
+    \sum\limits_{i = 1}^n \dfrac{1}{2} m_i (v^{init}_i)^2 = \sum\limits_{i = 1}^n \dfrac{1}{2} m_i (v^{final}_i)^2
+  \end{gather} \pause
+
+  The relation between initial and final velocities here are not a simple
+  input-to-output relationship - \pause they are equations that need to be enforced. \pause
+
+  Also: predator-prey models, resource allocation, budgeting, etc.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inverse Functions as a Relation}
+
+  To address our final desired synthetic rule (inverse function rule) \pause
+  we can also see that inverse functions are defined via an implicit rule: \pause
+
+  \begin{block}{Inverse Function}
+    For a function $f(x)$ with domain $D \subseteq \mathbb{R}$ and range $R \subseteq \mathbb{R}$, the inverse function $f^{-1}(x)$ is the function that: \pause
+    \begin{itemize}
+      \item Has domain $R$ (domain of inverse is range of original) \pause
+      \item Has range $D$ (range of inverse is domain of original) \pause
+      \item Satisfies the two relations: 
+        \begin{enumerate}
+          \item $f(f^{-1}(x)) = x$ 
+          \item $f^{-1}(f(x)) = x$
+        \end{enumerate} \pause
+        i.e. $f(x)$ and $f^{-1}(x)$ ``undo" eachother.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples of Inverse Functions}
+  For some examples: \pause
+  \begin{enumerate}
+    \item If $f(x) = x^2$ with domain \textit{the positive real numbers} and range \textit{the positive real numbers} \pause $f^{-1}(x) = \sqrt{x}$ is the positive square root. \pause
+    \item If $f(x) = x^2$ with domain \textit{the negative real numbers} and range \textit{the positive real numbers} \pause $f^{-1}(x) = - \sqrt{x}$
+      is the negative square root. \pause
+    \item If $f(x) = \sin(x)$ with domain $[0, 2\pi)$ and range $[-1, 1]$ \pause $f^{-1}(x) = \arcsin(x)$  \pause
+    \item If $f(x) = e^x$ with domain $\RR$ and range $(0, \infty)$ \pause
+      $f^{-1}(x) = \ln(x)$.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Inverse Differentiation I}
+
+  Question: Using the relation
+  \begin{equation}
+    f(f^{-1}(x)) = x
+  \end{equation}
+how might we relate the derivative of $f(x)$ with the derivative of it's inverse function $f^{-1}(x)$? \pause
+
+Answer: Chain Rule! \pause
+
+\begin{gather}
+  f(f^{-1}(x)) = x \\
+  \text{Differentiate both sides} \\ \pause
+  \dfrac{d}{dx} f(f^{-1}(x)) = \dfrac{d}{dx} x \\ \pause
+  \left(\dfrac{d}{dx} f^{-1}(x)\right) \cdot f'(f^{-1}(x)) = 1 \\ \pause
+  \dfrac{d}{dx} f^{-1}(x) = \dfrac{1}{f'(f^{-1}(x))}
+\end{gather} 
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{Inverse Differentiation II}
+
+   \begin{alertblock}{Inverse Differentiation}\index{derivative!of an inverse function}
+     If $f(x)$ and $f^{-1}(x)$ are an inverse pair of functions
+     then: \pause
+     \begin{equation}
+       \dfrac{d}{dx} f^{-1}(x) = \dfrac{1}{f'(f^{-1}(x))}
+     \end{equation}
+   \end{alertblock} \pause
+ \end{frame}
+ \begin{frame}
+   \frametitle{Inverse Differentiation III}
+
+   Ex. $\dfrac{d}{dx}\ln(x)$. \pause
+
+   $\ln(x)$ is inverse to $e^x$ $\implies$ $f(x) = e^x, f^{-1}(x) = \ln(x)$. \pause
+
+   \begin{align}
+     \dfrac{d}{dx} \ln(x) &= \dfrac{1}{\left(\dfrac{d}{du} e^u\right)\mid_{u = \ln(x)}} \pause = \dfrac{1}{\left(e^u\right) \mid_{u = \ln(x)}} \\ \pause
+                          &= \dfrac{1}{e^{\ln(x)}} \pause = \dfrac{1}{x}
+   \end{align} \pause
+
+   \begin{alertblock}{Derivative of Natural Logarithm}\index{derivative!of natural logarithm}
+     \begin{equation}
+       \dfrac{d}{dx} \ln(x) = \dfrac{1}{x}
+     \end{equation}
+   \end{alertblock}
+ \end{frame}
+ 
+ \begin{frame}
+   \frametitle{Inverse Differentiation IV}
+   Ex. $\dfrac{d}{dx} \arcsin(x)$. \pause
+
+   \begin{align}
+     \dfrac{d}{dx} \arcsin(x) &= \dfrac{1}{\left(\dfrac{d}{du}\sin(u)\right)\mid_{u = \arcsin(x)}} \pause = \dfrac{1}{(\cos(u))\mid_{u = \arcsin(x)}} \\
+                              &= \cos(\arcsin(x)) \pause = \dfrac{1}{\sqrt{1 - x^2}} \\ \pause
+     \dfrac{d}{dx} \arccos(x) &= \dfrac{1}{-\sin(\arccos(x))} \pause = -\dfrac{1}{\sqrt{1 - x^2}} \\ \pause
+     \dfrac{d}{dx} \arctan(x) &= \dfrac{1}{\sec^2(\arctan(x))} \pause = \dfrac{1}{1 + x^2}
+   \end{align} 
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{Inverse Differentiation V}
+
+   \begin{alertblock}{Derivatives of Inverse Trigonometric Functions}\index{derivative!of inverse trig functions}
+     \begin{gather}
+       \dfrac{d}{dx} \arcsin(x) = \dfrac{1}{\sqrt{1 - x^2}} \\
+       \dfrac{d}{dx} \arccos(x) = -\dfrac{1}{\sqrt{1 - x^2}} \\
+       \dfrac{d}{dx} \arctan(x) = \dfrac{1}{1 + x^2}
+     \end{gather}
+   \end{alertblock}
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{Implicit Differentiation I}
+   What about for the other kinds of implicit relations? \pause
+
+   Q: At a point $(x, y)$ on the circle of radius $1$, what is the slope of the line tangent to the circle at that point? \pause
+
+   Circle of radius $1$ $\implies$ $x^2 + y^2 = 1$.
+
+   \begin{gather}
+      x^2 + y^2 = 1 \\
+      \text{Differentiate both sides w.r.t. } x \\ \pause
+      \dfrac{d}{dx}(x^2 + y^2) = \dfrac{d}{dx} 1 \\ \pause
+      \dfrac{d}{dx}(x^2) + \dfrac{d}{dx}(y^2) = 0 \\ \pause
+      2x + \dfrac{d}{dx} (y(x)^2) = 0 \\ \pause
+      2x + 2y \cdot \dfrac{dy}{dx} = 0 \pause \quad 2y \dfrac{dy}{dx} = -2x \pause \quad \dfrac{dy}{dx} = -\dfrac{x}{y}
+   \end{gather}
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{Implicit Differentiation II}
+
+   The core idea is that in an implicit relation $F(x, y) = 0$,
+   \pause
+   we can \textit{always} treat one of the variables as a function of the other (fancy reason: \textit{implicit function theorem}) \pause
+   and thus can differentiate implicit relations just by using the chain rule! \pause
+
+    We'll see more application oriented examples when we do related rates soon :)
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{Worksheet Time}
+
+   Let's get into groups and work on the worksheet!
+ \end{frame}
+
+ \begin{frame}
+   \frametitle{End of Class}
+
+   That's all folks!
+ \end{frame}
+\end{document}

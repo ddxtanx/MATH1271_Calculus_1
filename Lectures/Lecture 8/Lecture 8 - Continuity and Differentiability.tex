@@ -1,0 +1,423 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 8 - Continuity and Differentiability}
+\author{Garrett Credi}
+\date{10/01/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Announcements}
+
+  \begin{enumerate}
+    \item Exam 1 is next Tuesday (10/06/2026) in class. 
+    \item Exam 1 Review Session is next Monday (10/05/2026) from 6:10-8:10 PM in Vincent Hall 1.
+    \item All quizzes will be graded by Friday Night. If you want me to look at your homeworks, please email me and I'll grade them specifically.
+    \item Practice Exam Solutions will be released after class today.
+    \item Compiled lecture slides also released after class today.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time}
+
+  Quiz Time! Let's get into neat rows and spread out - only then will I pass out the quizzes.
+
+  \textcolor{red}{DO NOT START OR FLIP OVER THE QUIZ UNTIL I OFFICIALLY START THE QUIZ.} If you have any questions about the rules for quizzes, refer to the slide in Lecture 2 or ask me directly. No cheating as per usual.
+\end{frame}
+
+\section{Continuity}
+
+\begin{frame}
+  \frametitle{Continuity Recap I}
+
+  Recall our definitions of continuity for a function $f(x)$:
+
+  \begin{enumerate}
+    \item $f(x)$ is continuous at $x = a$ if: \pause
+      \vspace{.1in}
+    \item $f(x)$ is continuous on $(a,b)$ if: \pause
+            \vspace{.1in}
+    \item $f(x)$ is continuous \textit{everywhere} if: \index{continuity!everywhere} \pause
+            \vspace{.1in}
+    \item $f(x)$ is continuous if: \pause
+            \vspace{.1in}
+  \end{enumerate} \pause
+\end{frame}
+\begin{frame}
+  \frametitle{Continuity Recap II}
+  Also recall that: if $f(x)$ and $g(x)$ are continuous at $x = a$ and $h(x)$ is continuous at $f(a)$ then:
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item $f(x) + g(x)$ is continuous at $x = a$
+      \item $f(x) - g(x)$ is continuous at $x = a$
+      \item $f(x) \cdot g(x)$ is continuous at $x = a$
+      \item If $g(a) \neq 0$, then $\dfrac{f(x)}{g(x)}$ is continuous at $x = a$
+      \item $h(f(x))$ is continuous at $x = a$.
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuity Recap III}
+  Finally we determined a large family of continuous functions:
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Constant functions $f_c(x) = c$
+      \item Identity function $f(x) = x$
+      \item Polynomials $p(x) = a_nx^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0$
+      \item Root functions $f(x) = \sqrt[n]{x}$
+      \item Rational functions $\dfrac{p(x)}{q(x)}$
+      \item Trigonometric functions $\sin(x), \cos(x), \tan(x), \arcsin(x)$ etc.
+      \item Exponential functions $f(x) = c^x$
+      \item Logarithmic functions $f(x) = \log_c(x)$
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Continuity: Jump Discontinuities}
+  What does discontinuity look like?
+
+  \begin{block}{Jump Discontinuity}\index{continuity!jump discontinuity}\index{jump discontinuity}\index{discontinuity!jump discontinuity}
+    A function $f(x)$ has a \textit{jump discontinuity} at $x = a$,
+    \pause if the value of $f(x)$ jumps as we pass over $x = a$. \pause
+
+    Explicitly: \pause
+    \begin{enumerate}
+      \item The function limits towards a value from the left: \pause
+        $\lim\limits_{x \rightarrow a^{-}} f(x)$ exists \pause
+      \item The function limits towards a value from the right: \pause
+        $\lim\limits_{x \rightarrow a^{+}} f(x)$ exists \pause
+      \item Those values do not agree: \pause
+        \begin{equation}
+          \lim\limits_{x \rightarrow a^{-}} f(x) \neq \lim\limits_{x \rightarrow a^{+}} f(x)
+        \end{equation}
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Continuity: Jump Discontinuities Visually}
+
+  Visually, jump discontinuities look like:
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Continuity: Removable Discontinuities}
+  Best kind of discontinuity. \pause
+  \begin{block}{Removable Discontinuity}\index{continuity!removable discontinuity}\index{removable discontinuity}\index{discontinuity!removable discontinuity}\index{continuity!hole}\index{hole}\index{discontinuity!hole}
+    A function $f(x)$ has a \textit{removable discontinuity} at $x = a$ if: \pause
+    \begin{enumerate}
+      \item $\lim\limits_{x \rightarrow a} f(x)$ exists \pause
+      \item $f(a)$ either does not exist \pause (we specifically call this a \textit{hole discontinuity} or just a \textit{hole}) \pause or is not equal to $\lim\limits_{x \rightarrow a} f(x)$.
+    \end{enumerate}
+  \end{block} \pause
+
+  Can redefine $f(x)$ \textit{at a single point} to make it continuous at $x = a$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Removable Discontinuities Visually}
+  Visually,
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Continuity: Infinite Discontinuities}
+  \begin{block}{Infinite Discontinuity}\index{continuity!infinite discontinuity}\index{infinite discontinuity}\index{discontinuity!infinite discontinuity}
+    A function $f(x)$ has an \textit{infinite discontinuity} if, equivalently: \pause
+    \begin{itemize}
+      \item $f(x)$ has a vertical asymptote at $x = a$ or \pause
+    \item $\lim_{x \rightarrow a} |f(x)| = + \infty$
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Infinite Discontinuities Visually}
+  Visually, 
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Continuity: Essential Discontinuities}
+  The \textit{WORST} kinds of discontinuities. \pause
+
+  \begin{block}{Essential Discontinuity}
+    A function $f(x)$ has an \textit{essential discontinuity} at $x = a$ if equivalently \pause
+    \begin{itemize}
+      \item At least one of the one-sided limits do not exist (not even diverging to $\pm infty$) or \pause
+      \item As $x \rightarrow a$, $f(x)$ takes on every number in some interval $(v_{min}, v_{max})$ \textit{infinitely many times}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Essential Discontinuities Visually}
+  Visually,
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{What does Continuity buy us?}
+
+  We already saw one important use of continuous functions: \pause
+
+  \begin{alertblock}{Direct Substitution}\index{continuity!limit direct substitution}\index{Limit Direct Substitution Theorem}
+    If $f(x)$ is continuous at $x = a$ then:
+    \begin{equation}
+      \lim_{x \rightarrow a} f(x) = f(a)
+    \end{equation} \pause
+  \end{alertblock}
+
+  Continuous functions also have another very important property: \pause
+
+  \begin{alertblock}{Intermediate Value Theorem}\index{continuity!intermediate value theorem}\index{intermediate value theorem}
+    If $f(x)$ is continuous on $(a,b)$ then \pause
+    (assuming $f(a) \leq f(b)$) \pause 
+
+    for any intermediate output $c$ so that $f(a) \leq c \leq f(b)$, there must an input $x_0$ so that $a \leq x_0 \leq b$ and $f(x_0) = c$.
+  \end{alertblock} \pause
+
+  Tagline: all intermediate output values must be hit by intermediate input values.
+\end{frame}
+
+\begin{frame}
+  \frametitle{IVT Example: Root finding I}
+  Question: For the function
+  \begin{equation}
+    f(x) = x^3 - 3x^2 + 2x + 1,
+  \end{equation}
+  which of the following intervals must contain a root of $f(x)$?
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item $[-2, -1]$
+      \item $[-1, 0]$
+      \item $[0, 1]$
+      \item $[1, 2]$
+    \end{enumerate}
+  \end{multicols} \pause
+
+  \vspace{.4in}
+  Approach 1: Solving. \pause IDK how to factor general cubics! \pause
+
+  Approach 2: IVT. \pause We want to find an interval which contains a value $x_0$ so that $f(x_0) = 0$. \pause Note: if $a < 0$ is negative and $b > 0$ is positive, \pause then $0$ is always inside $[a, b]$. \pause
+\end{frame}
+
+\begin{frame}
+  \frametitle{IVT Example: Root Finding II}
+
+  Goal: find which of the intervals
+    \begin{multicols}{2}
+    \begin{enumerate}
+      \item $[-2, -1]$
+      \item $[-1, 0]$
+      \item $[0, 1]$
+      \item $[1, 2]$
+    \end{enumerate}
+  \end{multicols} \pause
+  makes
+  \begin{equation}
+    f(x) = x^3 - 3x^2 + 2x + 1
+  \end{equation}
+  switch signs at the endpoints. \pause
+
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item $f(-2) = -8 - 3 \cdot 4 - 2 \cdot 2 + 1 = -8 - 12 - 4 + 1 = -23$ \pause
+      \item $f(-1) = -1 - 3 - 2 + 1 = -5$ \pause
+      \item $f(0) = 1$ \pause ROOT! \pause
+      \item $f(1) = 1 - 3 + 2 + 1 = 1$ \pause
+      \item $f(2) = 8 - 12 + 4 + 1 = 1$ \pause
+    \end{enumerate}
+  \end{multicols}
+
+  Only know that a root must be inside $[-1, 0]$.
+\end{frame}
+
+\section{Differentiability}
+
+\begin{frame}
+  \frametitle{Differentiability Recap}
+
+  Again, recall that: \pause
+  \begin{enumerate}
+    \item $f(x)$ is differentiable at $x = a$: 
+    \item $f(x)$ is differentiable on $(a, b)$:
+    \item $f(x)$ is differentiable everywhere: \index{differentiability!everywhere} 
+    \item $f(x)$ is differentiable
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Differentiability: Discontinuities}
+
+  We can already classify some behavior making functions differentiable. \pause
+
+  Recall: if $f(x)$ is not \textit{continuous} at $x = a$ then it cannot be \textit{differentiable} at $x = a$. 
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Differentiability: Corners}
+  We can classify the rest of the behavior by examining the \textit{continuity} of the derivative function $f'(x)$: \pause
+
+  \begin{block}{Corner Singularity}\index{differentiability!corner singularity}\index{corner singularity}\index{singularity!corner}
+    For a function $f(x)$ continuous at $x = a$, we say $f(x)$ has a \textit{corner singularity} or \textit{corner} at $x = a$ \pause
+    if the derivative function $f'(x)$ has a \textit{jump discontinuity} at $x = a$.
+  \end{block} \pause
+  Visually,
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Differentiability: Cusps}
+  Similarly, \pause
+  \begin{block}{Cuspidal Singularity}\index{differentiability!cuspidal singularity}\index{cusp}\index{cuspidal singularity}\index{singularity!cuspidal}
+    For a function $f(x)$ continuous at $x = a$, we say $f(x)$ has a \textit{cuspidal singularity} or \textit{cusp} at $x = a$ \pause
+    if the derivative function $f'(x)$ has an \textit{infinite discontinuity} at $x = a$ \pause \textit{AND} does not diverge to $\pm \infty$. \pause (e.g. the one sided limits separately go to $+\infty$ and $-\infty$). \pause
+  \end{block}
+
+  Visually,
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Differentiability: Vertical Tangents}
+  \begin{block}{Vertical Tangent Singularity}\index{differentiability!vertical tangent singularity}\index{vertical tangent}\index{singularity!vertical tangent}
+    For a function $f(x)$ continuous at $x = a$, we say $f(x)$ has a \textit{vertical tangent singularity} or a \textit{vertical tangent} at $x = a$ \pause
+    if:
+    \begin{equation}
+      \lim_{x \rightarrow a} |f'(x)| = + \infty.
+    \end{equation}
+  \end{block} \pause
+  Visually, 
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classifying Failures of Differentiability: Endpoint Singularity}
+  Kind of a non-problem singularity: \pause
+  \begin{block}{Endpoint Singularity}\index{endpoint singularity}\index{differentiability!endpoint singularity}\index{singularity!endpoint}
+    For a function $f(x)$ defined on a \textit{closed} interval $[a,b]$, \pause
+    we say that $f(x)$ has an \textit{endpoint singularity} at the endpoints
+    $x = a$ and $x = b$ \pause just because two sided limits do not make sense at those points.
+  \end{block} \pause
+  Visually, 
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous Differentiability I}
+  What about the last kind of discontinuity: \pause removable discontinuities?
+
+  The last thing that could go wrong would be if $f'(x)$ had a hole
+  discontinuity at $x = a$ \pause - not often discussed as a class of singularity. \pause
+
+  Instead, we care when everything goes \textit{right}: \pause
+
+  \begin{block}{Continuous Differentiability}\index{differentiability!continuous differentiability}\index{continuous differentiability}
+    A function $f(x)$ is \textit{continuously differentiable} at $x = a$ if \pause $f'(x)$ is continuous at $x = a$. \pause
+
+    Similarly, continuously differentiable on $(a,b)$, \pause, everywhere, etc. \pause
+
+    A function $f(x)$ is \textit{continuously differentiable} or \textit{of class $C^1$} if is is continuously differentiable at every point in its domain.
+  \end{block} \pause
+
+  Intuituion: Functions whose graphs are continuous, and corner/cusp/vertical tangent free.
+\end{frame}
+
+\begin{frame}
+  \frametitle{What does Continuous Differentiability buy us? I}
+  Since $f(x)$ being continuously differentiable implies $f'(x)$ is continuous, we get the following by applying IVT to $f'(x)$: \pause
+  \begin{alertblock}{Rolle's Theorem}\index{Rolle's Theorem}
+    For $f(x)$ continuously differentiable, and $x_0$ and $x_1$ two roots of $f(x)$ so that $x_0 \leq x_1$, \pause
+
+    there always exists an $a$ such that $x_0 \leq a \leq x_1$ and $f'(a) = 0$.
+  \end{alertblock}
+  \vfill
+\end{frame}
+\begin{frame}
+  \frametitle{What does Continuous Differentiability buy us? II}
+  This also gives us a \textit{VERY} important theorem: \pause
+  \begin{alertblock}{Mean Value Theorem}\index{Mean Value Theorem}
+    For $f(x)$ continuously differentiable, and $(x_0, f(x_0)), (x_1, f(x_1))$ so that $x_0 < x_1$ there is always an $a$ so that $x_0 \leq a \leq x_1$ and, equivalently: \pause
+    \begin{itemize}
+    \item The tangent line $y = f'(a)(x - a) + f(a)$ is parallel to the secant line $y = \dfrac{f(x_1) - f(x_0)}{x_1 - x_0}(x - x_0) + f(x_0)$ or \pause
+    \item 
+      \begin{equation}
+        \dfrac{f(x_1) - f(x_0)}{x_1 - x_0} = f'(a).
+      \end{equation}
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Uses of the Mean Value Theorem}
+
+  \vfill
+  Why care about MVT? \pause
+
+  \begin{enumerate}
+    \item If $f'(x)$ is the zero function $f'(x) = 0$, then $f(x)$ must be constant! \pause
+    \vfill
+    \item Extremely useful for doing derivations involving derivatives: e.g. determining quadratic approximations! \pause
+    \vfill
+  \item Lots of the really useful tools in multivariable calculus need to use MVT to even work.
+    \vfill
+  \end{enumerate}
+
+  ``Fun" application: 
+  \vfill
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class!}
+
+  That's all folks!
+\end{frame}
+\end{document}

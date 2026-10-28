@@ -1,0 +1,309 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 13: Related Rates I}
+\author{Garrett Credi}
+\date{10/22/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exam 2 Soon!}
+
+  Exam 2 is coming up! It is two Tuesday's from now, 11/3.
+
+  It's covering linearizations + our derivative rules + related rates + L'Hôpital's Rule
+  which we'll cover next week.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time}
+
+  Let's get into neat rows, spread out, and slay this quiz!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Implicit Differentiation Recap}
+
+  Last lecture we covered \textit{implicit differentiation},
+  the process of relating variables using some implicit relation \pause
+  and differentiating that relation to get a relation between their derivatives. \pause
+
+  E.g.: slope of line tangent to $y^2 = x^3 - 10x + 1$ at $(0,1)$. \pause
+
+  Slope of tangent line $\implies$ interested in $\dfrac{dy}{dx}$ $\implies$ treat $y$ as a function of $x$. \pause
+
+  \begin{gather}
+    y^2 = x^3 - 10x + 1 \\ \pause
+    \dfrac{d}{dx} y^2 = \dfrac{d}{dx} (x^3 - 10x + 1) \\ \pause
+    \dfrac{dy}{dx} \dfrac{d}{dy} y^2 = 3x^2 - 10 \\ \pause
+    2y y' = 3x^2 - 10 \\ \pause
+    2 \cdot 1 \cdot y' = 3 \cdot 0^2 - 10 \\ \pause
+    2 y' = -10 \pause \quad y' = -5 
+  \end{gather}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Towards Related Rates}
+
+  Suppose instead that some particle was moving over time in the $2D$ plane and whose motion was constrained to 
+  that curve cut out by $y^2 = x^3 - 10x + 1$. \pause
+  \begin{itemize}
+    \item Moving over time $\implies$ it's position can be described by functions of a time variable $t$ \pause
+    \item In the $2D$ plane $\implies$ it has an $x$-position $x(t)$ and a $y$-position $y(t)$ \pause
+    \item Motion constrained $\implies$ $y(t)^2 = x(t)^3 - 10x(t) + 1$. \pause
+  \end{itemize}
+
+  In order to stay on that curve, what restrictions does that place on the particle's: \pause
+  \begin{enumerate}
+    \item Position? \pause
+    \item Velocity? \pause
+    \item Acceleration? 
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Relating Some Rates I}
+  Let's see what our constraint on position forces upon our velocity! \pause
+
+  \begin{gather}
+    y(t)^2 = x(t)^3 - 10x(t) + 1 \\ \pause
+    \text{Differentiate w.r.t. } t \text{ to get velocity} \\ \pause
+    \dfrac{d}{dt} y(t)^2 = \dfrac{d}{dt}(x(t)^3 - 10x(t) + 1) \\ \pause
+    \dfrac{dy}{dt} \dfrac{d}{dy} y^2 = \dfrac{dx}{dt} \dfrac{d}{dx}(x^3 - 10x + 1) \\ \pause
+    2y\dfrac{dy}{dt} = (3x^2 - 10)\dfrac{dx}{dt}
+  \end{gather}\pause
+\end{frame}
+\begin{frame}
+  \frametitle{Relating Some Rates II}
+  So if the particle is at $(0,1)$ at some time $t = t_0$ and has a horizontal velocity of $3 m/s$ \pause
+  which means $(x(t_0),y(t_0)) = (0,1)$ and $\dfrac{dx}{dt}\mid_{t = t_0} = 3$ what does that force the vertical velocity to be? \pause
+
+  \begin{gather}
+    2y \dfrac{dy}{dt} = (3x^2-10)\dfrac{dx}{dt} \\ \pause
+    2 \cdot 1 \dfrac{dy}{dt} = (3 \cdot 0^2 - 10) \cdot 3 \\ \pause
+    2 \dfrac{dy}{dt} = -30 \quad \pause \dfrac{dy}{dt} = -15 m/s
+  \end{gather} \pause
+
+  (Notice from before, we found the slope of the line tangent to the curve at $(1,0)$ was $-5$ and $-15 = -5 \cdot 3$,
+  so we're exactly enforcing that the velocity is parallel to the tangent line).
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates I}
+
+  This process is common enough that we call problems using it \textit{related rates} problems: \pause
+
+  \begin{block}{Related Rates}\index{related rates}
+    Given a real-world/physical problem that involves:
+    \begin{itemize}
+      \item Some number quantities and measurements for them \pause
+      \item Some number of implicit relations between them \pause
+      \item Some information about the rate of changes of some of the quantities \pause
+    \end{itemize}
+    and seeks information about the rate of changes of the other variables \pause
+
+    solving the problem via the method of related rates involves: \pause
+    \begin{enumerate}
+      \item Differentiating the relations between the quantities with respect to the variable of interest \pause
+      \item Substituting in the known quantities \pause
+      \item Solving the resulting equation(s) for the rate of change in question.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example I}
+  For a classic related rates problem:
+  Suppose you have a cylindrical tank of water whose height is 10 meters and whose radius is 2 meters,
+  with a hole at the bottom from which water drains out.
+  At the moment the height of the water is halfway to the bottom, a hole at the bottom of the tank opens and you measure the 
+  speed at which the water escapes to be about $\dfrac{1}{2} \dfrac{m^3}{sec}$.
+  At what rate will the height of the water decrease? \pause
+
+  Identify information:
+  \begin{itemize}
+    \item Quantities: \pause volume, height, radius. \pause Radius is constant at 2 meters, volume changes w.r.t. height. \pause Height is at 5 meters.
+    \item Relations: \pause $V = \pi r^2 h$. \pause
+    \item RoC information: \pause $\dfrac{dV}{dt} = \pause - \dfrac{1}{2} \dfrac{m^3}{sec}$.
+    \item RoC in question: \pause $\dfrac{dh}{dt}$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example I cont.}
+  We then want to differentiate the relation (volume in terms of radius and height) with respect to \pause time to relate the rates of change: \pause
+
+  \begin{gather}
+    V = \pi r^2 h \\ \pause
+  \dfrac{d}{dt} V = \dfrac{d}{dt} (\pi r^2 h) \\ \pause
+  \dfrac{dV}{dt} \dfrac{d}{dV} V = \pi \dfrac{d}{dt} (r^2 h) \\ \pause
+  \dfrac{dV}{dt} \cdot 1 = \pi \cdot (\dfrac{d}{dt}(r^2) \cdot h + r^2 \cdot \dfrac{d}{dt}(h)) \\ \pause
+  \dfrac{dV}{dt} = \pi \cdot (\dfrac{dr}{dt} \cdot (\dfrac{d}{dr} r^2) \cdot h + r^2 \cdot \dfrac{dh}{dt} \dfrac{d}{dh} h) \\ \pause
+  \dfrac{dV}{dt} = \pi \cdot (0 \cdot \_ + r^2 \dfrac{dh}{dt}) \pause \quad \implies \quad \dfrac{dV}{dt} = \pi r^2 \dfrac{dh}{dt} \\ \pause
+  -\dfrac{1}{2} = \pi \cdot 2^2 \dfrac{dh}{dt} \pause \quad \implies \quad \dfrac{dh}{dt} = -\dfrac{1}{8\pi} \dfrac{m}{sec}
+  \end{gather} \pause
+
+  So the height of the water is decreasing at a rate of $\frac{1}{8\pi}$ meters per second.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example II}
+  Now suppose that the tank is instead an \textit{inverted cone} with the same height and radius. What changes? \pause
+
+  \begin{itemize}
+    \item The volume formula changes: \pause $V = \dfrac{1}{3} \pi r^2 h$ \pause
+    \item AND \pause the radius also changes over time:
+  \end{itemize}
+
+  \vspace{\stretch{1}}
+
+  Giving us the \textit{relation}:
+  \begin{gather}
+    V = \dfrac{1}{3} \pi r^2 h \\ \pause
+    V = \dfrac{1}{3} \pi \left(\dfrac{2}{10} h \right)^2 \cdot h \pause \\
+    V = \dfrac{4\pi h^3}{300} \pause = \dfrac{\pi h^3}{75}
+  \end{gather}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example II cont.}
+  We would then differentiate this relation w.r.t. $t$ to get:
+  \begin{gather}
+    \dfrac{d}{dt} V = \dfrac{d}{dt} \dfrac{\pi h^3}{75} \\ \pause
+    \dfrac{dV}{dt}  = \dfrac{\pi h^2}{25} \dfrac{dh}{dt} \\ \pause
+    \dfrac{dh}{dt} = \dfrac{25}{\pi h^2} \dfrac{dV}{dt} \pause = \dfrac{25}{\pi \cdot 5^2} \cdot \dfrac{-1}{2} = \dfrac{-1}{2\pi} \dfrac{m}{s}
+  \end{gather}
+
+  So now the height is decreasing at a rate of $\dfrac{1}{2\pi}$ meters per second.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example III}
+  For a non-tank draining problem, let's instead suppose there
+  is a 10 meter long ladder propped up at an angle on a wall that makes a right angle with the ground.
+  It's base is currently 6 meters away from the wall, and that base is sliding away from the wall at a rate of two meters per second.
+  At that time, how high up along the wall is the ladder, and what is the rate of change of that height? \pause
+
+  \begin{itemize}
+    \item Quantities: It is very helpful here to draw a picture! \pause 
+
+      Our quantities are then the distance of the base of the ladder away from the wall $x(t)$ and how high along the wall the ladder is $y(t)$. \pause
+    \item Relations: \pause The length of the ladder is constant $\implies$ \pause $x(t)^2 + y(t)^2 = 10^2$. \pause
+    \item RoC information: \pause $\dfrac{dx}{dt} = \pause 2 \dfrac{m}{s}$. \pause
+    \item Information in question: value of $y(t)$ and $\dfrac{dy}{dt}$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example III cont.}
+  We differentiate the relation w.r.t time:
+
+  \begin{gather}
+    x^2 + y^2 = 10^2 \\ \pause
+    \dfrac{d}{dt} (x^2 + y^2) = \dfrac{d}{dt} 10^2 \\ \pause
+    \dfrac{d}{dt} (x^2) + \dfrac{d}{dt} (y^2) = 0 \\ \pause
+    \dfrac{dx}{dt} \dfrac{d}{dx} x^2 + \dfrac{dy}{dt} \dfrac{d}{dy} y^2 = 0 \\ \pause
+    2x \dfrac{dx}{dt} + 2y \dfrac{dy}{dt} = 0 \\ \pause
+    2 \cdot 6 \cdot 2 + 2 \cdot y \cdot \dfrac{dy}{dt} = 0 \\ \pause
+    \dfrac{dy}{dt} = -\dfrac{12}{y} \dfrac{m}{sec}
+  \end{gather}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Related Rates Example III cont. 2}
+  \begin{equation}
+    \dfrac{dy}{dt} = - \dfrac{12}{y} \dfrac{m}{sec}
+  \end{equation}
+
+  So we still need to determine what $y(t)$ is when $x(t) = 6$. How? \pause
+
+  Use the relation! \pause
+
+  \begin{gather}
+    x(t)^2 + y(t)^2 = 10^2 \\  \pause
+    6^2 + y(t)^2 = 100 \\ \pause
+    y(t)^2 = 100 - 36 \\ \pause
+    y(t)^2 = 64 \pause \quad \implies \quad y(t) = \pm 8
+  \end{gather}
+  and distances must be positive so $y(t) = 8$ when $x(t) = 6$. \pause
+
+  So:
+  \begin{equation}
+    \dfrac{dy}{dt} = - \dfrac{12}{y} = -\dfrac{12}{8} = -\dfrac{3}{2} \dfrac{m}{sec}.
+  \end{equation} \pause
+
+  The height of the ladder against the wall is therefore decreasing at a rate of $\frac{3}{2}$ meters per second.
+\end{frame}
+
+\begin{frame}
+  \frametitle{More to Come!}
+
+  We'll also be spending next Tuesday going over more examples of how to use 
+  the method of related rates to solve different types of problems. \pause
+
+  Generally however, all of these problems will rely on some kind of geometric input, 
+  e.g.: \pause
+
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Area of square, rectangle, circle, ellipse, triangle
+      \item Perimeter of the above (except ellipse)
+      \item Angles (e.g. SOHCAHTOA trig) 
+      \item Volumes of cubes, rectangular prisms, pyramids, cones, spheres
+      \item Surface areas of the cubes, rectangular prisms, spheres
+      \item Pythagorean theorem
+      \item Similar triangles
+    \end{itemize}
+  \end{multicols}
+
+  and thus having some way to commit these formulae to memory will be useful.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class}
+
+  That's all folks!
+\end{frame}
+\end{document}

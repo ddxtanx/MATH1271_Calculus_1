@@ -1,0 +1,263 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 6 - The Derivative as a Function}
+\author{Garrett Credi}
+\date{09/24/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+
+  Please get into organized rows so that you have a ``bubble" of space around you
+  away from other people.
+
+  Reminder:
+  \begin{enumerate}
+    \item Do not start the quiz until I announce you can start.
+    \item Do not read off other students' work to cheat
+    \item Place all class material (notes, worksheets, etc) and devices (phones, tablets, headphones, etc) away
+    \item Don't cheat and or be shady... obviously...
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Last Time}
+
+  Last lecture we: \pause
+  \begin{enumerate}
+    \item Introduced the idea of linearly approximating functions as an improvement to the constant-value approximation $f(x) \approx f(a)$ for $x \approx a$
+      of continuous functions. \pause
+    \item Defined the \textit{derivative} of a function $f(x)$ at a point $x = a$ as 
+      \begin{equation} \pause
+        f'(a) = \lim\limits_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a} = \lim\limits_{h \rightarrow 0} \dfrac{f(a + h) - f(a)}{h}
+      \end{equation} \pause
+    \item Saw that this quantity was also: \pause
+      \begin{enumerate}
+        \item The slope of the best linear approximation 
+          \begin{equation}
+            \mathscr{L}_{x = a}(x) = f(a) + f'(a)(x - a)
+          \end{equation}
+          to $f(x)$ at $x = a$. \pause
+        \item The slope of the tangent line to the graph of $y = f(x)$ at $(a, f(a))$. \pause
+        \item The instantaneous velocity of a particle whose motion is described by $f(x)$ at $x = a$.
+      \end{enumerate}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Last Time Cont.}
+  We also were able to compute some derivatives using strategies from our limit section of the course \pause e.g. for $f(x) = x^2$: \pause
+  \begin{columns}
+    \begin{column}{0.32\textwidth}
+      \begin{align}
+        f'(0) &= \pause \lim\limits_{x \rightarrow 0} \dfrac{f(x) - f(0)}{x - 0} \pause \\
+              &= \lim\limits_{x \rightarrow 0} \dfrac{x^2}{x} \pause \\
+              &= \lim\limits_{x \rightarrow 0} x \pause = 0
+      \end{align}
+    \end{column}
+
+    \begin{column}{0.32\textwidth}
+      \begin{align}
+        f'(1) &= \pause \lim\limits_{x \rightarrow 1} \dfrac{f(x) - f(1)}{x - 1} \pause \\
+              &= \lim\limits_{x \rightarrow 1} \dfrac{x^2 - 1}{x - 1} \pause \\
+              &= \lim\limits_{x \rightarrow 1} x + 1 \pause = 1 + 1 = 2
+      \end{align}
+    \end{column}
+
+    \begin{column}{0.32\textwidth}
+      \begin{align}
+        f'(2) &= \pause \lim\limits_{x \rightarrow 2} \dfrac{f(x) - f(2)}{x - 2} \pause \\
+              &= \lim\limits_{x \rightarrow 2} \dfrac{x^2 - 4}{x - 2} \pause \\
+      \end{align}
+      \pause
+    \end{column}
+  \end{columns}
+
+  Wait... these all seem pretty similar!
+\end{frame}
+
+\section{The Derivative as a Function}
+
+\begin{frame}
+  \frametitle{The Derivative Function I}
+  What kind of mathematical object do we use
+  when we want to compactly describe
+  the process of taking some input value $a$ \pause
+  and computing an output quantity $f'(a)$? \pause
+
+  A function! \pause
+
+  Let's define \textit{a derivative function} to see if we can simplify and speed up computations: \pause
+  \begin{block}{The Derivative Function}\index{derivative!as a function}
+    For a function $f(x)$ \pause 
+    we define the \textit{derivative} (function), denoted either as: \pause
+    \begin{center}
+      $f'(x)$ or \pause $\dfrac{df}{dx}$ or \pause $\dfrac{d}{dx}f(x)$,
+    \end{center}\pause
+    to be the function so that: \pause
+    \begin{equation}
+      f'(x) = \lim_{h \rightarrow 0} \dfrac{f(x + h) - f(x)}{h} = \lim_{u \rightarrow x} \dfrac{f(u) - f(x)}{u - x}
+    \end{equation} \pause
+  \end{block}
+
+  Is this different from what we were doing before? 
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative Function II}
+  Yes! We can now compute \textit{every} value of a derivative at once! \pause E.g. for $f(x) = x^2$ again
+
+  \begin{align}
+    f'(x) &= \pause \lim\limits_{h \rightarrow 0} \dfrac{f(x + h) - f(x)}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} \dfrac{(x+h)^2 - x^2}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} \dfrac{x^2 + 2xh + h^2 - x^2}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} \dfrac{2xh  + h^2}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} 2x + h \pause = 2x + 0 = 2x
+  \end{align} \pause
+
+  So we immediately get that: \pause
+  \begin{enumerate}
+    \item $f'(0) = 2 \cdot 0 = 0$ \pause
+    \item $f'(1) = 2 \cdot 1 = 2$ \pause
+    \item $f'(2) = 2 \cdot 2 = 4$
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative Function III}
+
+  \begin{alertblock}{Big Idea of Making it a Function}\index{derivative!as a function!why?}
+    Here're two very important reasons why we might want to treat the derivative as a function and not just compute value by value: \pause
+    \begin{enumerate}
+      \item Speed. \pause Once we do the (slightly length) work of
+        computing the general functional form of the derivative \pause
+        all future derivatives at a point can be computed \textit{so quickly!} just by evaluation! \pause
+      \item Information Extraction. \pause Without the equation of the function, it's \textit{impossible} to analytically study interesting properties of the derivative like: \pause
+        \begin{enumerate}
+          \item For which values is $f'(a)$ positive? (when is $f(x)$ increasing?) \pause
+          \item For which values is $f'(a)$ zero? (important for maximizing/minimizing which we'll do in ~3/4 weeks) \pause
+          \item For which values is $f'(a)$ undefined? (when can we not linearly approximate?) \pause
+        \end{enumerate}
+        but given an equation of a function it's fairly easy to answer all of those!
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative Function IV}
+  For example: at which $x$ values is the slope of the line tangent to $f(x) = x^3 - 2x + 1$ equal to zero? \pause
+
+  Step 1: Translate to derivative question: \pause when is $f'(x) = 0$? \pause
+
+  Step 2: Compute derivative: \pause
+  \begin{align}
+    f'(x) &= \pause \lim\limits_{h \rightarrow 0} \dfrac{f(x + h) - f(x)}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} \dfrac{(x + h)^3 - 2(x + h) + 1 - (x^3 - 2x + 1)}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} \dfrac{x^3 + 3x^2 h + 3xh^2 + h^3 - 2x - 2h + 1 - x^3 + 2x - 1}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} \dfrac{3x^2 h + 3xh^2 + h^3 - 2h}{h} \pause \\
+          &= \lim\limits_{h \rightarrow 0} 3x^2 + 3xh + h^2 - 2 \pause \\
+          &= 3x^2 + 3x \cdot 0 + 0^2 - 2 \pause = 3x^2 - 2
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative Function V}
+  Last slide: $f'(x) = 3x^2 - 2$. \pause
+
+  Step 3: Answer derivative question: \pause when is $f'(x) = 3x^2 - 2 = 0$? \pause
+
+  \begin{gather}
+    3x^2 - 2 = 0 \pause \\
+    3x^2 = 2 \pause \\
+    x^2 = \dfrac{2}{3} \pause \\
+    x = \pm \sqrt{\dfrac{2}{3}}
+  \end{gather} \pause
+
+  Step 4: Translate derivative question answer to original question answer: \pause
+
+  \begin{center}
+    When $x$ is $\pm \sqrt{\dfrac{2}{3}}$, the slope of the line tangent to $f(x) = x^3 - 2x + 1$ is equal to zero.
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative Function VI}
+
+  This is the general strategy that you can use to solve \textit{sooo} many questions about the behavior of functions! \pause
+
+  We'll see that in the worksheet for today :)
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Derivative Function VII}
+
+  Some conceptual questions: \pause
+  \begin{enumerate}
+    \item For some random function $f(x)$ whose \textit{domain} is all real numbers $\RR$ \pause must it also be the case that the domain of $f'(x)$ is also $\RR$? \pause
+    \item How do the following conditions relate: \pause
+      \begin{multicols}{2}
+      \begin{enumerate}
+        \item $f(x)$ is defined at $x = a$ 
+        \item $\lim\limits_{x \rightarrow a} f(x)$ exists
+        \item $f(a) = \lim\limits_{x \rightarrow a} f(x)$
+        \item The domain of $f(x)$ is all real numbers $\RR$
+        \item $\lim_{x \rightarrow a} \dfrac{f(x) - f(a)}{x - a}$ exists
+        \item $f'(a)$ exists
+        \item $f'(x)$ is defined at $x = a$
+        \item $f(x)$ is differentiable at $x = a$
+        \item $f'(x)$ is continuous at $x = a$
+        \item $f'(x)$ is differentiable at $x = a$
+        \item The domain of $f'(x)$ is all real numbers $\RR$
+      \end{enumerate}
+      \end{multicols} \pause
+    \item Which of the above conditions relied on $f'(x)$ \textit{being a function} rather than being a limit defined at a point $x = a$?
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class!}
+  That's all folks :)
+\end{frame}
+\end{document}

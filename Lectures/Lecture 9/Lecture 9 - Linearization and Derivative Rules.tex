@@ -1,0 +1,481 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 9 - Linearization and Derivative Rules}
+\author{Garrett Credi}
+\date{10/08/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Post Exam Recap} 
+
+  \begin{enumerate}
+    \item Solutions to Exam 1 are up on Canvas, I'm happy to answer any questions about it if people want
+    \item Exams should be graded by tonight or tomorrow night, with curve details to follow after I release the scores
+    \item One important note so far: follow the instructions in the questions! Many people did not include reasoning for parts b and c of question 2; this will decrease your scores!
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time!}
+
+  Let's get into neat rows and spread out for the quiz! \pause
+
+  Just kidding :) no quiz today
+\end{frame}
+
+\section{Linearization}
+
+\begin{frame}
+  \frametitle{Best Linear Approximation}
+
+  Recall that the \textit{derivative} of a function $f(x)$
+  at a point $x = a$
+  was equal to the slope of the \textit{best linear approximation}
+  to $f(x)$ at $x = a$. \pause
+
+  \begin{equation}
+    x \approx a \quad \implies \quad f(x) \approx f(a) + f'(a)(x - a).
+  \end{equation} \pause
+
+  \begin{block}{Linearization}\index{linearization}\index{derivative!linearization}
+    The linearization of a differentiable function $f(x)$ at a point $x = a$
+    is the best linear approximation to $f(x)$ at $x = a$ and is equal to \pause
+    \begin{equation}
+      \mathscr{L}_{x = a}(x) = f(a) + f'(a)(x - a)
+    \end{equation}
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using the Linearization to Approximate I}
+
+  Using linearizations gives us \textit{the strongest} ways
+  approximate functions in a quick and accurate way. \pause
+
+  \textbf{Example 1:} The \textit{logistic population growth} model
+  is a mathematical description of how the size of a population $P(t)$ grows
+  over some time period $t$ with some growth factor $k$ and some carrying capacity $N$. It assumes that:
+  \begin{equation}
+    \dfrac{dP}{dt} = k P(N - P)
+  \end{equation}
+  Suppose that we have a population $P(t)$, where $t$ is measured in days, which: \pause
+  \begin{enumerate}
+    \item Starts with $1,000$ individuals \pause So $P(0) = 1000$ \pause
+    \item Has a growth rate of $0.0001$ \pause So $k = 0.0001$ \pause
+    \item Has a carrying capacity of $11,000$ individuals \pause So $N = 11000$ \pause
+  \end{enumerate}
+
+  What is our best estimate for the population size one year after we started measuring?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using the Linearization to Approximate II}
+  \begin{equation}
+    \dfrac{dP}{dt} = kP(N - P), \quad P(0) = 1000, \quad k = 0.0001, \quad N = 11000, \pause \quad P(1) \approx ?
+  \end{equation}
+
+  Let's linearly approximate! The linearization of $P(t)$ around $t = 0$ is: \pause
+  \begin{equation}
+    \mathscr{L}_{t = 0}(t) = P(0) + P'(0)(t - 0)
+  \end{equation} \pause
+
+  We know $P(0) = 1000$ \pause what about $P'(0)$? \pause We use the $\dfrac{dP}{dt}$ equation! \pause
+
+  \begin{align}
+    P'(0) &= \dfrac{dP}{dt}\mid_{t = 0} = k \cdot P(0) \cdot (N - P(0)) \\ \pause
+          &=  0.0001 \cdot 1000 \cdot (11000 - 1000) = \dfrac{1}{10} \cdot 10000 \\ \pause
+          &= 1000 
+  \end{align} \pause
+  And so: \pause
+
+  \begin{equation}
+    P(1) \approx P(0) + P'(0)(1 - 0) = 1000 + 1000 \cdot 1 = 2000
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using the Linearization to Approximate III}
+
+  Is this an over-approximation ($\mathscr{L}_{t = 0}(1) > P(1)$) or an under-approximation ($\mathscr{L}_{t = 0}(1) < P(1)$)? What would we need to determine that? \pause
+
+  Suppose we know that $P''(0) = 900$. Does that mean our linearization gave an over-approximation or an under-approximation? \pause
+
+  Since $P''(0) > 0$, $P(t)$ is \pause \textit{concave-up} at $t = 0$,
+  which means our approximation is an \textit{under} approximation! \pause
+
+  (Concave up => graph is above its tangent line)
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using the Linearization to Approximate IV}
+
+  We can also approximate functions that are:
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item Easy to define but \pause
+      \item Hard to evaluate
+    \end{enumerate}
+  \end{multicols}
+  like $f(x) = \sqrt{x}$, around known values. \pause
+
+  \textbf{Example 2:} Approximate $\sqrt{25.1}$. \pause
+
+  Approximation should always have us think of linearization: what do we need to linearize? \pause
+
+  We need:
+  \begin{enumerate}
+    \item An initial value $x = a$ around which to approximate where \pause
+    \item We know $f(a)$ AND \pause
+    \item We know $f'(a)$. \pause
+  \end{enumerate}
+
+  What is a value $a \approx 25.1$ where we know $\sqrt{a}$ and the derivative of the sqrt function at $x = a$?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using the Linearization to Approximate V}
+
+  We know that: \pause
+  \begin{equation}
+    \dfrac{d}{dx} \sqrt{x} = \dfrac{1}{2\sqrt{x}}
+  \end{equation} \pause
+
+  so knowing $\dfrac{d}{dx}\mid_{x = a} \sqrt{x}$ is as hard as knowing $\sqrt{a}$. What should $a$ be? \pause
+
+  We should set $a = 25$ since $25 \approx 25.1$ AND $\sqrt{25} = 5$ is easy!
+
+  Then we get:
+  \begin{align}
+    \sqrt{25.1} &\approx \sqrt{25} + \dfrac{1}{2 \cdot \sqrt{25}} (25.1 - 25) \\
+                &= 5 + \dfrac{1}{2 \cdot 5} \cdot (0.1) \\
+                &= 5 + \dfrac{1}{10} \cdot 0.1 \\
+                &= 5 + 0.01 = 5.01
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using the Linearization to Approximate VI}
+  Let's say we also knew that:
+  \begin{equation}
+    \dfrac{d}{dx} \dfrac{1}{2 \sqrt{x}} = \dfrac{-1}{4 \sqrt{x^3}}. 
+  \end{equation} \pause
+
+  Is our approximation then an over or under approximation? \pause
+
+  Well:
+  \begin{align}
+    \dfrac{d^2}{dx^2}\mid_{x = 5} \sqrt{x} &= \left(-\dfrac{1}{4\sqrt{x^3}}\right)\mid_{x = 5} \\
+                                           &= -\dfrac{1}{4\sqrt{125}} < 0
+  \end{align}
+
+  So this is an \textit{over} approximation since we are concave down at $x = 5$.
+\end{frame}
+
+\section{Derivative Rules}
+
+\begin{frame}
+  \frametitle{Limit Definition is Hard}
+
+  How can we get that $\dfrac{d}{dx} \dfrac{1}{2 \sqrt{x}} = \dfrac{-1}{4 \sqrt{x^3}}$? \pause
+
+  \begin{align}
+    \dfrac{d}{dx} \dfrac{1}{2\sqrt{x}} &= \lim\limits_{h \rightarrow 0} \dfrac{\dfrac{1}{2\sqrt{x + h}} - \dfrac{1}{2\sqrt{x}}}{h} \\ \pause
+                                       &= \dfrac{1}{2}\lim\limits_{h \rightarrow 0} \dfrac{\dfrac{\sqrt{x + h}}{x + h} - \dfrac{\sqrt{x}}{x}}{h} \\ \pause
+                                       &= \dfrac{1}{2} \lim\limits_{h \rightarrow 0} \dfrac{\dfrac{x\sqrt{x + h}}{x(x + h)} - \dfrac{(x + h)\sqrt{x}}{x(x + h)}}{h} \\ \pause
+                                       &= \dfrac{1}{2} \lim\limits_{h \rightarrow 0} \dfrac{\sqrt{x^3 + hx^2} - \sqrt{(x + h)^2 \cdot x}}{h x (x + h)} \\ \pause
+                                       &=  \ldots \pause
+  \end{align}
+
+  GROSS!!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative Rules Rule!}
+
+  We'll see that a much easier way to compute this derivative
+  involved using \textit{derivative rules} - variants of the sum/product/quotient limit rules we discussed a couple weeks ago. \pause
+
+  For a sneak peek: \pause
+  \begin{align}
+    \dfrac{d}{dx} \dfrac{1}{2\sqrt{x}} &= \dfrac{d}{dx} \dfrac{1}{2} \dfrac{1}{x^{\frac{1}{2}}} \\
+                                       &= \dfrac{d}{dx} \dfrac{1}{2} x^{-\frac{1}{2}} \\
+                                       &= \dfrac{1}{2} \dfrac{d}{dx} x^{-\frac{1}{2}} \\
+                                       &= \dfrac{1}{2} \cdot -\dfrac{1}{2} \cdot x^{-\frac{1}{2} - 1} \\
+                                       &= \dfrac{-1}{4\sqrt{x^3}}
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Derivative Rules}
+
+  These will provide a \textit{synthetic} approach to computing derivatives, and are split up similar to our rules for limits: \pause some rules tell us how our operation acts on ``simple" things, \pause the rest tell us how our operation acts on ``combinations" of things.
+
+  Atomic Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Power Rule: $\dfrac{d}{dx} x^n$ 
+      \item Trigonometric Rules: $\dfrac{d}{dx} \sin(x)$ etc.
+      \item Exponential/Logarithm Rules: $\dfrac{d}{dx} e^x$, $\dfrac{d}{dx} \ln(x)$
+    \end{itemize}
+  \end{multicols}
+
+  Combination Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Sum/Difference Rule: $\dfrac{d}{dx} (f(x) \pm g(x))$ 
+      \item Product Rule: $\dfrac{d}{dx} f(x)g(x)$ 
+      \item Chain Rule: $\dfrac{d}{dx} g(f(x))$ 
+      \item Constant Multiple Rule: $\dfrac{d}{dx} c \cdot f(x)$
+      \item Quotient Rule: $\dfrac{d}{dx} \dfrac{f(x)}{g(x)}$ 
+      \item Inverse Function Rule: $\dfrac{d}{dx} f^{-1}(x)$
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sum/Difference Rule}
+
+  Perhaps the most straightforward derivative rule:
+  \begin{block}{Sum/Difference Rule}\index{derivative!sum/difference rule}
+    The derivative of a sum/difference of functions
+    is the sum/difference (resp.) of the derivatives of the functions: \pause
+    \begin{equation}
+      \dfrac{d}{dx} (f(x) + g(x)) = \left(\dfrac{d}{dx} f(x)\right) + \left(\dfrac{d}{dx} g(x)\right).
+    \end{equation} \pause
+  \end{block}
+
+  Why? \pause What is the slope of a sum of two linear functions? \pause
+  \begin{equation}
+    (f(a) + f'(a)(x - a)) + (g(a) g'(a)(x - a)) = (f(a) + g(a)) + (f'(a) + g'(a))(x - a)
+  \end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Constant Multiple Rule}
+
+  Similarly: 
+  \begin{block}{Constant Multiple Rule}
+    The derivative of a function multiplied by a constant
+    is that constant multiplied by the derivative of the function: \pause
+    \begin{equation}
+      \dfrac{d}{dx}(c \cdot f(x)) = c \dfrac{d}{dx} f(x)
+    \end{equation} \pause
+  \end{block}
+
+  Why? \pause What is the slope of a constant multiple of a linear function? \pause
+  \begin{equation}
+    c \cdot (f(a) + f'(a) (x - a)) =  (c \cdot f(a)) + (c \cdot f'(a))(x - a)
+  \end{equation} \pause
+
+  \begin{alertblock}{WARNING!}
+    The factor must actually be a constant!
+    \begin{align}
+      \dfrac{d}{dx} x^2 &= 2x 
+                        \neq x \cdot \dfrac{d}{dx} x = x \cdot 1 = x
+    \end{align}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example}
+  We can use this to compute derivatives of functions like:
+  \begin{equation}
+    f(x) = 5x^3 + 3x^2 + 2x + 5
+  \end{equation} \pause
+
+  Since we already know that
+  \begin{equation}
+    \dfrac{d}{dx} x^3 = 3x^2, \quad \dfrac{d}{dx} x^2 = 2x, \quad \dfrac{d}{dx} x = 1, \quad \dfrac{d}{dx} 1 = 0
+  \end{equation} \pause
+
+  we get: \pause
+  \begin{align}
+    f'(x) &= \dfrac{d}{dx}(5x^3 + 3x^2 + 2x + 5) \\ \pause
+          &= \dfrac{d}{dx} 5x^3 + \dfrac{d}{dx} 3x^2 + \dfrac{d}{dx} 2x + \dfrac{d}{dx} 5 \\ \pause
+          &= \dfrac{d}{dx} (5 \cdot x^3) + \dfrac{d}{dx}(3 \cdot x^2) + \dfrac{d}{dx} (2 \cdot x) + \dfrac{d}{dx}(5 \cdot 1) \\ \pause
+          &= 5 \cdot \dfrac{d}{dx} x^3 + 3 \cdot \dfrac{d}{dx} x^2 + 2 \cdot \dfrac{d}{dx} x + 5 \cdot \dfrac{d}{dx} 1 \\ \pause
+          &= 5 \cdot (3x^2) + 3 \cdot (2x) + 2 \cdot 1 + 5 \cdot 0 \\ \pause
+          &= 15x^2 + 6x + 2
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Power Rule I}
+
+  What about for more complicated polynomials \pause e.g. what if the degree is $> 3$? \pause
+
+  We know that:
+  \begin{align}
+    \dfrac{d}{dx} x^3 &= 3x^2 \\
+    \dfrac{d}{dx} x^2 &= 2x \\
+    \dfrac{d}{dx} x^1 &= 1 \\
+    \dfrac{d}{dx} x^0 &= 0
+  \end{align} \pause
+
+  Can we see a pattern? \pause
+
+  Guess: $\dfrac{d}{dx} x^n = n \cdot x^{n - 1}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Power Rule II}
+
+  Why?
+
+  \begin{align}
+    \dfrac{d}{dx} x^n &= \lim\limits_{h \rightarrow 0} \dfrac{(x + h)^n - x^n}{h} \\ \pause
+                      &= \lim\limits_{h \rightarrow 0} \dfrac{\_ x^n + \_ x^{n-1} \cdot h + \_ x^{n-2} h^2 + \ldots + \_ x^0 h^n - x^n}{h} \\ \pause
+                      &= \lim\limits_{h \rightarrow 0} (\_ x^{n - 1} \cdot 1 + \_ x^{n - 1} h + \ldots + \_ x^0 h^{n - 1}) \\ \pause
+                      &= \_ x^{n-1}
+  \end{align} \pause
+
+  What is the coefficient on $hx^{n-1}$ in $(x + h)^n$? \pause It's $n$! \pause
+
+  So we know that $\dfrac{d}{dx} x^n = n x^{n - 1}$!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Power Rule III}
+
+  \begin{block}{Power Rule}\index{derivative!power rule}
+    \begin{equation}
+      \dfrac{d}{dx} x^n = nx^{n-1}
+    \end{equation}
+  \end{block} \pause
+
+  E.g.: \pause
+  \begin{itemize}
+    \item $\dfrac{d}{dx} x^{100} = $ \pause
+    \item $\dfrac{d}{dx} x^{67} = $ \pause
+    \item $\dfrac{d}{dx} x$ 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Power Rule IV}
+
+  Note: We technically only showed the limit definition worked for \textit{integer} powers ($x^1, x^2, x^3$) \pause as opposed to fractional powers, i.e. roots ($x^{\frac{3}{2}}, \sqrt{x}, \sqrt[3]{x^2}$). \pause
+  However, with product rule or inverse rule it's easy enough to show that power rule also works for fractional, and even all real-valued power functions. \pause
+
+  E.g. $\dfrac{d}{dx}x^{\pi} = $ \pause
+
+  \begin{alertblock}{WARNING!!}
+    Power rule only applies to \textit{\textbf{POWER FUNCTIONS}} \pause
+    i.e. $f(x) = x^c$ for some constant $c$.
+
+    It does NOT apply to \textit{exponential functions} like $f(x) = c^x$!
+    They may look similar, but their derivatives are VASTLY different!
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exponential Rule I}
+
+  What is the derivative of an exponential function? \pause
+
+  \begin{align}
+    \dfrac{d}{dx} c^x &= \lim_{h \rightarrow 0} \dfrac{c^{x + h} - c^x}{h}  \\ \pause
+                      &= \lim_{h \rightarrow 0} c^x \dfrac{c^h - 1}{h} \\ \pause
+                      &= \left(\lim\limits_{h \rightarrow 0} \dfrac{c^h - 1}{h}\right) c^x
+  \end{align} \pause
+
+  it is just some constant multiple of the original function! \pause
+
+  What is the constant factor $\lim\limits_{h \rightarrow 0} \dfrac{c^h - 1}{h}$?
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exponential Rule II}
+
+  Define a constant $e$ so that $\lim\limits_{h \rightarrow 0} \dfrac{e^h - 1}{h} = 1$ (i.e. $\dfrac{d}{dx} e^x = e^x$). Then:
+
+  \begin{align}
+    \lim\limits_{h \rightarrow 0} \dfrac{c^h - 1}{h} &= \pause \lim\limits_{h \rightarrow 0} \dfrac{(e^{\ln(c)})^h - 1}{h} \\ \pause
+                                                     &= \lim\limits_{h \rightarrow 0} \dfrac{e^{\ln(c) h} - 1}{h} \\ \pause
+                                                     &= \lim\limits_{h \rightarrow 0} \dfrac{\ln(c)}{\ln(c)} \dfrac{e^{\ln(c) h} - 1}{h} \\ \pause
+                                                     &= \ln(c) \lim\limits_{h \rightarrow 0} \dfrac{e^{\ln(c) h} - 1}{\ln(c) h} \\ \pause
+                                                     &= \ln(c) \lim\limits_{z \rightarrow 0} \dfrac{e^z - 1}{z} = \ln(c) \cdot 1 = \ln(c)
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exponential Rule III}
+  This gives us:
+
+  \begin{block}{Exponential Rule}\index{derivative!exponential rule}
+    The derivative of an exponential function, i.e. $c^x$ for a constant $c$ is:
+    \begin{equation}
+      \dfrac{d}{dx} c^x = \ln(c) c^x
+    \end{equation}
+  \end{block} \pause
+
+  Exponential functions growing rapidly => it's derivative grows very large very quickly.
+
+  Very different behavior to that for power rule $\dfrac{d}{dx} x^c = cx^{c - 1}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exponential Rule IV}
+
+  What is the $n$'th derivative of an exponential function $c^x$? \pause
+
+  First derivative: $\ln(c) c^x$. \pause
+
+  Second derivative: $\dfrac{d}{dx} (\ln(c) c^x) = \ln(c) \dfrac{d}{dx} c^x = \ln(c)^2 c^x$ \pause
+
+  Third derivative: $\ln(c)^3 c^x$. \pause
+
+  \ldots
+
+  $n$'th derivative: $\ln(c)^n c^x$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time!}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class}
+
+  That's all folks!
+\end{frame}
+\end{document}

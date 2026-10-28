@@ -1,0 +1,88 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../quiz-macros.tex}
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\title{\vspace{-0.5in}Quiz 7: 09/29 Content}
+\date{10/01/2026}
+\author{MATH 1271}
+
+\begin{document}
+  \NameSection
+  {\let\newpage\relax\maketitle}
+
+  \PointsSection
+
+  \newpage
+  \begin{questions}
+    \question[5] The graph of a function $f(x)$ is given below:
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=1\textwidth]{graph.png}
+      \caption{Graph of $f(x)$}
+    \end{figure}
+    Use this to sketch the graph of the derivative $f'(x)$ on the same axes.
+      \begin{solution}
+    We note that $f(x)$ is:
+    \begin{enumerate}
+      \item Increasing on $(-\infty, -1)$
+      \item Stationary at $x = 1$
+      \item Decreasing on $(-1, 3)$
+      \item Has an inflection point somewhere around $x = 1.5$
+      \item Has a stationary point at $x = 3$
+      \item Increases on $(3, \infty)$
+    \end{enumerate}
+
+    which implies that
+    \begin{enumerate}
+      \item $f'(x)$ must be positive on $(-\infty, -1)$
+      \item $f'(x) = 0$ when $x = 1$
+      \item $f'(x)$ must be negative on $(-1, 3)$
+      \item $f'(x)$ must have a stationary point somewhere around $x = 1.5$
+      \item $f'(x)$ must be zero at $x = 3$
+      \item $f'(x)$ must be positive on $(3, \infty)$
+    \end{enumerate}
+
+    which we can combine together to get
+
+    \MathCollectFalse
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+          axis lines = center,
+          xmin=-2, xmax = 4,
+          ymin=-10, ymax = 3,
+          legend pos = south west,
+          grid = both,
+          width = 0.9\textwidth
+        ]
+          \addplot [
+          domain=-2:4,
+          samples=100,
+          color=red,
+          thick
+          ]{1/3 * x^3 - x^2 - 3*x};
+          \addlegendentry{$f(x)$};
+
+          \addplot [
+          domain=-2:4,
+          samples=100,
+          color=blue,
+          thick
+          ]{x^2 - 2*x - 3};
+          \addlegendentry{$f'(x)$};
+        \end{axis}
+
+      \end{tikzpicture}
+      \caption{Graph of $f(x)$ and $f'(x)$}
+    \end{figure}
+    \MathCollectTrue
+
+  \end{solution}
+
+  \end{questions}
+
+\end{document}

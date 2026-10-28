@@ -1,0 +1,157 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass[12pt]{exam}
+\input{../worksheet-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Worksheet 12 - Inverse and Implicit Differentiation}
+\author{MATH 1271}
+\date{10/20/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\newpage
+\maketitle
+
+\begin{enumerate}
+
+  \item For the following functions, determine their derivatives by recognizing them as inverse functions and applying inverse function rule.
+
+    \begin{enumerate}
+      \item $f(x) = \sqrt[n]{x}$.
+
+        \vfill
+
+      \item $g(x) = \log_c(x)$.
+        \vfill
+
+      \item $h(x) = \operatorname{arccot}(x)$.
+        \vfill
+    \end{enumerate}
+
+    \newpage
+
+  \item For the following parts, let
+    \begin{equation*}
+      f(x) = x^4 - 2x^3 + 3x^2 - 2x + 1.
+    \end{equation*}
+
+    \begin{enumerate}
+      \item Compute $f(1)$.
+        \vfill
+
+      \item Use the previous part to compute $f^{-1}(1)$.
+        \vfill
+
+      \item What is the derivative of $f^{-1}(x)$ at $x = 1$?
+        \vfill
+
+      \item For which values of $x$ is the line tangent to $y = f^{-1}(x)$
+        at $(x, f^{-1}(x))$ horizontal? For which values of $x$ is it vertical?
+        \vfill
+    \end{enumerate}
+
+  \newpage
+
+\item For each of the following equations, use implicit differentiation to find $\frac{dy}{dx}$, and determine the value of the derivative at the given point.
+
+\begin{enumerate}
+
+\item $x^3-y^3=6xy$; $(-3,3)$
+
+\vfill
+
+\item $\sin(y)+y=x^3+x$; $(0,0)$
+
+\vfill
+
+\item $e^{x/y}=x-y$; $(0, -1)$
+
+\vfill
+
+\end{enumerate}
+
+
+
+\newpage
+
+\item Consider the curve defined by the equation $y(y^2-1)(y-2)=x(x-1)(x-2)$, whose graph is pictured below:
+
+\begin{center}
+\includegraphics[scale=0.5]{wkst13img-f25}
+\end{center}
+
+Through implicit differentiation, it can be shown that
+$$\frac{dy}{dx}=\frac{(x-1)(x-2)+x(x-2)+x(x-1)}{(y^2-1)(y-2)+2y^2(y-2)+y(y^2-1)}$$
+
+Use this fact to answer each of the following questions with $3$ decimal points of accuracy.
+
+\begin{enumerate} 
+
+\item Determine all values of $x$ at which the tangent line to the curve is horizontal.
+
+\emph{Note: You may--and should!--use technology, such as \href{http://www.wolframalpha.com}{wolframalpha.com}, to find the needed zeros of the relevant polynomial function. For example, to have WolframAlpha solve the equation $x^2-3x+1=0$ for you, type "Solve $x^2-3x+1=0$" into the search box. It will output the answers $x=\frac{1}{2}(3-\sqrt{5})$ and $x=\frac{1}{2}(3+\sqrt{5})$.}
+
+\vfill
+
+\item Determine all points $(x,y)$ at which the tangent line to the curve is horizontal.
+
+\vfill
+
+\newpage
+
+\item Determine all points $(x,y)$ at which the tangent line to the curve is vertical.
+
+\vfill
+
+\item Find the equation (in slope-intercept form) of the tangent line to the curve at one of the points where $x=1$.
+
+\vspace{3.5in}
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+% Most people don't use these, so they are "commented out"
+% by starting the lines with a "%"
+%\begin{keywords}
+%   \LaTeX, typesetting
+%\end{keywords}
+
+%\begin{AMS}
+%   50C60, 18C25
+%\end{AMS}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% % Here is the start of the Text
+%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

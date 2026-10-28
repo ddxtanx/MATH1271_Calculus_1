@@ -1,0 +1,251 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Lines starting with % are comments, which are ignored.
+% % This is a handy way of indicating the date and version of
+% % your document, to wit:
+% %
+% % LaTeX sample file
+% % Modified March, 2002
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../../tag-template.tex}
+\documentclass{ltx-talk}
+\input{../lecture-macros.tex}
+% % Title and author(s)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Lecture 11 - The Chain Rule}
+\author{Garrett Credi}
+\date{10/15/2026}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %
+% % The next command allows your in import encapsulated
+% % postscript files, .epsf or .eps files, which
+% % contain vector graphic image data.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %   The first thanks indicates your affiliation
+% %
+% %  Just the name here.
+% %
+% % Your mailing address goes at the end.
+% %
+% % \thanks is also how you indicate grant support
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% $ The next command ensures the margins are 1 inch on
+% % all sides.
+% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{frame}
+  \maketitle 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quiz Time}
+
+  Let's get into neat rows, spread out, and slay this quiz! :)
+\end{frame}
+
+\section{The Chain Rule}
+
+\begin{frame}
+  \frametitle{The Road So Far}
+    Recall we're trying to build a \textit{synthetic} approach to studying derivatives: \pause
+
+    Atomic Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Power Rule: $\dfrac{d}{dx} x^n$ 
+      \item Trigonometric Rules: $\dfrac{d}{dx} \sin(x)$ etc.
+      \item Exponential/Logarithm Rules: $\dfrac{d}{dx} e^x$, $\dfrac{d}{dx} \ln(x)$
+    \end{itemize}
+  \end{multicols}
+
+  Combination Rules: \pause
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item Sum/Difference Rule: $\dfrac{d}{dx} (f(x) \pm g(x))$ 
+      \item Product Rule: $\dfrac{d}{dx} f(x)g(x)$ 
+      \item Chain Rule: $\dfrac{d}{dx} g(f(x))$ 
+      \item Constant Multiple Rule: $\dfrac{d}{dx} c \cdot f(x)$
+      \item Quotient Rule: $\dfrac{d}{dx} \dfrac{f(x)}{g(x)}$ 
+      \item Inverse Function Rule: $\dfrac{d}{dx} f^{-1}(x)$
+    \end{itemize}
+  \end{multicols}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is the Chain Rule? I}
+
+  We're spending today building up the chain rule, the tool that will help us compute derivatives of the form: \pause
+
+  \begin{equation}
+    \dfrac{d}{dx} ( g (f(x)))
+  \end{equation}
+
+  But what kinds of functions will this actually help us compute derivative of? \pause
+
+  Sum/Difference Rule and Product/Quotient rule have visible signifiers that help us determine when to use them: \pause
+  \vspace{1in}
+
+  But what do functions of the form $g(f(x))$ even look like?
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is the Chain Rule? II}
+
+  Recall our ``basic" functions: \pause
+
+  \begin{multicols}{3}
+    \begin{itemize}
+      \item $x^n$
+      \item $c^x$
+      \item $\sin(x), \cos(x)$, etc
+      \item $|x|$
+      \item $\log_c(x)$
+    \end{itemize} \pause
+
+  \end{multicols}
+
+  When we \textit{compose} functions (do the $g(f(x))$ thing), what does this actually do? \pause
+
+  We make one function's output another function's input instead of just inputting $x$! 
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is the Chain Rule? III}
+
+  So, before we even \textit{use} chain rule, we should first come up with a strategy for: \pause
+  \begin{enumerate}
+    \item Recognizing when functions are composite functions \pause
+    \item Recognizing which function is the inner function (the $f(x)$ in the $g(f(x))$) and which function is the outer function (the $g(x)$ in the $g(f(x))$) \pause
+  \end{enumerate}
+
+  Strategy: \pause
+  \begin{enumerate}
+    \item Break up the complicated function into the addition, subtraction, product, and quotient of simpler functions (i.e. do sum/difference and product/quotient rules first) \pause
+    \item In each of the smaller pieces, identify where the variables actually are. \pause
+    \item At each occurrence of a variable, find the biggest/longest expression that it lives in - this is the innermost function. \pause
+    \item Treat that whole expression as a new variable, and repeat from step 1.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Identifying Composites Example}
+
+  \vspace{\stretch{0.2}}
+  For instance, let's take $h(t) = 3 \sin^2(4t^2 + 1) \cdot \cos (4t^2 + 1) \cdot 8t$
+  \vspace{\stretch{1}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deriving Chain Rule I}
+
+  Now let's assume we've already identified some function of interest as a composite $g(f(x))$, \pause
+  we'd like to find an expression of the derivative $\dfrac{d}{dx} g(f(x))$ hopefully in terms of derivatives involving $f(x)$ and $g(x)$. \pause
+
+  Strategy: Linearize once again! \pause Let's linearize around some $x = x_0$. \pause
+
+  We start by linearizing \textit{only} $f(x)$, \pause since our input to $g(x)$ is changed by $f$ and thus might end up close to a point different than $x = x_0$. \pause
+
+  We know that $f(x) \approx f(x_0) + f'(x_0)(x - x_0)$, \pause so we end up wanting to further linearize:
+  \begin{equation*}
+    g(f(x_0) + f'(x_0)(x - x_0))
+  \end{equation*}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deriving Chain Rule II}
+
+  Note: when we linearize $f(x)$ near $x = x_0$, we mean that for values $x \approx x_0$ we'll know that $f(x) \approx f(x_0) + f'(x_0)(x - x_0)$ \pause
+  i.e. our input value being close to something implies our output value is close to the related thing. \pause
+
+  For
+  \begin{equation*}
+    g(f(x_0) + f'(x_0)(x - x_0))
+  \end{equation*}
+  what value are we inputting into the function $g$? \pause
+
+  When $x \approx x_0$, what is $f(x_0) + f'(x_0)(x - x_0)$ close to? \pause
+
+  Since $f(x_0) + f'(x_0) (x - x_0) \approx f(x_0)$, we will linearize $g(x)$ around $f(x_0)$ instead!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Deriving Chain Rule III}
+
+  \begin{align}
+    g(f(x)) &\approx g(f(x_0) + f'(x_0)( x-x_0)) \quad \text{linearize $g$ around $f(x_0)$} \\ \pause
+            &\approx g(f(x_0)) + g'(f(x_0)) ( (f(x_0) + f'(x_0)(x -x_0)) - f(x_0)) \\ \pause
+            &= g(f(x_0)) + g'(f(x_0))(f'(x_0)(x - x_0) + f(x_0) - f(x_0)) \\ \pause
+            &= g(f(x_0)) + g'(f(x_0))f'(x_0)(x - x_0)
+  \end{align} \pause
+\end{frame}
+\begin{frame}
+  \frametitle{Deriving Chain Rule IV}
+  The derivative is the slope of the best linear approximation $\implies$ \pause
+
+  \begin{alertblock}{The Chain Rule}\index{derivative!chain rule}
+    \begin{equation}
+      \dfrac{d}{dx} g(f(x)) = g'(f(x)) f'(x)
+    \end{equation}
+  \end{alertblock} \pause
+
+  Or, written differently
+
+  \begin{alertblock}{The Chain Rule (Leibniz's Version)}
+    \begin{equation}
+      \dfrac{d (g \circ f)}{dx} \mid_{x = x_0} = \dfrac{dg}{dx} \mid_{x = f(x_0)} \cdot \dfrac{df}{dx} \mid_{x = x_0}
+    \end{equation}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chain Rule Example I}
+  \vspace{\stretch{0.2}}
+  Let's compute the derivative of that function from before:
+  \begin{equation}
+    h(t) = 3 \sin^2(4t^2 + 1) \cdot \cos(4t + 1) \cdot 8t
+  \end{equation}
+
+  \vspace{\stretch{1}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chain Rule Example II}
+  We can also derive the quotient rule in terms of the chain rule since
+  \begin{equation}
+    \dfrac{f(x)}{g(x)} = f(x) \cdot \dfrac{1}{g(x)} = f(x) \cdot (\dfrac{1}{x} \circ g)(x)
+  \end{equation}
+  i.e. $\dfrac{1}{g(x)}$ is a composite function! You first do $g(x)$ and then do the function $\dfrac{1}{x}$. \pause
+
+  Then: 
+
+  \begin{align}
+    \dfrac{d}{dx} \dfrac{f(x)}{g(x)} &= \left(\dfrac{d}{dx} f(x)\right) \cdot \dfrac{1}{g(x)} + f(x) \cdot \left(\dfrac{d}{dx} \dfrac{1}{g(x)}\right) \\ \pause
+                                     &= \dfrac{f'(x)}{g(x)} + f(x) \cdot \left(\left(\dfrac{d}{du} \dfrac{1}{u}\right)\mid_{u=g(x)} \cdot \left(\dfrac{d}{dx} g(x)\right)\right) \\ \pause
+                                     &= \dfrac{f'(x)}{g(x)} + f(x) \cdot \dfrac{-1}{g(x)^2} \cdot g'(x) \pause
+                                     = \dfrac{f'(x) g(x)}{g(x)^2)} - \dfrac{f(x)g'(x)}{g(x)^2} \\ \pause
+                                     &= \dfrac{f'(x) g(x) - f(x) g'(x)}{g(x)^2}
+  \end{align}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Chain Rule Example III}
+  We can also frame this more in terms of real world applications, too long for a slide but it's in the worksheet.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Worksheet Time}
+
+  Let's get into groups and work on the worksheet!
+\end{frame}
+
+\begin{frame}
+  \frametitle{End of Class}
+
+  That's all folks!
+\end{frame}
+\end{document}

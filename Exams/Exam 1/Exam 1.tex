@@ -1,0 +1,424 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../../Quizzes/quiz-macros.tex}
+\usepackage{amsmath, amssymb, amsthm, graphicx, float}
+
+\title{Exam 1}
+\author{Garrett Credi}
+\CourseName{MATH 1271}
+\TimeLimit{50 minutes}
+\Semester{Fall 2026}
+\date{10/06/2026}
+\IsExam
+\renewcommand{\checkboxeshook}{%
+  \setlength{\leftmargin}{0pt}%
+}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\newcommand{\limitplot}{%
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+        axis lines = center,
+        xlabel = {$x$},
+        ylabel = {$y$},
+        xmin = -2, xmax = 5,
+        ymin = -4, ymax = 4,
+        xtick distance = 0.5,
+        ytick distance = 1,
+        grid = both,
+        width = 0.9\textwidth,
+        height = 0.4\textheight,
+        trig format plots = rad
+      ]
+      \addplot[domain=-2:0, samples = 1000, thick] {3*(abs(x+1))^(2/3)};
+        \addplot [only marks, mark = o, mark size = 2pt, thick] coordinates {(0, 3)};
+        \addplot [only marks, mark = *, mark size = 2pt, thick] coordinates {(0,0)};
+
+        \addplot [domain=0:1, samples=1000, thick] {sign(x - 0.5) * (abs(2*(x - 0.5)))^(1/3) - 1};
+        \addplot[only marks, mark = o, mark size = 2pt, thick] coordinates {(0, -2)};
+        \addplot[domain=1:2, samples=1000, thick] { (abs(1-x)^(1/3)) * sin( (3 / sqrt(abs(2-x)) + 10) * x ) };
+
+        \addplot[domain=2:3, samples=100, thick] {x - 2};
+        \addplot[only marks, mark = o, mark size = 2pt, thick] coordinates{(3,1)};
+
+        \addplot[domain=3:5, samples = 100, thick] {exp(3 - x)};
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+}
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\begin{questions}
+  \pointpoints{pt}{pts}
+  \question \textbf{Multiple Choice.} Clearly fill in \textit{all} correct options for the following questions. No work needs to be shown, no partial credit will be given. Every correct choice chosen will add one point, every incorrect choice chosen will subtract one point. Your score cannot go below zero for a given part.
+  \begin{parts}
+    \part[4] Suppose that you have attached some mass to a spring, so that the distance from the mass to the base of the spring in centimeters after $t$ seconds have elapsed is given by the function $s(t)$. Furthermore, suppose that you know:
+    \begin{equation*}
+      s(0) = 2, \quad s(2) = 10, \quad s'(2) = -13, \quad s''(2) = 2.5
+    \end{equation*}
+    Which of the following statements are correct interpretations of those measurements?
+    \begin{checkboxes}
+      \choice Over the first two seconds, the mass moved at an average velocity of $10$ cm/sec
+      \choice Over the first two seconds, the mass moved at an average velocity of $-13$ cm/sec
+      \choice At $t = 2$ seconds, the mass is moving with an instantaneous velocity of $2.5$ cm/sec
+      \CorrectChoice At $t = 2$ seconds, the mass is moving with an instantaneous velocity of $-13$ cm/sec
+      \CorrectChoice At $t = 2$ seconds, the distance is \textit{decreasing}. 
+      \choice At $t = 2$ seconds, the distance is \textit{increasing}. 
+      \choice At $t = 2$ seconds, the velocity of the mass is \textit{decreasing}. 
+      \CorrectChoice At $t = 2$ seconds, the velocity of the mass is \textit{increasing}.
+      \choice At $t = 2$ seconds, the mass is accelerating at a rate of $2$ $cm/sec^2$.
+      \choice At $t = 2$ seconds, the mass is accelerating at a rate of $10$ $cm/sec^2$.
+      \choice At $t = 2$ seconds, the mass is accelerating at a rate of $-13$ $cm/sec^2$.
+      \CorrectChoice At $t = 2$ seconds, the mass is accelerating at a rate of $2.5$ $cm/sec^2$.
+    \end{checkboxes}
+
+    \vfill
+
+    \part[3] Let $f(x) = \sqrt[3]{x}$. Which of the following statements are true?
+    \begin{checkboxes}
+      \CorrectChoice $f(x)$ is defined at $x = 0$.
+      \choice $f(x)$ is not defined at $x = 0$.
+      \CorrectChoice $f(x)$ is continuous at $x = 0$.
+      \choice $f(x)$ is not continuous at $x = 0$.
+      \choice $f(x)$ is differentiable at $x = 0$.
+      \CorrectChoice $f(x)$ is not differentiable at $x = 0$.
+    \end{checkboxes}
+
+    \vfill
+    \newpage
+
+    \part[3] Suppose we have continuous functions $f(x), g(x),$ and $h(x)$ 
+    and we know that:
+    \begin{gather*}
+      \lim\limits_{x \rightarrow 0} f(x) = 3, \quad
+      \lim\limits_{x \rightarrow 0} g(x) = 2, \quad
+      \lim\limits_{x \rightarrow 0} h(x) = 0,  \\
+      \lim\limits_{x \rightarrow 2} f(x) = 0, \quad
+      \lim\limits_{x \rightarrow 2} g(x) = 0, \quad 
+      \lim\limits_{x \rightarrow 2} h(x) = 3, \\
+      \lim\limits_{x \rightarrow 3} f(x) = 0, \quad
+      \lim\limits_{x \rightarrow 3} g(x) = 3, \quad
+      \lim\limits_{x \rightarrow 3} h(x) = 2.
+    \end{gather*}
+    Which of the following must also be true?
+    \begin{multicols}{3}
+      \begin{checkboxes}
+        \choice $\lim\limits_{x \rightarrow 0} (f(x) \cdot g(x)) = 3$
+        \choice $\lim\limits_{x \rightarrow 0} (f(x) \cdot h(x)) = 3$
+        \choice $\lim\limits_{x \rightarrow 0} (g(x) \cdot h(x)) = 3$
+        \choice $\lim\limits_{x \rightarrow 0} (f(x) + g(x)) = 3$
+        \CorrectChoice $\lim\limits_{x \rightarrow 0} (f(x) + h(x)) = 3$
+        \choice $\lim\limits_{x\rightarrow 0} (g(x) + h(x)) = 3$
+        \choice $\lim\limits_{x \rightarrow 2} \frac{g(x)}{f(x)}$ DNE
+        \choice $\lim\limits_{x \rightarrow 0} \frac{g(x)}{f(x)}$ DNE
+        \CorrectChoice $\lim\limits_{x \rightarrow 3} \frac{g(x)}{f(x)}$ DNE
+        \choice $\lim\limits_{x \rightarrow 3} h(g(f(x))) = 2$
+        \choice $\lim\limits_{x \rightarrow 2} h(g(f(x))) = 2$
+        \CorrectChoice $\lim\limits_{x \rightarrow 0} h(g(f(x))) = 2$
+      \end{checkboxes}
+    \end{multicols}
+  \end{parts}
+
+  \vfill
+
+  \question \textbf{Short Answer.} For the following parts, provide the requested quantity with a short explanation of how you arrived at that answer.
+  \begin{parts}
+    \part Using the given table of values, evaluate or estimate the following quantities.
+
+    \begin{multicols}{2}
+      \begin{subparts}
+        \subpart[1] $f(5) = $ \fillin[13]
+        \vfill
+        \subpart[2] $\lim\limits_{x \rightarrow 5^{-}} f(x) = $ \fillin[12]
+        \vfill
+        \subpart[2] $\lim\limits_{x \rightarrow 5^{+}} f(x) = $ \fillin[10]
+        \vfill
+        \subpart[2] $\lim\limits_{x \rightarrow 5} f(x) = $ \fillin[DNE]
+      \end{subparts}
+      \columnbreak
+
+      \begin{center}
+      \begin{tabular}{c|c}
+        $x$ & $f(x)$ \\
+        \hline
+        4 & 11 \\
+        \hline
+        4.9 & 11.5 \\
+        \hline
+        4.99 & 11.75 \\
+        \hline
+        4.999 & 11.875 \\
+        \hline
+        4.9999 & 11.9375 \\
+        \hline
+        5 & 13 \\
+        \hline
+        5.0001 & 9.999 \\
+        \hline
+        5.001 & 9.8 \\
+        \hline
+        5.01 & 9.6 \\
+        \hline
+        5.1 & 9.2 \\
+        \hline
+        5.2 & 9.3 \\
+        \hline
+      \end{tabular}        
+      \end{center}
+    \end{multicols}
+    \vfill
+    \newpage
+    The graph of a function $f(x)$ is pictured below:
+
+    \limitplot
+
+    \part Use the above graph to evaluate each of the following:
+    \begin{multicols*}{2}
+      \begin{subparts}
+        \subpart[1] $\lim\limits_{x \rightarrow 0^{-}} f(x) = $ \fillin[3]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 0^{+}} f(x) = $ \fillin[-2]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 0} f(x) = $ \fillin[DNE]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 2^{-}} f(x) = $ \fillin[DNE]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 2^{+}} f(x) = $ \fillin[0]
+        \vfill\null
+        \columnbreak
+        \subpart[1] $\lim\limits_{x \rightarrow 2} f(x) = $ \fillin[DNE]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 3^{-}} f(x) = $ \fillin[1]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 3^{+}} f(x) = $ \fillin[1]
+        \vfill
+        \subpart[1] $\lim\limits_{x \rightarrow 3} f(x) = $  \fillin[1]
+        \vfill\null
+      \end{subparts}
+    \end{multicols*}
+
+    \newpage
+
+    As on the previous page, the graph of $f(x)$ is pictured below:
+
+    \limitplot
+
+    \part[3] Use the above graph to determine \textit{all} the points at which $f(x)$ is discontinuous or explain why there are none.
+    \begin{solution}
+      The graph is discontinuous at:
+      \begin{enumerate}
+        \item $x = 0$ since there is a jump discontinuity - the left and right one-sided limits do not agree
+        \item $x = 2$ since there is an essential discontinuity - the left one-sided limit does not exist because of infinite oscillation behavior
+        \item $x = 3$ since there is a hole - the function is not defined at that point and thus cannot be continuous.
+      \end{enumerate}
+    \end{solution}
+    \vfill
+
+    \part[3] Use the above graph to determine \textit{all} the points at which $f(x)$ is continuous \textit{but not} differentiable or explain why there are none.
+    \begin{solution}
+      The graph is continuous but not differentiable at:
+      \begin{enumerate}
+        \item $x = -1$ since there is a cusp there.
+        \item $x = 0.5$ since there is a vertical tangent there.
+        \item $x = 1$ since there is a corner there.
+      \end{enumerate}
+    \end{solution}
+    \vfill
+
+    \part[3] Use the above graph to determine \textit{all} the points at which $f(x)$ is differentiable \textit{but not} continuous or explain why there are none.
+    \begin{solution}
+      There are none because for a function to be differentiable at a point, it must also be continuous at that point. So there cannot be points at which the function is differentiable but not continuous.
+    \end{solution}
+    \vfill
+  \end{parts}
+
+  \newpage
+
+  \question Suppose that $C$ and $D$ are some constants, and that
+  \begin{equation*}
+    f(x) = \begin{cases} 
+    x^2 - Cx + 4, & x \leq -2 \\
+    x^3 + Cx^2 - D, & -2 < x \leq 1 \\
+    Dx + C + 3, & x > 1
+    \end{cases}
+  \end{equation*}
+
+  \begin{parts}
+    \part Compute the following limits, using the space below to show your work:
+    \begin{multicols}{2}
+      \begin{subparts}
+        \subpart[2] $\lim\limits_{x \rightarrow -2^{-}} f(x) = $ \fillin[$8 + 2C$]
+        \subpart[2] $\lim\limits_{x \rightarrow -2^{+}} f(x) = $ \fillin[$4C - D - 8$]
+        \subpart[2] $\lim\limits_{x \rightarrow 1^{-}} f(x) = $ \fillin[$C - D + 1$]
+        \subpart[2] $\lim\limits_{x \rightarrow 1^{+}} f(x) = $ \fillin[$D + C + 3$]
+      \end{subparts}      
+    \end{multicols}
+    \vfill
+
+    \part[10] Are there values of $C, D$ that would make $f(x)$ a continuous function? If so, determine which values of $C, D$ make $f(x)$ continuous, and explain why those values work. Otherwise, explain why no such values can exist.
+    \begin{solution}
+      Since each piecewise part of $f(x)$ is already continuous,
+      we need only force the one sided limits at the endpoints to agree.
+      This gives us a system of equations:
+      \begin{align}
+        8 + 2C &= 4C - D - 8 \\
+        C - D + 1 &= D + C + 3
+      \end{align}
+
+      We can cancel $C$ in the second equation to get $2D = -2$ so $D = -1$. Then the first equation becomes
+      \begin{gather}
+        8 + 2C = 4C - (-1) - 8 \\
+        15 = 2C \\
+        C = \dfrac{15}{2}
+      \end{gather}
+
+      Thus when $C = \dfrac{15}{2}, D = -1$ the function is continuous.
+    \end{solution}
+    \vfill
+  \end{parts}
+  \newpage
+ 
+  \question Let
+  \begin{equation*}
+    f(x) = \dfrac{5x^2 - 10x + 5}{x^2 - 3x + 2}.
+  \end{equation*}
+
+  \begin{parts}
+    \part[10] Determine, with work shown, the equations of \textit{all} vertical asymptotes of $f(x)$ or explain why there are none.
+    \begin{solution}
+      Vertical asymptotes occur at points of infinite discontinuities, which occur only when the denominator of a rational function is zero and are determined by the limiting value.
+
+      The numerator factors as:
+      \begin{align}
+        5x^2 - 10x + 5 &= 5(x^2 - 2x + 1) \\
+                       &= 5(x - 1)^2
+      \end{align}
+
+      and the denominator factors as
+      \begin{equation*}
+        x^2 - 3x + 2 = (x - 1)(x - 2).
+      \end{equation*}
+
+      Thus we should study
+      \begin{align}
+        \lim\limits_{x \rightarrow 1} \dfrac{5x^2 - 10x + 5}{x^2 - 3x + 2} &= \lim\limits_{x \rightarrow 1} \dfrac{5(x-1)^2}{(x-1)(x-2)} \\
+                                                                           &= \lim\limits_{x \rightarrow 1} \dfrac{5(x - 1)}{x - 2}  \\
+                                                                           &= \dfrac{5 (1 - 1)}{1 - 2} = 0
+      \end{align}
+
+      and 
+      \begin{align}
+        \lim\limits_{x \rightarrow 2} \dfrac{5x^2 - 10x + 5}{x^2 - 3x + 2} &=
+      \lim\limits_{x \rightarrow 2} \dfrac{5(x - 1)^2}{(x-1)(x - 2)} \\
+                                                                           &= \lim\limits_{x \rightarrow 2} \dfrac{5(x - 1)}{x - 2}
+      \end{align}
+      which is a point of infinite discontinuity.
+
+      Therefore the only equation of a vertical asymptote is $x = 2$.
+    \end{solution}
+    \vfill
+
+    \part[10] Determine, with work shown, the equations of \textit{all} horizontal asymptotes of $f(x)$ or explain why there are none.
+    \begin{solution}
+      Equations of horizontal asymptotes are given by:
+      \begin{enumerate}
+        \item $y = \lim_{x \rightarrow - \infty} f(x)$ \\
+        \item $y = \lim_{x \rightarrow + \infty} f(x)$ 
+      \end{enumerate}
+
+      And so we compute:
+      \begin{align}
+      \lim\limits_{x \rightarrow +\infty} f(x) &= \lim\limits_{u \rightarrow 0^{+}} f(\frac{1}{u}) \\
+                                               &= \lim\limits_{u \rightarrow 0^{+}} \dfrac{5 \cdot \frac{1}{u^2} - 10 \frac{1}{u} + 5}{\frac{1}{u^2} - 3\frac{1}{u} + 2} \\
+                                               &= \lim\limits_{u \rightarrow 0^{+}} \dfrac{u^2}{u^2} \dfrac{5 \cdot \frac{1}{u^2} - 10 \frac{1}{u} + 5}{\frac{1}{u^2} - 3\frac{1}{u} + 2} \\
+                                               &= \lim\limits_{u \rightarrow 0^{+}} \dfrac{5 - 10u + 5u^2}{1 - 3u + 2u^2} \\
+                                               &= \dfrac{5 - 10 \cdot 0 + 5 \cdot 0^2}{1 - 3 \cdot 0 + 2 \cdot 0} = 5 \\
+                                               &= \lim\limits_{u \rightarrow 0^{-}} f(\frac{1}{u}) \\
+                                               &= \lim\limits_{x \rightarrow - \infty} f(x)
+      \end{align}
+
+      so the equation of the only horizontal asymptote line is $y = 5$.
+    \end{solution}
+    \vfill
+  \end{parts}
+
+  \newpage
+
+  \question Let $g(x) = x^3 - 3x^2 + x + 1$. Suppose you are also given the expression of the derivative: $g'(x) = 3x^2 -6x + 1$.
+
+  \begin{parts}
+    \part[10] Use the definition of the derivative to compute the second derivative function $g''(x)$. Any methods other than applying the definition of the derivative will receive \textit{no} points, even if they are correct.
+    \begin{solution}
+      We compute:
+      \begin{align}
+        g''(x) &= \lim\limits_{h \rightarrow 0} \dfrac{g'(x + h) - g'(x)}{h} \\
+               &= \lim\limits_{h \rightarrow 0} \dfrac{3(x + h)^2 - 6(x + h) + 1 - (3x^2 - 6x + 1)}{h} \\
+               &= \lim\limits_{h \rightarrow 0} \dfrac{3 (x^2 + 2hx + h^2) - 6x - 6h + 1 - 3x^2 + 6x - 1}{h} \\
+               &= \lim\limits_{h \rightarrow 0} \dfrac{3x^2 + 6hx + 3h^2 - 6x - 6h + 1 - 3x^2 + 6x - 1}{h} \\
+               &= \lim\limits_{h \rightarrow 0} \dfrac{6hx + 3h^2 - 6h}{h} \\
+               &= \lim\limits_{h \rightarrow 0} (6x + 3h - 6) \\
+               &= 6x - 6
+      \end{align}
+
+      so $g''(x) = 6x - 6$.
+    \end{solution}
+    \vfill
+
+    \part[6] Determine whether $g(x)$ is increasing or decreasing at $x = 1$ and explain your answer.
+    \begin{solution}
+      Whether $g(x)$ is increasing or decreasing at $x = 1$ is classified by the sign of the derivative $g'(x)$ at $x = 1$. Since:
+      \begin{align}
+        g'(1) &= 3 \cdot 1^2 - 6 \cdot 1 + 1 \\
+              &= 3 \cdot 1 - 6 + 1 \\
+              &= 3 - 6 + 1 \\
+              &= -3 + 1 \\
+              &= -2
+      \end{align}
+      we see that $g(x)$ must be \textit{decreasing} at $x = 1$.
+    \end{solution}
+    \vfill
+
+    \newpage
+
+    As on the previous page,
+    \begin{equation*}
+      g(x) = x^3 - 3x^2 + x + 1, \quad g'(x) = 3x^2 - 6x + 1.
+    \end{equation*}
+
+    \part[5] Determine, with work shown, the equation of the tangent line to $g(x)$ at $x = 2$.
+    Your answer must be in either slope-intercept, point-slope, or standard form.
+    \begin{solution}
+      The equation of the tangent line to $g(x)$ at $x = 2$ is given by:
+      \begin{gather}
+        y = g'(2)(x - 2) + g(2) \\
+        y = (3 \cdot 2^2 - 6 \cdot 2 + 1)(x - 2) + (2^3 - 3 \cdot 2^2 + 2 + 1) \\
+        y = (3 \cdot 4 - 12 + 1)(x - 2) + (8 - 3 \cdot 4 + 2 + 1) \\
+        y = (12 - 12 + 1)(x - 2) + (8 - 12 + 2 + 1) \\
+        y = 1 \cdot (x - 2) - 1 \\
+        y = x - 2 - 1 \\
+        y = x - 3
+      \end{gather}
+    \end{solution}
+    \vfill
+
+    \part[6] Determine whether $g(x)$ is concave up or concave down at $x = 3$ and explain your answer.
+    \begin{solution}
+      Whether $g(x)$ is concave up or concave down at $x = 3$ is classified by the sign of $g''(3)$. We compute:
+      \begin{align}
+        g''(3) &= 6 \cdot 3 - 6 \\
+               &= 18 - 6 = 12
+      \end{align}
+      which is positive so $g(x)$ is concave up at $x = 3$.
+    \end{solution}
+    \vfill
+  \end{parts}
+\end{questions}
+
+
+\end{document}

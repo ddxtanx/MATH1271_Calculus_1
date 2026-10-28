@@ -1,0 +1,36 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../quiz-macros.tex}
+
+\title{\vspace{-0.5in}Quiz 6: 09/24 Content}
+\date{09/29/2026}
+\author{MATH 1271}
+
+\begin{document}
+  \NameSection
+  {\let\newpage\relax\maketitle}
+
+  \PointsSection
+
+  \newpage
+  \begin{questions}
+    \question[5] Use the definition of the derivative
+    to find the derivative of the function:
+    \begin{equation*}
+      R(w) = w^2 - 8w + 20 
+    \end{equation*}
+    \begin{solution}
+      We compute:
+      \begin{align}
+        R'(w) &= \lim\limits_{h \rightarrow 0} \dfrac{R(w + h) - R(w)}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{(w + h)^2 - 8(w + h) + 20 - (w^2 - 8w + 20)}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{w^2 + 2wh + h^2 - 8w - 8h + 20 -w^2 + 8w - 20}{h} \\
+              &= \lim\limits_{h \rightarrow 0} \dfrac{2wh + h^2 - 8w}{h} \\
+              &= \lim\limits_{h \rightarrow 0} (2w + h - 8) \\
+              &= 2w + 0 - 8 = 2w - 8
+      \end{align}
+
+      So $R'(w) = 2w - 8$.
+    \end{solution}
+  \end{questions}
+\end{document}
