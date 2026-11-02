@@ -1,0 +1,61 @@
+\input{../../tag-template.tex}
+\documentclass[addpoints,12pt]{exam}
+\input{../../Quizzes/quiz-macros.tex}
+\usepackage{amsmath, amssymb, amsthm, graphicx, float}
+
+\title{Quiz 13: 10/17 Content}
+\author{Garrett Credi}
+\CourseName{MATH 1271}
+\TimeLimit{5 Minutes}
+\Semester{Fall 2026}
+\date{10/29/2026}
+\IsQuiz
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\begin{questions}
+  \question[5] Compute the limit
+  \begin{equation}
+    \lim\limits_{x \rightarrow \infty} \dfrac{\ln^2(x)}{x}
+  \end{equation}
+  using L'Hôpital's rule.
+
+  \begin{solution}
+    We first need to determine if the limit is in a form where L'Hôpital's rule applies.
+    As $x \rightarrow \infty$, we know that $\ln(x) \rightarrow \infty$ too,
+    thus this limit is an indeterminate form of type $\frac{\infty}{\infty}$,
+    and thus we can apply L'Hôpital's rule.
+
+    Since $\dfrac{d}{dx} \ln^2(x) = \left(\dfrac{d}{du}\mid_{u = \ln(x)} u^2 \right) \cdot \left(\dfrac{d}{dx} \ln(x)\right) = 2 \ln(x) \cdot \frac{1}{x}$
+    and $\dfrac{d}{dx} x = 1$ we have that
+    \begin{align}
+      \lim\limits_{x \rightarrow \infty} \dfrac{\ln^2(x)}{x} &= \lim\limits_{x \rightarrow \infty} \dfrac{\frac{d}{dx} \ln^2(x)}{\frac{d}{dx} x} \\
+                                                             &= \lim\limits_{x \rightarrow \infty} \dfrac{2 \ln(x) \cdot \frac{1}{x}}{1}.
+    \end{align}
+
+    When we try and analyze this limit, we note that it's current form is hard to interpret and so we simplify the fraction to get
+    \begin{equation}
+      \lim\limits_{x \rightarrow \infty} \dfrac{2\ln(x) \cdot \frac{1}{x}}{1} = \lim\limits_{x \rightarrow \infty} \dfrac{2\ln(x)}{x}
+    \end{equation}
+    which, by the above reasoning, is indeterminate of type $\frac{\infty}{\infty}$.
+
+    We again apply L'Hôpital's rule to get:
+    \begin{align}
+      \lim\limits_{x \rightarrow \infty} \dfrac{2\ln(x)}{x} &= \lim\limits_{x \rightarrow \infty} \dfrac{\frac{d}{dx} 2 \ln(x)}{\frac{d}{dx} x} \\
+                                                            &= \lim\limits_{x \rightarrow \infty} \dfrac{2 \cdot \frac{1}{x}}{1} \\
+                                                            &= \lim\limits_{x \rightarrow \infty} \dfrac{2}{x} = 0.
+    \end{align}
+
+    Therefore, we have that:
+    \begin{equation}
+      \lim\limits_{x \rightarrow \infty} \dfrac{\ln^2(x)}{x} = 0.
+    \end{equation}
+  \end{solution}
+\end{questions}
+
+
+\end{document}
